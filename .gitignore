@@ -7,7 +7,7 @@ build.gradle
 gradle.properties
 gradlew
 gradlew.bat
-setting.gradle
+settings.gradle
 # -------------------------------
 
 *.iml
