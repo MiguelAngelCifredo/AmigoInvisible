@@ -1,4 +1,15 @@
 <<<<<<< HEAD
+
+# puesto por: MiguelAngelCifredo
+/.idea
+/gradle/wrapper
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+setting.gradle
+# -------------------------------
+
 *.iml
 .gradle
 /local.properties
