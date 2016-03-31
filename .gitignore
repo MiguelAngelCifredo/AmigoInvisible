@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # puesto por: MiguelAngelCifredo
 /.idea
 /gradle/wrapper
@@ -18,7 +16,7 @@ settings.gradle
 .DS_Store
 /build
 /captures
-=======
+
 # Built application files
 *.apk
 *.ap_
@@ -51,4 +49,3 @@ proguard/
 
 # Android Studio captures folder
 captures/
->>>>>>> 415e34bfea74a758d016d0ba4b2fb507fe0de73e
