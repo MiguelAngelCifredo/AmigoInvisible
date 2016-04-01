@@ -51,11 +51,34 @@ public class MainDBMS {
                 lst.add(new clsPerson( json.getJSONObject(i).getInt("id_person")
                                      , json.getJSONObject(i).getString("email")
                                      , json.getJSONObject(i).getString("name")
+                                     , null
+                ));
+/*
+                Mientras consigo la forma de obtener la foto,
+                sólo se obtendrán el resto de campos.  :-(
+
+                lst.add(new clsPerson( json.getJSONObject(i).getInt("id_person")
+                                     , json.getJSONObject(i).getString("email")
+                                     , json.getJSONObject(i).getString("name")
                                      , json.getJSONObject(i).getString("photo")
                 ));
+
+ */
             }
         } catch(Exception e){}
         return lst;
+    }
+
+    public String getPersonPhoto() {
+        String queryURL = "/amigo/getPersonPhoto.php?id_person=1";
+        String response = null;
+        try {
+            URL url = new URL(servidor + queryURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            response = org.apache.commons.io.IOUtils.toString(new BufferedInputStream(conn.getInputStream()), "UTF-8");
+        } catch (Exception e) {}
+        return response;
     }
 
 }

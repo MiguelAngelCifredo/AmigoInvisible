@@ -53,11 +53,6 @@ proguard/
 local.properties
 
 # Android Studio captures folder
-<<<<<<< HEAD
-captures/
-=======
-captures/
->>>>>>> c6f9d18b8225e74110dcd3acd2446b1748bd4bed
 .idea/gradle.xml
 .idea/gradle.xml
 .idea/libraries/animated_vector_drawable_23_2_1.xml
