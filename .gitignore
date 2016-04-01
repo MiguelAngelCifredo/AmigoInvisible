@@ -81,3 +81,5 @@ local.properties
 .gradle/2.8/taskArtifacts/cache.properties.lock
 .idea/gradle.xml
 local.properties
+local.properties
+app/app.iml
