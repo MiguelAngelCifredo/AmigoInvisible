@@ -2,3 +2,5 @@
 .idea/misc.xml
 local.properties
 app/app.iml
+.idea/gradle.xml
+.idea/*
