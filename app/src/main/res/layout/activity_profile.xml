@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="146dp"
+        >
+
+        <ImageView
+            android:layout_width="151dp"
+            android:layout_height="126dp"
+            android:id="@+id/imgVwProfile"
+            android:paddingRight="10dp"
+            android:src="@drawable/profile_img"
+            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:contentDescription="@string/DescripcionImagen"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <EditText
+                android:layout_width="188dp"
+                android:layout_height="83dp"
+                android:id="@+id/txtVwName"
+                android:text="@string/NombreUsuario"
+                android:inputType="text"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Lista de deseos"
+            android:id="@+id/txtVwListWishes"
+            android:layout_gravity="center_horizontal|left"/>
+
+        <ListView
+            android:layout_width="383dp"
+            android:layout_height="304dp"
+            android:id="@+id/lstVwWishes"
+            android:layout_weight="0.26"/>
+
+        <Button
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Guardar"
+            android:id="@+id/btnSaveList"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+</LinearLayout>

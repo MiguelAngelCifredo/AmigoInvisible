@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtVwPrice"
+            android:layout_weight="1"
+            android:text="Precio maximo"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtVwDate"
+            android:text="Fecha"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtVwTime"
+            android:layout_weight="1"
+            android:text="Hora"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtVwPlace"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="Lugar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Participantes"
+            android:id="@+id/txtVwFriends"
+            android:layout_weight="1"
+            android:padding="10dp"/>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lstVwFriends"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="80"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/AñadirParticipante"
+            android:id="@+id/btnAddFriend"
+            android:layout_weight="1"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+</LinearLayout>

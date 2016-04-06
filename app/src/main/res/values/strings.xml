@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Amigo Invisible</string>
+    <string name="NuevoEvento">Nuevo evento</string>
+    <string name="Guardar">Guardar</string>
+    <string name="DescripcionImagen">profile_image_description</string>
+    <string name="NombreUsuario">NameUser</string>
+    <string name="ListaDeseos">Wishes List</string>
+    <string name="NombreEvento">Event Name</string>
+    <string name="ImagenEvento">event_image_description</string>
+    <string name="NombreAmigo">Nombre Amigo</string>
+    <string name="BotonInfo">btn_info</string>
+    <string name="AñadirParticipante">Añadir Participante</string>
 </resources>
