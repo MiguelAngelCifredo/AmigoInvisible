@@ -2,6 +2,8 @@ package etsii.cm.amigoinvisible;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -12,6 +14,7 @@ import dbms.clsEvent;
 
 public class EventsActivity extends AppCompatActivity {
 
+
     public ArrayList<String> dataToList = new ArrayList<>();
     public MainDBMS dbms = new MainDBMS();
 
@@ -19,6 +22,14 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
         muestraEventos();
+        ListView lv = (ListView) findViewById(R.id.lstVwEvent);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> customerAdapter, View footer, int selectedInt, long selectedLong) {
+                System.out.println("Se ha seleccionado el item numero " + selectedInt);
+                //String listChoice = (lstVwEvent.getItemAtPosition(selectedInt));
+
+            }
+        });
     }
 
     public void muestraEventos (){
@@ -48,4 +59,6 @@ public class EventsActivity extends AppCompatActivity {
         ListView lista = (ListView) findViewById(R.id.lstVwEvent);
         try { lista.setAdapter(adaptador); } catch (Exception e) {}
     }
+
+
 }
