@@ -12,8 +12,8 @@ import model.clsPerson;
 
 public class connServer {
 
-    public static final String servidor = "http://192.168.1.200";
-    //public final String servidor = "http://asd.hol.es";
+    //public static final String servidor = "http://192.168.1.200";
+    public static final String servidor = "http://asd.hol.es";
 
     public static JSONArray readData(String pagePHP){
         String queryURL = "/amigo/" + pagePHP;
