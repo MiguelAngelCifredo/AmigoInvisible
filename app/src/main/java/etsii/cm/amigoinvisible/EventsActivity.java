@@ -9,19 +9,18 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import dbms.MainDBMS;
-import dbms.clsEvent;
+import dbms.getInfo;
+import model.clsEvent;
 
 public class EventsActivity extends AppCompatActivity {
 
-
     public ArrayList<String> dataToList = new ArrayList<>();
-    public MainDBMS dbms = new MainDBMS();
+    public getInfo db = new getInfo();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        muestraEventos();
+        muestraListaEventos();
         ListView lv = (ListView) findViewById(R.id.lstVwEvent);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> customerAdapter, View footer, int selectedInt, long selectedLong) {
@@ -32,16 +31,19 @@ public class EventsActivity extends AppCompatActivity {
         });
     }
 
-    public void muestraEventos (){
+    public void muestraListaEventos (){
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 dataToList.clear();
-
-                ArrayList<clsEvent> lstEvents = dbms.getEvents();
-                for(clsEvent objEvent : lstEvents) { dataToList.add(objEvent.getData_name()); }
-                System.out.println("**********************Entrando en DB" + lstEvents.size());
+                ArrayList<clsEvent> lstEvents = db.getListEvents();
+                for(clsEvent objEvent : lstEvents) {
+                    dataToList.add( objEvent.getData_name()
+                                  + " ("
+                                  + db.getListParticipants(objEvent.getData_id_event()).size()
+                                  + ")"
+                    );
+                }
                 runOnUiThread(
                         new Runnable() {
                             @Override
@@ -54,11 +56,11 @@ public class EventsActivity extends AppCompatActivity {
         });
         tr.start();
     }
+
     public void mostrarListado(){
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataToList);
         ListView lista = (ListView) findViewById(R.id.lstVwEvent);
         try { lista.setAdapter(adaptador); } catch (Exception e) {}
     }
-
 
 }

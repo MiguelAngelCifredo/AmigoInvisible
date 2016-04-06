@@ -1,4 +1,4 @@
-package dbms;
+package model;
 
 public class clsEvent {
 

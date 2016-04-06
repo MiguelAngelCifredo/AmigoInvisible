@@ -1,25 +1,21 @@
 package etsii.cm.amigoinvisible;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import dbms.MainDBMS;
-import dbms.clsEvent;
-import dbms.clsPerson;
+import dbms.getInfo;
+import model.clsEvent;
+import model.clsPerson;
 
 public class MainActivity extends AppCompatActivity {
 
     public ArrayList<String> dataToList = new ArrayList<>();
-    public MainDBMS dbms = new MainDBMS();
+    public getInfo db = new getInfo();
     String foto = new String();
 
     @Override
@@ -35,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
                 dataToList.clear();
 
-                ArrayList<clsEvent> lstEvents = dbms.getEvents();
+                ArrayList<clsEvent> lstEvents = db.getListEvents();
                 for(clsEvent objEvent : lstEvents) { dataToList.add(objEvent.getData_name()); }
 
                 /*
-                ArrayList<clsPerson> lstPersons = dbms.getPersons();
+                ArrayList<clsPerson> lstPersons = db.getListParticipants();
 
                 for(clsPerson objPerson : lstPersons) {
                     dataToList.add(objPerson.getData_name() + " - " + objPerson.getData_email());
