@@ -5,10 +5,6 @@ import org.json.JSONArray;
 import java.io.BufferedInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-
-import model.clsEvent;
-import model.clsPerson;
 
 public class connServer {
 

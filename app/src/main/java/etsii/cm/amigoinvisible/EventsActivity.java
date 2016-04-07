@@ -1,5 +1,6 @@
 package etsii.cm.amigoinvisible;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,12 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import dbms.getInfo;
-import model.clsEvent;
+import model.ClsEvent;
 
-public class EventsActivity extends AppCompatActivity {
+public class EventsActivity extends AppCompatActivity implements Serializable {
 
     public ArrayList<String> dataToList = new ArrayList<>();
     public getInfo db = new getInfo();
@@ -21,14 +23,36 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
         muestraListaEventos();
-        ListView lv = (ListView) findViewById(R.id.lstVwEvent);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> customerAdapter, View footer, int selectedInt, long selectedLong) {
-                System.out.println("Se ha seleccionado el item numero " + selectedInt);
-                //String listChoice = (lstVwEvent.getItemAtPosition(selectedInt));
+        final ListView lv = (ListView) findViewById(R.id.lstVwEvent);
 
-            }
-        });
+        //Codigo para seleccionar y obtener el evento seleccionado
+        if( lv != null){
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> customerAdapter, View footer, int selectedInt, long selectedLong) {
+
+                    //System.out.println("Se ha seleccionado el item numero " + selectedInt);
+                    //System.out.println("****************" + db.getListEvents().get(selectedInt).getData_name());
+
+                    ArrayList<ClsEvent> lista = db.getListEvents();
+                    ClsEvent c = new ClsEvent(lista.get(selectedInt));
+
+                    //System.out.println("***************** " + c.toString());
+
+                    //Creo el evento que voy a mandar a la otra vista
+                    Intent miIntent = new Intent(getApplicationContext(), ViewEventActivity.class);
+
+                    System.out.println("+++++++++++++++++++++++++" + c.toString());
+                    miIntent.putExtra("idEvent", c.getData_id_event());
+                    miIntent.putExtra("nameEvent", c.getData_name());
+                    miIntent.putExtra("dateEvent", c.getData_date());
+                    miIntent.putExtra("placeEvent", c.getData_place());
+                    miIntent.putExtra("priceEvent", c.getData_max_Price());
+                    startActivity(miIntent);
+
+                }
+            });
+        }
+
     }
 
     public void muestraListaEventos (){
@@ -36,8 +60,8 @@ public class EventsActivity extends AppCompatActivity {
             @Override
             public void run() {
                 dataToList.clear();
-                ArrayList<clsEvent> lstEvents = db.getListEvents();
-                for(clsEvent objEvent : lstEvents) {
+                ArrayList<ClsEvent> lstEvents = db.getListEvents();
+                for(ClsEvent objEvent : lstEvents) {
                     dataToList.add( objEvent.getData_name()
                                   + " ("
                                   + db.getListParticipants(objEvent.getData_id_event()).size()
@@ -62,5 +86,7 @@ public class EventsActivity extends AppCompatActivity {
         ListView lista = (ListView) findViewById(R.id.lstVwEvent);
         try { lista.setAdapter(adaptador); } catch (Exception e) {}
     }
+
+
 
 }

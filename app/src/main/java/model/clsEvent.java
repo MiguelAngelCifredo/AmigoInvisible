@@ -1,6 +1,6 @@
 package model;
 
-public class clsEvent {
+public class ClsEvent {
 
     private Integer data_id_event;
     private String  data_name;
@@ -8,17 +8,25 @@ public class clsEvent {
     private String  data_place;
     private Integer data_max_Price;
 
-    public clsEvent( Integer data_id_event
-                   , String  data_name
-                   , String  data_date
-                   , String  data_place
-                   , Integer data_max_Price
-                   ){
+    public ClsEvent(Integer data_id_event
+            , String data_name
+            , String data_date
+            , String data_place
+            , Integer data_max_Price
+    ){
         this.data_id_event  = data_id_event;
         this.data_name      = data_name;
         this.data_date      = data_date;
         this.data_place     = data_place;
         this.data_max_Price = data_max_Price;
+    }
+
+    public ClsEvent(ClsEvent e){
+        this.data_id_event  = e.getData_id_event();
+        this.data_name      = e.getData_name();
+        this.data_date      = e.getData_date();
+        this.data_place     = e.getData_place();
+        this.data_max_Price = e.getData_max_Price();
     }
 
     public Integer getData_id_event() {
@@ -59,5 +67,10 @@ public class clsEvent {
 
     public void setData_max_Price(Integer data_max_Price) {
         this.data_max_Price = data_max_Price;
+    }
+
+    @Override
+    public String toString() {
+        return this.data_id_event + this.data_name + this.data_date + this.data_place + this.data_max_Price;
     }
 }

@@ -9,8 +9,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import dbms.getInfo;
-import model.clsEvent;
-import model.clsPerson;
+import model.ClsEvent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
                 dataToList.clear();
 
-                ArrayList<clsEvent> lstEvents = db.getListEvents();
-                for(clsEvent objEvent : lstEvents) { dataToList.add(objEvent.getData_name()); }
+                ArrayList<ClsEvent> lstEvents = db.getListEvents();
+                for(ClsEvent objEvent : lstEvents) { dataToList.add(objEvent.getData_name()); }
 
                 /*
                 ArrayList<clsPerson> lstPersons = db.getListParticipants();

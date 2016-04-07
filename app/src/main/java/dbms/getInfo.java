@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import model.clsEvent;
+import model.ClsEvent;
 import model.clsMyFriend;
 import model.clsPerson;
 import model.clsParticipant;
@@ -15,12 +15,12 @@ import model.clsWish;
 
 public class getInfo {
 
-    public ArrayList<clsEvent> getListEvents() {
-        ArrayList<clsEvent> lst = new ArrayList<>();
+    public ArrayList<ClsEvent> getListEvents() {
+        ArrayList<ClsEvent> lst = new ArrayList<>();
         try{
             JSONArray json =  connServer.readData("getListEvents.php");
             for (int i=0; i<json.length(); i++) {
-                lst.add(new clsEvent(
+                lst.add(new ClsEvent(
                           json.getJSONObject(i).getInt("id_event")
                         , json.getJSONObject(i).getString("name")
                         , json.getJSONObject(i).getString("date")
