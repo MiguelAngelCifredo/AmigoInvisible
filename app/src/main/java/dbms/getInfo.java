@@ -41,7 +41,7 @@ public class getInfo {
                           json.getJSONObject(i).getInt("id_participant")
                         , getPerson(json.getJSONObject(i).getInt("id_person"))
                         , json.getJSONObject(i).getString("admin")
-                        , json.getJSONObject(i).getInt("friend")
+                        , getPerson(json.getJSONObject(i).getInt("friend"))
                 ));
             }
         } catch(Exception e){}

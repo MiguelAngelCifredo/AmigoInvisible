@@ -4,12 +4,12 @@ public class ClsParticipant {
     private Integer   data_id_participant;
     private ClsPerson data_person;
     private String    data_admin;
-    private Integer   data_friend;
+    private ClsPerson data_friend;
 
     public ClsParticipant( Integer   data_id_participant
                          , ClsPerson data_person
                          , String    data_admin
-                         , Integer   data_friend
+                         , ClsPerson data_friend
     ) {
         this.data_id_participant   = data_id_participant;
         this.data_admin     = data_admin;
@@ -33,11 +33,11 @@ public class ClsParticipant {
         this.data_admin = data_admin;
     }
 
-    public Integer getData_friend() {
+    public ClsPerson getData_friend() {
         return data_friend;
     }
 
-    public void setData_friend(Integer data_friend) {
+    public void setData_friend(ClsPerson data_friend) {
         this.data_friend = data_friend;
     }
 
