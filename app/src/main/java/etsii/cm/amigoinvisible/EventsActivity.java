@@ -3,6 +3,7 @@ package etsii.cm.amigoinvisible;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,15 +14,17 @@ import java.util.ArrayList;
 
 import dbms.getInfo;
 import model.ClsEvent;
+import model.ClsMyFriend;
 
 public class EventsActivity extends AppCompatActivity implements Serializable {
-
+    private static final String LogTAG = " MACC ACTIVITY";
     public ArrayList<String> dataToList = new ArrayList<>();
     public getInfo db = new getInfo();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+        Log.d(LogTAG, "Voy a MuestraEventos ->");
         muestraListaEventos();
         final ListView lv = (ListView) findViewById(R.id.lstVwEvent);
 
@@ -59,6 +62,10 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
+                Integer eventoSeleccionado = 1;
+                ClsMyFriend miAmigo = db.getMyFriend(eventoSeleccionado);
+                System.out.println("*****  AMIGO: " + miAmigo.getData_person().getData_name());
+
                 dataToList.clear();
                 ArrayList<ClsEvent> lstEvents = db.getListEvents();
                 for(ClsEvent objEvent : lstEvents) {
@@ -68,6 +75,7 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
                                   + ")"
                     );
                 }
+
                 runOnUiThread(
                         new Runnable() {
                             @Override
@@ -86,7 +94,5 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
         ListView lista = (ListView) findViewById(R.id.lstVwEvent);
         try { lista.setAdapter(adaptador); } catch (Exception e) {}
     }
-
-
 
 }

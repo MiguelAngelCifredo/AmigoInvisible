@@ -6,7 +6,7 @@ import java.io.BufferedInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class connServer {
+public class connSrv {
 
     //public static final String servidor = "http://192.168.1.200";
     public static final String servidor = "http://asd.hol.es";
@@ -25,6 +25,5 @@ public class connServer {
         }
         return arr;
     }
-
 
 }
