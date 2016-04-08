@@ -28,4 +28,12 @@ public class ClsMyFriend {
     public void setData_wish(ArrayList<ClsWish> data_wish) {
         this.data_wish = data_wish;
     }
+
+    @Override
+    public String toString() {
+        return "ClsMyFriend{" +
+                "person=" + data_person +
+                ", wish=" + data_wish +
+                '}';
+    }
 }

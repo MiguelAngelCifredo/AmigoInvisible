@@ -71,6 +71,12 @@ public class ClsEvent {
 
     @Override
     public String toString() {
-        return this.data_id_event + this.data_name + this.data_date + this.data_place + this.data_max_Price;
+        return "ClsEvent{" +
+                "id_event=" + data_id_event +
+                ", name='" + data_name + '\'' +
+                ", date='" + data_date + '\'' +
+                ", place='" + data_place + '\'' +
+                ", max_Price=" + data_max_Price +
+                '}';
     }
 }

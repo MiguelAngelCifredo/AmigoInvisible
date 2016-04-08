@@ -48,4 +48,14 @@ public class ClsParticipant {
     public void setData_id_person(ClsPerson data_person) {
         this.data_person = data_person;
     }
+
+    @Override
+    public String toString() {
+        return "ClsParticipant{" +
+                "id_participant=" + data_id_participant +
+                ", person=" + data_person +
+                ", admin='" + data_admin + '\'' +
+                ", friend=" + data_friend +
+                '}';
+    }
 }

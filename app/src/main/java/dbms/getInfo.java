@@ -62,12 +62,18 @@ public class getInfo {
         return person;
     }
 
-    public ClsMyFriend getMyFriend(Integer id_person) {
+    public ClsMyFriend getMyFriend(Integer id_event) {
         ClsMyFriend myFriend = null;
+        Integer id_myFriend  = null;
         try{
+            ArrayList<ClsParticipant> lst = getListParticipants(id_event);
+            for(ClsParticipant person: lst){
+                if (person.getData_person().getData_email()=="miEmail")
+                    id_myFriend = person.getData_friend().getData_id_person();
+            }
             myFriend = new ClsMyFriend(
-                     getPerson(id_person)
-                    ,getListWishes(id_person)
+                     getPerson(id_myFriend)
+                    ,getListWishes(id_myFriend)
             );
         } catch(Exception e){}
         return myFriend;

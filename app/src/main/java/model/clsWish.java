@@ -59,4 +59,15 @@ public class ClsWish {
     public void setData_bouth(String data_bouth) {
         this.data_bouth = data_bouth;
     }
+
+    @Override
+    public String toString() {
+        return "ClsWish{" +
+                "id_wish=" + data_id_wish +
+                ", text='" + data_text + '\'' +
+                ", description='" + data_description + '\'' +
+                ", photo='" + data_photo + '\'' +
+                ", bouth='" + data_bouth + '\'' +
+                '}';
+    }
 }

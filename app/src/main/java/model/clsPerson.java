@@ -50,4 +50,13 @@ public class ClsPerson {
         this.data_photo = data_photo;
     }
 
+    @Override
+    public String toString() {
+        return "ClsPerson{" +
+                "id_person=" + data_id_person +
+                ", email='" + data_email + '\'' +
+                ", name='" + data_name + '\'' +
+                ", photo='" + data_photo + '\'' +
+                '}';
+    }
 }
