@@ -8,10 +8,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import model.ClsEvent;
-import model.clsMyFriend;
-import model.clsPerson;
-import model.clsParticipant;
-import model.clsWish;
+import model.ClsMyFriend;
+import model.ClsPerson;
+import model.ClsParticipant;
+import model.ClsWish;
 
 public class getInfo {
 
@@ -32,12 +32,12 @@ public class getInfo {
         return lst;
     }
 
-    public ArrayList<clsParticipant> getListParticipants(Integer id_event) {
-        ArrayList<clsParticipant> lst = new ArrayList<>();
+    public ArrayList<ClsParticipant> getListParticipants(Integer id_event) {
+        ArrayList<ClsParticipant> lst = new ArrayList<>();
         try{
             JSONArray json =  connServer.readData("getListParticipants.php?id_event=" + id_event);
             for (int i=0; i<json.length(); i++) {
-                lst.add(new clsParticipant(
+                lst.add(new ClsParticipant(
                           json.getJSONObject(i).getInt("id_participant")
                         , getPerson(json.getJSONObject(i).getInt("id_person"))
                         , json.getJSONObject(i).getString("admin")
@@ -48,11 +48,11 @@ public class getInfo {
         return lst;
     }
 
-    public clsPerson getPerson(Integer id_person) {
-        clsPerson person = null;
+    public ClsPerson getPerson(Integer id_person) {
+        ClsPerson person = null;
         try{
             JSONArray json =  connServer.readData("getPerson.php?id_person=" + id_person);
-            person = new clsPerson(
+            person = new ClsPerson(
                           id_person
                         , json.getJSONObject(0).getString("email")
                         , json.getJSONObject(0).getString("name")
@@ -62,10 +62,10 @@ public class getInfo {
         return person;
     }
 
-    public clsMyFriend getMyFriend(Integer id_person) {
-        clsMyFriend myFriend = null;
+    public ClsMyFriend getMyFriend(Integer id_person) {
+        ClsMyFriend myFriend = null;
         try{
-            myFriend = new clsMyFriend(
+            myFriend = new ClsMyFriend(
                      getPerson(id_person)
                     ,getListWishes(id_person)
             );
@@ -73,12 +73,12 @@ public class getInfo {
         return myFriend;
     }
 
-    public ArrayList<clsWish> getListWishes(Integer id_person) {
-        ArrayList<clsWish> lst = new ArrayList<>();
+    public ArrayList<ClsWish> getListWishes(Integer id_person) {
+        ArrayList<ClsWish> lst = new ArrayList<>();
         try{
             JSONArray json =  connServer.readData("getListWishes.php?id_person=" + id_person);
             for (int i=0; i<json.length(); i++) {
-                lst.add(new clsWish(
+                lst.add(new ClsWish(
                           json.getJSONObject(i).getInt("id_wish")
                         , json.getJSONObject(i).getString("text")
                         , json.getJSONObject(i).getString("description")

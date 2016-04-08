@@ -1,13 +1,13 @@
 package model;
 
-public class clsPerson {
+public class ClsPerson {
 
     private Integer data_id_person;
     private String  data_email;
     private String  data_name;
     private String  data_photo;
 
-    public clsPerson( Integer data_id_person
+    public ClsPerson( Integer data_id_person
                     , String  data_email
                     , String  data_name
                     , String  data_photo

@@ -1,13 +1,13 @@
 package model;
 
-public class clsWish {
+public class ClsWish {
     private Integer data_id_wish;
     private String  data_text;
     private String  data_description;
     private String  data_photo;
     private String  data_bouth;
 
-    public clsWish( Integer data_id_wish
+    public ClsWish( Integer data_id_wish
                   , String  data_text
                   , String  data_description
                   , String  data_photo

@@ -1,13 +1,13 @@
 package model;
 
-public class clsParticipant {
+public class ClsParticipant {
     private Integer   data_id_participant;
-    private clsPerson data_person;
+    private ClsPerson data_person;
     private String    data_admin;
     private Integer   data_friend;
 
-    public clsParticipant( Integer   data_id_participant
-                         , clsPerson data_person
+    public ClsParticipant( Integer   data_id_participant
+                         , ClsPerson data_person
                          , String    data_admin
                          , Integer   data_friend
     ) {
@@ -41,11 +41,11 @@ public class clsParticipant {
         this.data_friend = data_friend;
     }
 
-    public clsPerson getData_person() {
+    public ClsPerson getData_person() {
         return data_person;
     }
 
-    public void setData_id_person(clsPerson data_person) {
+    public void setData_id_person(ClsPerson data_person) {
         this.data_person = data_person;
     }
 }
