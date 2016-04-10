@@ -1,16 +1,18 @@
 package model;
-//--
+
+import android.graphics.Bitmap;
+
 public class ClsPerson {
 
     private Integer data_id_person;
     private String  data_email;
     private String  data_name;
-    private String  data_photo;
+    private Bitmap  data_photo;
 
     public ClsPerson( Integer data_id_person
                     , String  data_email
                     , String  data_name
-                    , String  data_photo
+                    , Bitmap  data_photo
     ){
         this.data_id_person = data_id_person;
         this.data_email     = data_email;
@@ -42,11 +44,11 @@ public class ClsPerson {
         this.data_name = data_name;
     }
 
-    public String getData_photo() {
+    public Bitmap getData_photo() {
         return data_photo;
     }
 
-    public void setData_photo(String data_photo) {
+    public void setData_photo(Bitmap data_photo) {
         this.data_photo = data_photo;
     }
 

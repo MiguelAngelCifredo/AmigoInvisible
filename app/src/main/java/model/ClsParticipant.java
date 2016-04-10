@@ -1,6 +1,7 @@
 package model;
-//--
+
 public class ClsParticipant {
+
     private Integer   data_id_participant;
     private ClsPerson data_person;
     private String    data_admin;

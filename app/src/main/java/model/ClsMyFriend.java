@@ -1,8 +1,9 @@
 package model;
 
 import java.util.ArrayList;
-//--
+
 public class ClsMyFriend {
+
     private ClsPerson data_person;
     private ArrayList<ClsWish> data_wish;
 

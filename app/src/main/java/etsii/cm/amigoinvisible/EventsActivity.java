@@ -1,12 +1,16 @@
 package etsii.cm.amigoinvisible;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.io.Serializable;
@@ -17,14 +21,13 @@ import model.ClsEvent;
 import model.ClsMyFriend;
 
 public class EventsActivity extends AppCompatActivity implements Serializable {
-    private static final String LogTAG = " MACC ACTIVITY";
-    public ArrayList<String> dataToList = new ArrayList<>();
-    public getInfo db = new getInfo();
+    private ArrayList<String> dataToList = new ArrayList<>();
+    private getInfo db = new getInfo();
+    private Bitmap resultado;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        Log.d(LogTAG, "Voy a MuestraEventos ->");
         muestraListaEventos();
         final ListView lv = (ListView) findViewById(R.id.lstVwEvent);
 
@@ -63,17 +66,23 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
             @Override
             public void run() {
                 Integer eventoSeleccionado = 1;
-                ClsMyFriend miAmigo = db.getMyFriend(eventoSeleccionado);
-                System.out.println("*****  AMIGO: " + miAmigo.getData_person().getData_name());
+
+                //ClsMyFriend miAmigo = db.getMyFriend(eventoSeleccionado);
+                //System.out.println("*****  AMIGO: " + miAmigo.getData_person().getData_name());
+/*
+                System.out.println("***** " + "obteniendo la foto...");
+                String foto = db.getPhoto("person", 1);
+                byte[] arr = Base64.decode(foto, Base64.DEFAULT);
+                resultado = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+                System.out.println("***** " + "Foto mostrada.");
+*/
+
 
                 dataToList.clear();
                 ArrayList<ClsEvent> lstEvents = db.getListEvents();
+                resultado = db.getPhoto("person", 1);
                 for(ClsEvent objEvent : lstEvents) {
-                    dataToList.add( objEvent.getData_name()
-                                  + " ("
-                                  + db.getListParticipants(objEvent.getData_id_event()).size()
-                                  + ")"
-                    );
+                    dataToList.add( objEvent.getData_name() );
                 }
 
                 runOnUiThread(
@@ -92,6 +101,10 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
     public void mostrarListado(){
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataToList);
         ListView lista = (ListView) findViewById(R.id.lstVwEvent);
+
+        ImageView imagen = (ImageView) findViewById(R.id.imageView);
+        imagen.setImageBitmap(resultado);
+
         try { lista.setAdapter(adaptador); } catch (Exception e) {}
     }
 

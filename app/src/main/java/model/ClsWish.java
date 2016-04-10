@@ -1,16 +1,19 @@
 package model;
-//--
+
+import android.graphics.Bitmap;
+
 public class ClsWish {
+
     private Integer data_id_wish;
     private String  data_text;
     private String  data_description;
-    private String  data_photo;
+    private Bitmap  data_photo;
     private String  data_bouth;
 
     public ClsWish( Integer data_id_wish
                   , String  data_text
                   , String  data_description
-                  , String  data_photo
+                  , Bitmap  data_photo
                   , String  data_bouth
     ) {
         this.data_id_wish     = data_id_wish;
@@ -44,11 +47,11 @@ public class ClsWish {
         this.data_description = data_description;
     }
 
-    public String getData_photo() {
+    public Bitmap getData_photo() {
         return data_photo;
     }
 
-    public void setData_photo(String data_photo) {
+    public void setData_photo(Bitmap data_photo) {
         this.data_photo = data_photo;
     }
 
@@ -66,7 +69,6 @@ public class ClsWish {
                 "id_wish=" + data_id_wish +
                 ", text='" + data_text + '\'' +
                 ", description='" + data_description + '\'' +
-                ", photo='" + data_photo + '\'' +
                 ", bouth='" + data_bouth + '\'' +
                 '}';
     }

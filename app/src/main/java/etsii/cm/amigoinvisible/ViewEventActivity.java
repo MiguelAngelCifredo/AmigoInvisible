@@ -41,7 +41,7 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
         Integer price = recepcion.getIntExtra("priceEvent", -1);
 
 
-        ClsEvent miEventoRecibido = new ClsEvent(id,name,date,place,price);
+        ClsEvent miEventoRecibido = new ClsEvent(id,name,date,place,price,null);
 
         TextView txtCambiado = (TextView)findViewById(R.id.txtVwEventName);
         txtCambiado.setText(name);

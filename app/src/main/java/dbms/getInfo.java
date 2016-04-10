@@ -1,5 +1,8 @@
 package dbms;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -8,6 +11,7 @@ import java.io.BufferedInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import model.ClsEvent;
 import model.ClsMyFriend;
@@ -30,6 +34,7 @@ public class getInfo {
                         , json.getJSONObject(i).getString("date")
                         , json.getJSONObject(i).getString("place")
                         , json.getJSONObject(i).getInt("max_price")
+                        , getPhoto("event", json.getJSONObject(i).getInt("id_event"))
                 ));
             }
         } catch(Exception e){}
@@ -61,7 +66,7 @@ public class getInfo {
                           id_person
                         , json.getJSONObject(0).getString("email")
                         , json.getJSONObject(0).getString("name")
-                        , null
+                        , getPhoto("person", id_person)
             );
         } catch(Exception e){;}
         return person;
@@ -92,7 +97,7 @@ public class getInfo {
                           json.getJSONObject(i).getInt("id_wish")
                         , json.getJSONObject(i).getString("text")
                         , json.getJSONObject(i).getString("description")
-                        , null
+                        , getPhoto("wish", json.getJSONObject(i).getInt("id_wish"))
                         , json.getJSONObject(i).getString("bought")
                 ));
             }
@@ -100,18 +105,22 @@ public class getInfo {
         return lst;
     }
 
-    public String getPersonPhoto() {
-        //public static final String servidor = "http://192.168.1.200";
+    public Bitmap getPhoto(String source, Integer id) {
+        System.out.println("***** " + "Obteniendo la foto de " + source + " # " + id);
+        if (!Arrays.asList(new String[]{"event","person","wish"}).contains(source)) {return null;}
+        //String servidor = "http://192.168.1.200";
         String servidor = "http://asd.hol.es";
-        String queryURL = "/amigo/getPersonPhoto.php?id_person=1";
-        String response = null;
+        String queryURL = "/amigo/getPhoto.php?source=" + source + "&id=" + id;
+        Bitmap foto = null;
         try {
             URL url = new URL(servidor + queryURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
-            response = org.apache.commons.io.IOUtils.toString(new BufferedInputStream(conn.getInputStream()), "UTF-8");
+            conn.setRequestMethod("GET");
+            String response = org.apache.commons.io.IOUtils.toString(new BufferedInputStream(conn.getInputStream()), "UTF-8");
+            byte[] arr = Base64.decode(response, Base64.DEFAULT);
+            foto = BitmapFactory.decodeByteArray(arr, 0, arr.length);
         } catch (Exception e) {;}
-        return response;
+        return foto;
     }
 
 }
