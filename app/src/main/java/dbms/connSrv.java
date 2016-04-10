@@ -21,7 +21,7 @@ public class connSrv {
             String response = org.apache.commons.io.IOUtils.toString(new BufferedInputStream(conn.getInputStream()), "UTF-8");
             arr = new JSONArray(response);
         } catch (Exception e) {
-            System.out.println("\nFALLO DESDE LA BASE DE DATOS ---> " + e.toString());
+            System.out.println("\n***** FALLO DESDE LA BASE DE DATOS ---> " + e.toString());
         }
         return arr;
     }

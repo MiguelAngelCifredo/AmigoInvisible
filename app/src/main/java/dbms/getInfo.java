@@ -72,7 +72,7 @@ public class getInfo {
         return person;
     }
 
-    public ClsMyFriend getMyFriend(Integer id_event) {
+    public ClsMyFriend getMyFriend_Original(Integer id_event) {
         ClsMyFriend myFriend = null;
         Integer id_myFriend  = null;
         try{
@@ -88,6 +88,15 @@ public class getInfo {
         } catch(Exception e){;}
         return myFriend;
     }
+
+    public ClsMyFriend getMyFriend(Integer id_event, String email) {
+        Integer id_myFriend  = null;
+        JSONArray json = connSrv.readData("getMyFriend.php?id_event=" + id_event +"&email=" + email);
+        try{ id_myFriend = json.getJSONObject(0).getInt("friend"); } catch (Exception e) {;}
+        ClsMyFriend myFriend = new ClsMyFriend( getPerson(id_myFriend) ,getListWishes(id_myFriend) );
+        return myFriend;
+    }
+
     public ArrayList<ClsWish> getListWishes(Integer id_person) {
         ArrayList<ClsWish> lst = new ArrayList<>();
         try{
@@ -106,7 +115,6 @@ public class getInfo {
     }
 
     public Bitmap getPhoto(String source, Integer id) {
-        System.out.println("***** " + "Obteniendo la foto de " + source + " # " + id);
         if (!Arrays.asList(new String[]{"event","person","wish"}).contains(source)) {return null;}
         //String servidor = "http://192.168.1.200";
         String servidor = "http://asd.hol.es";
