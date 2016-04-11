@@ -25,7 +25,7 @@ public class ViewWishActivity extends AppCompatActivity implements Serializable{
         imgWishPhoto.setImageBitmap(deseoActual.getData_photo());
 
         TextView txtWishDescription = (TextView)findViewById(R.id.txtVwWishDescription);
-        txtWishDescription.setText(deseoActual.getData_text());
+        txtWishDescription.setText(deseoActual.getData_description());
 
     }
 

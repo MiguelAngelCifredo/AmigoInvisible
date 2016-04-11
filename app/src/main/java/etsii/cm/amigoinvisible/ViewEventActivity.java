@@ -35,18 +35,16 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
 
         eventoActual = (ClsEvent) Comunicador.getObjeto();
 
-        TextView txtEventName = (TextView)findViewById(R.id.txtVwEventName);
-        txtEventName.setText(eventoActual.getData_name());
-        ImageView imgEvent = (ImageView)findViewById(R.id.imgVwEvent);
-        imgEvent.setImageBitmap(eventoActual.getData_photo());
+        //ImageView imgEvent = (ImageView)findViewById(R.id.imgVwFriend);
+        //imgEvent.setImageBitmap(eventoActual.getData_photo());
 
         obtieneDatosAmigo();
 
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
-                Intent miIntent = new Intent(getApplicationContext(), ViewWishActivity.class);
+                Intent nextView = new Intent(getApplicationContext(), ViewWishActivity.class);
                 Comunicador.setObjeto(lstWishes.get(i));
-                startActivity(miIntent);
+                startActivity(nextView);
             }
         });
     }
@@ -75,6 +73,11 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
     }
     public void mostrarListado(){
         TextView txtFriendName = (TextView) findViewById(R.id.txtVwFriendName);
+        txtFriendName.setText(miAmigo.getData_person().getData_name());
+
+        ImageView imgWishPhoto = (ImageView)findViewById(R.id.imgVwFriendPhoto);
+        imgWishPhoto.setImageBitmap(miAmigo.getData_person().getData_photo());
+
         txtFriendName.setText(miAmigo.getData_person().getData_name());
         Adaptador_ListaIconoTexto adapter = new Adaptador_ListaIconoTexto(this, titulo, photo);
         listado.setAdapter(adapter);

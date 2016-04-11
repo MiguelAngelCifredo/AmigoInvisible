@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewEventActivity"></activity>
+        <activity android:name=".ViewWishActivity"></activity>
     </application>
 
 </manifest>
