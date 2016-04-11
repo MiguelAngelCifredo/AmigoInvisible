@@ -21,8 +21,6 @@ import model.ClsWish;
 
 public class getInfo {
 
-    private static final String LogTAG = " MACC getInfo";
-
     public ArrayList<ClsEvent> getListEvents() {
         ArrayList<ClsEvent> lst = new ArrayList<>();
         try{
@@ -46,7 +44,6 @@ public class getInfo {
         try{
             JSONArray json =  connSrv.readData("getListParticipants.php?id_event=" + id_event);
             for (int i=0; i<json.length(); i++) {
-                Log.d(LogTAG,"id person:" + json.getJSONObject(i).getInt("id_person") + " friend:" + json.getJSONObject(i).getInt("friend"));
                 lst.add(new ClsParticipant(
                           json.getJSONObject(i).getInt("id_participant")
                         , getPerson(json.getJSONObject(i).getInt("id_person"))
@@ -70,23 +67,6 @@ public class getInfo {
             );
         } catch(Exception e){;}
         return person;
-    }
-
-    public ClsMyFriend getMyFriend_Original(Integer id_event) {
-        ClsMyFriend myFriend = null;
-        Integer id_myFriend  = null;
-        try{
-            ArrayList<ClsParticipant> lst = getListParticipants(id_event);
-            for(int i=0; i<lst.size(); i++){
-                if (lst.get(i).getData_person().getData_email().equals("macifredo@gmail.com"))
-                    id_myFriend = lst.get(i).getData_friend().getData_id_person();
-            }
-            myFriend = new ClsMyFriend(
-                     getPerson(id_myFriend)
-                    ,getListWishes(id_myFriend)
-            );
-        } catch(Exception e){;}
-        return myFriend;
     }
 
     public ClsMyFriend getMyFriend(Integer id_event, String email) {
@@ -116,12 +96,10 @@ public class getInfo {
 
     public Bitmap getPhoto(String source, Integer id) {
         if (!Arrays.asList(new String[]{"event","person","wish"}).contains(source)) {return null;}
-        //String servidor = "http://192.168.1.200";
-        String servidor = "http://asd.hol.es";
         String queryURL = "/amigo/getPhoto.php?source=" + source + "&id=" + id;
         Bitmap foto = null;
         try {
-            URL url = new URL(servidor + queryURL);
+            URL url = new URL(connSrv.servidor + queryURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             String response = org.apache.commons.io.IOUtils.toString(new BufferedInputStream(conn.getInputStream()), "UTF-8");

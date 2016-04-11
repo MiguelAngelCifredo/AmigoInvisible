@@ -56,7 +56,7 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
                 lstWishes = db.getListWishes(miAmigo.getData_person().getData_id_person());
                 for(ClsWish objWish : lstWishes) {
                     titulo.add( objWish.getData_text() );
-                    photo.add(objWish.getData_photo() );
+                    photo.add( objWish.getData_photo() );
                 }
 
                 runOnUiThread(

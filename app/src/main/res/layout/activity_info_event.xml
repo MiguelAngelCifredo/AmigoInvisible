@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/imgVwInfoEvent"
+            android:id="@+id/imgVwEventPhoto"
             android:layout_margin="5dp"/>
 
         <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Fecha"
-                android:id="@+id/txtVwDate"
+                android:id="@+id/txtVwEventDate"
                 android:layout_margin="10dp"/>
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Hora"
-                android:id="@+id/txtVwTime"
+                android:id="@+id/txtVwEventTime"
                 android:layout_margin="10dp"/>
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Lugar"
-                android:id="@+id/txtVwPlace"
+                android:id="@+id/txtVwEventPlace"
                 android:layout_margin="10dp"/>
 
             <TextView
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Precio"
-                android:id="@+id/txtVwPrice"
+                android:id="@+id/txtVwEventMaxPrice"
                 android:layout_margin="10dp"
                 android:singleLine="false"/>
 
