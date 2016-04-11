@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ListaAdapter extends BaseAdapter {
+public class Adaptador_ListaIconoTexto extends BaseAdapter {
 
     Context context;
     ArrayList<String> titulos;
     ArrayList<Bitmap> imagenes;
     LayoutInflater inflater;
 
-    public ListaAdapter(Context context, ArrayList<String> titulos, ArrayList<Bitmap> imagenes) {
+    public Adaptador_ListaIconoTexto(Context context, ArrayList<String> titulos, ArrayList<Bitmap> imagenes) {
         this.context = context;
         this.titulos = titulos;
         this.imagenes = imagenes;
@@ -44,7 +44,7 @@ public class ListaAdapter extends BaseAdapter {
         ImageView imgImg;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.lista_formato, parent, false);
+        View itemView = inflater.inflate(R.layout.lista_icono_texto, parent, false);
 
         txtTitle = (TextView) itemView.findViewById(R.id.tituloLista);
         imgImg = (ImageView) itemView.findViewById(R.id.iconLista);

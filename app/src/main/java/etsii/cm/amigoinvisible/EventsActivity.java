@@ -61,7 +61,7 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
     }
 
     public void mostrarListado(){
-        ListaAdapter adapter = new ListaAdapter(this, titulo, photo);
+        Adaptador_ListaIconoTexto adapter = new Adaptador_ListaIconoTexto(this, titulo, photo);
         listado.setAdapter(adapter);
     }
 
