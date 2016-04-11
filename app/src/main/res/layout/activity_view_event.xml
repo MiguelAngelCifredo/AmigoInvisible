@@ -11,49 +11,26 @@
         >
 
         <ImageView
-            android:layout_width="129dp"
-            android:layout_height="129dp"
-            android:id="@+id/imgVwEvent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imgVwFriend"
             android:src="@drawable/event_img"
-            android:padding="30dp"
+            android:padding="5dp"
             android:contentDescription="@string/ImagenEvento"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="1">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre Evento"
-                android:id="@+id/txtVwEventName"
-                android:padding="10dp"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:layout_width="36dp"
-                    android:layout_height="45dp"
-                    android:id="@+id/imgbtnVwInfo"
-                    android:padding="10dp"
-                    android:contentDescription="@string/BotonInfo"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/ic_menu_info_details"
-                    android:layout_marginRight="50dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/NombreAmigo"
-                    android:id="@+id/txtVwFriendName"
-                    android:padding="10dp"/>
-
-            </RelativeLayout>
-
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/txtVwFriendName"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"/>
         </LinearLayout>
 
     </LinearLayout>
