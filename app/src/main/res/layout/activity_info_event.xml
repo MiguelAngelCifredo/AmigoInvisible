@@ -1,66 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:weightSum="1"
+              android:background="#ffffff">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        >
 
-        <EditText
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imgVwInfoEvent"
+            android:layout_margin="5dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtVwPrice"
-            android:layout_weight="1"
-            android:text="Precio maximo"/>
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtVwDate"
-            android:text="Fecha"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Fecha"
+                android:id="@+id/txtVwDate"
+                android:layout_margin="10dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtVwTime"
-            android:layout_weight="1"
-            android:text="Hora"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Hora"
+                android:id="@+id/txtVwTime"
+                android:layout_margin="10dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtVwPlace"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:text="Lugar"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Lugar"
+                android:id="@+id/txtVwPlace"
+                android:layout_margin="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Participantes"
-            android:id="@+id/txtVwFriends"
-            android:layout_weight="1"
-            android:padding="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Precio"
+                android:id="@+id/txtVwPrice"
+                android:layout_margin="10dp"
+                android:singleLine="false"/>
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lstVwFriends"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="80"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/AñadirParticipante"
-            android:id="@+id/btnAddFriend"
-            android:layout_weight="1"
-            android:layout_gravity="right"/>
+        </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Participantes:"
+        android:id="@+id/txtVwListParticipants"
+        android:layout_margin="10dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="259dp"
+        android:id="@+id/lstVwParticipants"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>
