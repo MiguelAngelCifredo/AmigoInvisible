@@ -2,6 +2,11 @@ package model;
 
 import android.graphics.Bitmap;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class ClsEvent {
 
     private Integer data_id_event;
@@ -24,15 +29,6 @@ public class ClsEvent {
         this.data_place     = data_place;
         this.data_max_Price = data_max_Price;
         this.data_photo     = data_photo;
-    }
-
-    public ClsEvent(ClsEvent e){
-        this.data_id_event  = e.getData_id_event();
-        this.data_name      = e.getData_name();
-        this.data_date      = e.getData_date();
-        this.data_place     = e.getData_place();
-        this.data_max_Price = e.getData_max_Price();
-        this.data_photo     = e.getData_photo();
     }
 
     public Integer getData_id_event() {
@@ -81,6 +77,39 @@ public class ClsEvent {
 
     public void setData_photo(Bitmap data_photo) {
         this.data_photo = data_photo;
+    }
+
+    private Calendar getDate(){
+        Calendar cal = null;
+        try {
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date fecha = formatter.parse(getData_date());
+            cal = Calendar.getInstance();
+            cal.setTime(fecha);
+        }catch(ParseException e){;}
+        return cal;
+    }
+    public String getData_date_text()
+    {
+        String[] diaSem = new String[]{"Sábado", "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
+        String[] mesAño = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+
+        Calendar cal = getDate();
+        int dayWeek  = cal.get(Calendar.DAY_OF_WEEK);
+        int month    = cal.get(Calendar.MONTH);
+        int day      = cal.get(Calendar.DAY_OF_MONTH);
+        String fecha = diaSem[dayWeek] + ", "  + day + " de " + mesAño[month] ;
+        return fecha;
+    }
+
+    public String getData_date_time()
+    {
+        Calendar cal = getDate();
+        int hour     = cal.get(Calendar.HOUR_OF_DAY);
+        int minute   = cal.get(Calendar.MINUTE);
+        String fecha = "" + hour + ":"  + minute;
+        return fecha;
     }
 
     @Override
