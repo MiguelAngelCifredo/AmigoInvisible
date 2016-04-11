@@ -8,12 +8,12 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="155dp"
+        android:layout_height="wrap_content"
         android:background="#00ffffff">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/imgVwFriendPhoto"
             android:padding="5dp"
             android:contentDescription="@string/ImagenEvento"
@@ -44,7 +44,7 @@
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:id="@+id/listItemView"
             android:background="#ffffff"
             android:clickable="true"/>

@@ -11,15 +11,18 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".EventsActivity">
+        <activity android:name=".EventsActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewEventActivity"></activity>
-        <activity android:name=".ViewWishActivity"></activity>
+        <activity android:name=".ViewEventActivity"
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name=".ViewWishActivity"
+                  android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
