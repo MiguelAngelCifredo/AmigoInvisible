@@ -8,12 +8,12 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="155dp"
-        >
+        android:background="#00ffffff">
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/imgVwFriend"
+            android:id="@+id/imgVwFriendPhoto"
             android:src="@drawable/event_img"
             android:padding="5dp"
             android:contentDescription="@string/ImagenEvento"/>
@@ -44,6 +44,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listItemView"/>
+            android:id="@+id/listItemView"
+            android:background="#00ffffff"/>
     </LinearLayout>
 </LinearLayout>
