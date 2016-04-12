@@ -26,7 +26,6 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
     private ClsEvent eventoActual;
     private ArrayList<String> titulo = new ArrayList<>();
     private ArrayList<Bitmap> photo  = new ArrayList<>();
-    private ArrayList<ClsWish> lstWishes;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
                 Intent nextView = new Intent(getApplicationContext(), ViewWishActivity.class);
-                Comunicador.setObjeto(lstWishes.get(i));
+                Comunicador.setObjeto(miAmigo.getData_wish().get(i));
                 startActivity(nextView);
             }
         });
@@ -53,8 +52,7 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
             @Override
             public void run() {
                 miAmigo = db.getMyFriend(eventoActual.getData_id_event(), "macifredo@gmail.com");
-                lstWishes = db.getListWishes(miAmigo.getData_person().getData_id_person());
-                for(ClsWish objWish : lstWishes) {
+                for(ClsWish objWish : miAmigo.getData_wish()) {
                     titulo.add( objWish.getData_text() );
                     photo.add( objWish.getData_photo() );
                 }
@@ -72,6 +70,12 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
         tr.start();
     }
     public void mostrarListado(){
+
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
+        TextView txtVwMylistIs = (TextView) findViewById(R.id.txtVwMylistIs);
+        txtVwMylistIs.setText("Mi lista de deseos es:");
+
         TextView txtFriendName = (TextView) findViewById(R.id.txtVwFriendName);
         txtFriendName.setText(miAmigo.getData_person().getData_name());
 
