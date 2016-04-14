@@ -32,13 +32,4 @@
             android:id="@+id/txtVwWishDescription"/>
     </ScrollView>
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:text="Deseo comprado"
-        android:id="@+id/btnSwComprado"
-        android:layout_gravity="center_horizontal"
-        android:background="#ffffff"
-        android:longClickable="false"/>
-
 </LinearLayout>
