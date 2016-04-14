@@ -1,7 +1,6 @@
 package etsii.cm.amigoinvisible;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,17 +16,12 @@ import model.ClsEvent;
 public class EventsActivity extends AppCompatActivity implements Serializable {
     private getInfo db = new getInfo();
     private ArrayList<ClsEvent> lstEvents;
-    private ArrayList<String> titulo = new ArrayList<>();
-    private ArrayList<Bitmap> photo  = new ArrayList<>();
     private ListView listado;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
         listado = (ListView) findViewById(R.id.lstVwEvent);
-
-        obtieneListaEventos();
-
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
                 Intent miIntent = new Intent(getApplicationContext(), ViewEventActivity.class);
@@ -35,6 +29,7 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
                 startActivity(miIntent);
                }
         });
+        obtieneListaEventos();
     }
 
     public void obtieneListaEventos (){
@@ -42,11 +37,6 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
             @Override
             public void run() {
                 lstEvents = db.getListEvents();
-                for(ClsEvent objEvent : lstEvents) {
-                    titulo.add( objEvent.getData_name() );
-                    photo.add( objEvent.getData_photo() );
-                }
-
                 runOnUiThread(
                         new Runnable() {
                             @Override
@@ -62,8 +52,7 @@ public class EventsActivity extends AppCompatActivity implements Serializable {
 
     public void mostrarListado(){
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-
-        Adaptador_ListaIconoTexto adapter = new Adaptador_ListaIconoTexto(this, titulo, photo);
+        Adaptador_lista_eventos adapter = new Adaptador_lista_eventos(this, lstEvents);
         listado.setAdapter(adapter);
     }
 

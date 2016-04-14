@@ -3,6 +3,7 @@ package etsii.cm.amigoinvisible;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,8 +22,6 @@ public class InfoEventActivity extends AppCompatActivity implements Serializable
     private ListView listado;
     private ClsEvent eventoActual;
     private ArrayList<ClsParticipant> lstParticipants;
-    private ArrayList<String> titulo = new ArrayList<>();
-    private ArrayList<Bitmap> photo  = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +46,6 @@ public class InfoEventActivity extends AppCompatActivity implements Serializable
                 eventoActual = listaEventos.get(0);
 
                 lstParticipants = db.getListParticipants(eventoActual.getData_id_event());
-                for(ClsParticipant objParticipant : lstParticipants) {
-                    titulo.add( objParticipant.getData_person().getData_name() );
-                    photo.add(objParticipant.getData_person().getData_photo());
-                }
 
                 runOnUiThread(
                         new Runnable() {
@@ -65,6 +60,8 @@ public class InfoEventActivity extends AppCompatActivity implements Serializable
         tr.start();
     }
     public void mostrarListado(){
+
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         ImageView imgEventPhoto = (ImageView)findViewById(R.id.imgVwEventPhoto);
         imgEventPhoto.setImageBitmap(eventoActual.getData_photo());
@@ -81,7 +78,7 @@ public class InfoEventActivity extends AppCompatActivity implements Serializable
         TextView txtEventMaxPrice = (TextView) findViewById(R.id.txtVwEventMaxPrice);
         txtEventMaxPrice.setText(eventoActual.getData_max_Price().toString() + " €");
 
-        Adaptador_ListaIconoTexto adapter = new Adaptador_ListaIconoTexto(this, titulo, photo);
+        Adaptador_lista_participantes adapter = new Adaptador_lista_participantes(this, lstParticipants);
         listado.setAdapter(adapter);
     }
 

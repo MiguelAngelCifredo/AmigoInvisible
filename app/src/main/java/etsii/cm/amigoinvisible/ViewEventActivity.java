@@ -24,8 +24,6 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
     private ClsMyFriend miAmigo;
     private ListView listado;
     private ClsEvent eventoActual;
-    private ArrayList<String> titulo = new ArrayList<>();
-    private ArrayList<Bitmap> photo  = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +50,6 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
             @Override
             public void run() {
                 miAmigo = db.getMyFriend(eventoActual.getData_id_event(), "macifredo@gmail.com");
-                for(ClsWish objWish : miAmigo.getData_wish()) {
-                    titulo.add( objWish.getData_text() );
-                    photo.add( objWish.getData_photo() );
-                }
 
                 runOnUiThread(
                         new Runnable() {
@@ -83,7 +77,8 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
         imgWishPhoto.setImageBitmap(miAmigo.getData_person().getData_photo());
 
         txtFriendName.setText(miAmigo.getData_person().getData_name());
-        Adaptador_ListaIconoTexto adapter = new Adaptador_ListaIconoTexto(this, titulo, photo);
+        Adaptador_lista_deseos adapter = new Adaptador_lista_deseos(this, miAmigo);
         listado.setAdapter(adapter);
+
     }
 }
