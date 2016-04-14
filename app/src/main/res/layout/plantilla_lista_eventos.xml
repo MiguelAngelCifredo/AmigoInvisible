@@ -20,9 +20,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"/>
 
 
         <TextView
@@ -31,9 +30,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/txtVwEventName"
+            android:paddingLeft="15dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imgVwEventPhoto"
-            android:layout_toEndOf="@+id/imgVwEventPhoto"/>
+            android:layout_alignLeft="@+id/txtVwEventDate"
+            android:layout_alignStart="@+id/txtVwEventDate"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,9 +41,9 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
             android:id="@+id/txtVwEventDate"
+            android:paddingLeft="15dp"
             android:layout_below="@+id/txtVwEventName"
-            android:layout_toRightOf="@+id/imgVwEventPhoto"
-            android:layout_toEndOf="@+id/imgVwEventPhoto" />
+            android:layout_toRightOf="@+id/imgVwEventPhoto"/>
 
     </RelativeLayout>
 
