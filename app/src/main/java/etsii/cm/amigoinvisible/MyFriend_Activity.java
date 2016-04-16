@@ -1,7 +1,6 @@
 package etsii.cm.amigoinvisible;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,14 +10,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import dbms.getInfo;
 import model.ClsEvent;
 import model.ClsMyFriend;
-import model.ClsWish;
 
-public class ViewEventActivity extends AppCompatActivity implements Serializable {
+public class MyFriend_Activity extends AppCompatActivity implements Serializable {
 
     private getInfo db = new getInfo();
     private ClsMyFriend miAmigo;
@@ -27,7 +24,7 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_event);
+        setContentView(R.layout.activity_my_friend);
         listado = (ListView) findViewById(R.id.listItemView);
 
         eventoActual = (ClsEvent) Comunicador.getObjeto();
@@ -39,7 +36,7 @@ public class ViewEventActivity extends AppCompatActivity implements Serializable
 
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
-                Intent nextView = new Intent(getApplicationContext(), ViewWishActivity.class);
+                Intent nextView = new Intent(getApplicationContext(), WishDetail_Activity.class);
                 Comunicador.setObjeto(miAmigo.getData_wish().get(i));
                 startActivity(nextView);
             }

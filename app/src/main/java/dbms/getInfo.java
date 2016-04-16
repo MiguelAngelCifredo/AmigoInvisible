@@ -94,6 +94,21 @@ public class getInfo {
         return lst;
     }
 
+    public ClsWish getWish(Integer id_wish) {
+        ClsWish wish = null;
+        try{
+            JSONArray json =  connSrv.readJSON("getWish.php?id_wish=" + id_wish);
+            wish = new ClsWish(
+                          id_wish
+                        , json.getJSONObject(0).getString("text")
+                        , json.getJSONObject(0).getString("description")
+                        , getPhoto("wish", id_wish)
+                        , json.getJSONObject(0).getString("bought")
+                );
+        } catch(Exception e){;}
+        return wish;
+    }
+
     public Bitmap getPhoto(String source, Integer id) {
         if (!Arrays.asList(new String[]{"event","person","wish"}).contains(source)) {return null;}
         String queryURL = "getPhoto.php?source=" + source + "&id=" + id;
@@ -105,4 +120,10 @@ public class getInfo {
         String queryURL = "setWishBought.php?id_wish=" + id_wish + "&bought=" + bought;
         connSrv.writeData(queryURL);
     }
+
+    public void setWish(ClsWish wish){
+        String queryURL = "setWish.php?id_wish=" + wish.getData_id_wish() + "&text=" + wish.getData_text() + "&description=" + wish.getData_description();
+        connSrv.writeData(queryURL);
+    }
+
 }

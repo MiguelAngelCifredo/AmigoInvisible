@@ -13,11 +13,10 @@ import java.util.Arrays;
 
 public class connSrv {
 
-    //public static final String servidor = "http://192.168.1.200/amigo/";
-    public static final String servidor = "http://asd.hol.es/amigo/";
+    public static final String servidor = "http://192.168.1.200/amigo/";
+    //public static final String servidor = "http://asd.hol.es/amigo/";
 
     private static String readResponse(String pagePHP){
-        System.out.println("\n***** PETICION => " + servidor + pagePHP);
         String response = null;
         try {
             URL url = new URL(servidor + pagePHP);
@@ -26,8 +25,8 @@ public class connSrv {
             response = org.apache.commons.io.IOUtils.toString(new BufferedInputStream(conn.getInputStream()), "UTF-8");
         } catch (Exception e) {
             System.out.println("\n***** FALLO CON LA BASE DE DATOS");
-            System.out.println("\n***** ---> " + e.toString());
-            System.out.println("\n***** ---> " + servidor + pagePHP);
+            System.out.println("\n***** PETICION ---> " + servidor + pagePHP);
+            System.out.println("\n***** ERROR    ---> " + e.toString());
         }
         return response;
     }

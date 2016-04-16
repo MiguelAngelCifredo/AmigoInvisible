@@ -1,6 +1,5 @@
 package etsii.cm.amigoinvisible;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,9 +13,8 @@ import java.util.ArrayList;
 import dbms.getInfo;
 import model.ClsEvent;
 import model.ClsParticipant;
-import model.ClsWish;
 
-public class InfoEventActivity extends AppCompatActivity implements Serializable {
+public class EventDetail_Activity extends AppCompatActivity implements Serializable {
 
     private getInfo db = new getInfo();
     private ListView listado;
@@ -26,7 +24,7 @@ public class InfoEventActivity extends AppCompatActivity implements Serializable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_event);
+        setContentView(R.layout.activity_event_detail);
 
         listado = (ListView) findViewById(R.id.lstVwParticipants);
         //Cuando vengamos a esta Activity, ya traemos el Objeto event

@@ -13,18 +13,18 @@ import java.util.ArrayList;
 import dbms.getInfo;
 import model.ClsEvent;
 
-public class EventsActivity extends AppCompatActivity implements Serializable {
+public class EventList_Activity extends AppCompatActivity implements Serializable {
     private getInfo db = new getInfo();
     private ArrayList<ClsEvent> lstEvents;
     private ListView listado;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);
+        setContentView(R.layout.activity_event_list);
         listado = (ListView) findViewById(R.id.lstVwEvent);
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
-                Intent miIntent = new Intent(getApplicationContext(), ViewEventActivity.class);
+                Intent miIntent = new Intent(getApplicationContext(), MyFriend_Activity.class);
                 Comunicador.setObjeto(lstEvents.get(i));
                 startActivity(miIntent);
                }

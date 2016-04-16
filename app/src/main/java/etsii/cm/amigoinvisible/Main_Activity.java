@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import dbms.getInfo;
 import model.ClsEvent;
 
-public class MainActivity extends AppCompatActivity {
+public class Main_Activity extends AppCompatActivity {
 
     public ArrayList<String> dataToList = new ArrayList<>();
     public getInfo db = new getInfo();

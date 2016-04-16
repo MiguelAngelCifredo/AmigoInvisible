@@ -13,7 +13,7 @@ import java.io.Serializable;
 import dbms.getInfo;
 import model.ClsWish;
 
-public class ViewWishActivity extends AppCompatActivity implements Serializable{
+public class WishDetail_Activity extends AppCompatActivity implements Serializable{
 
     private getInfo db = new getInfo();
     private ClsWish deseoActual;

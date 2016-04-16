@@ -9,26 +9,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".Main_Activity"
                   android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".EventsActivity"
-                  android:screenOrientation="portrait">
+        <activity android:name=".EventList_Activity"
+                  android:screenOrientation="portrait"></activity>
 
+        <activity android:name=".MyFriend_Activity"
+                  android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".WishDetail_Activity"
+                  android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".WishEdit_Activity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <activity android:name=".ViewEventActivity"
-                  android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".ViewWishActivity"
-                  android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".InfoEventActivity"
+        <activity android:name=".EventDetail_Activity"
                   android:screenOrientation="portrait"></activity>
 
     </application>
