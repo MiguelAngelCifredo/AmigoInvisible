@@ -13,8 +13,8 @@ import java.util.Arrays;
 
 public class connSrv {
 
-    public static final String servidor = "http://192.168.1.200/amigo/";
-    //public static final String servidor = "http://asd.hol.es/amigo/";
+    //public static final String servidor = "http://192.168.1.200/amigo/";
+    public static final String servidor = "http://asd.hol.es/amigo/";
 
     private static String readResponse(String pagePHP){
         String response = null;
