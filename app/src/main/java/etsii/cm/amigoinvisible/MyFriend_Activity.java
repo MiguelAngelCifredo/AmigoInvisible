@@ -47,12 +47,11 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
             @Override
             public void run() {
                 miAmigo = db.getMyFriend(eventoActual.getData_id_event(), "macifredo@gmail.com");
-
                 runOnUiThread(
                         new Runnable() {
                             @Override
                             public void run() {
-                                mostrarListado();
+                                mostrarDatos();
                             }
                         }
                 );
@@ -60,7 +59,7 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
         });
         tr.start();
     }
-    public void mostrarListado(){
+    public void mostrarDatos(){
 
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 

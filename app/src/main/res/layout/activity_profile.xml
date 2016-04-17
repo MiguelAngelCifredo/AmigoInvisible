@@ -4,6 +4,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ffffff">
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -14,7 +25,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/imgVwProfile"
+            android:id="@+id/imgVwProfilePhoto"
             android:paddingRight="10dp"
             android:src="@drawable/profile_img"
             android:padding="10dp"
@@ -30,26 +41,34 @@
             android:layout_weight="2">
 
             <EditText
-                android:layout_width="188dp"
+                android:layout_width="match_parent"
                 android:layout_height="83dp"
-                android:id="@+id/txtVwName"
+                android:id="@+id/txtVwProfileName"
                 android:text="@string/NombreUsuario"
                 android:inputType="text"/>
         </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:id="@+id/btnProfileSave"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="bottom" />
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="280dp"
         android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Lista de deseos:"
+            android:text="Mi lista de deseos:"
             android:id="@+id/txtVwListWishes"
             android:layout_gravity="center_horizontal|left"
             android:paddingLeft="10dp"
@@ -61,13 +80,14 @@
             android:id="@+id/lstVwWishes"
             />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Añadir deseo"
-            android:id="@+id/btnVwAddWish"
-            android:layout_gravity="right"/>
-
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir deseo"
+        android:id="@+id/btnAddWish"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="right" />
 
 </LinearLayout>

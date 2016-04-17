@@ -1,11 +1,27 @@
 package dbms;
 
 import android.graphics.Bitmap;
+import android.util.Base64;
+import android.util.Log;
 
+import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import android.util.Base64;
 
 import model.ClsEvent;
 import model.ClsMyFriend;
@@ -116,8 +132,78 @@ public class getInfo {
     }
 
     public void setWish(ClsWish wish){
-        String queryURL = "setWish.php?id_wish=" + wish.getData_id_wish() + "&text=" + wish.getData_text() + "&description=" + wish.getData_description();
+        String pagePHP = "setWish.php";
+
+        String parameters = ""
+                + "id_wish="     + wish.getData_id_wish()
+                + "&text="        + URLencode(wish.getData_text())
+                + "&description=" + URLencode(wish.getData_description());
+
+        /*
+        String parameters = ""
+                + "id_wish="     + wish.getData_id_wish()
+                + "&text="        + URLencode(wish.getData_text())
+                + "&description=" + URLencode(wish.getData_description())
+                + "&photo="       + getStringFromBitmap(wish.getData_photo());
+        */
+        connSrv.writePOST(pagePHP, parameters);
+    }
+
+    public void delWish(Integer id_wish) {
+        String queryURL = "delWish.php?id_wish=" + id_wish;
         connSrv.writeData(queryURL);
     }
+
+    public void insWish(ClsWish wish, Integer id_person){
+        String pagePHP = "insWish.php";
+
+        String parameters = ""
+                + "&id_person="   + id_person
+                + "&text="        + URLencode(wish.getData_text())
+                + "&description=" + URLencode(wish.getData_description());
+
+        /*
+        String parameters = ""
+                + "text="        + URLencode(wish.getData_text())
+                + "&description=" + URLencode(wish.getData_description())
+                + "&photo="       + getStringFromBitmap(wish.getData_photo());
+        */
+        connSrv.writePOST(pagePHP, parameters);
+    }
+
+    public void setPerson(ClsPerson person){
+        String pagePHP = "setPerson.php";
+
+        String parameters = ""
+                + "id_person=" + person.getData_id_person()
+                + "&name="     + URLencode(person.getData_name())
+                + "&email="    + URLencode(person.getData_email());
+
+        /*
+        String parameters = ""
+                + "id_person=" + person.getData_id_person()
+                + "&name="     + URLencode(person.getData_name())
+                + "&email="    + URLencode(person.getData_email())
+                + "&photo="    + getStringFromBitmap(person.getData_photo());
+        */
+       connSrv.writePOST(pagePHP, parameters);
+    }
+
+    private String URLencode (String texto){
+        String res = "";
+        try {
+            res = URLEncoder.encode(texto, "UTF-8");
+        }catch(Exception e){;}
+        return res;
+    }
+
+    private String getStringFromBitmap (Bitmap photo) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] image =  stream.toByteArray();
+        //return new String(image);
+        return Base64.encodeToString(image, Base64.DEFAULT);
+    }
+
 
 }

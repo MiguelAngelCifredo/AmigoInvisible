@@ -22,15 +22,20 @@
                   android:screenOrientation="portrait"></activity>
 
         <activity android:name=".WishEdit_Activity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".EventDetail_Activity"
+                  android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".Profile_Activity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <activity android:name=".EventDetail_Activity"
-                  android:screenOrientation="portrait"></activity>
+        </activity>
 
     </application>
 
