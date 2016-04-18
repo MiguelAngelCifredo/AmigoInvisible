@@ -10,13 +10,13 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import dbms.getInfo;
+import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsParticipant;
 
 public class EventDetail_Activity extends AppCompatActivity implements Serializable {
 
-    private getInfo db = new getInfo();
+    private RunInDB db = new RunInDB();
     private ListView listado;
     private ClsEvent eventoActual;
     private ArrayList<ClsParticipant> lstParticipants;

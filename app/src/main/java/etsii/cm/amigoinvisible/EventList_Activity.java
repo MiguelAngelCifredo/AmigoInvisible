@@ -10,11 +10,11 @@ import android.widget.ListView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import dbms.getInfo;
+import dbms.RunInDB;
 import model.ClsEvent;
 
 public class EventList_Activity extends AppCompatActivity implements Serializable {
-    private getInfo db = new getInfo();
+    private RunInDB db = new RunInDB();
     private ArrayList<ClsEvent> lstEvents;
     private ListView listado;
 

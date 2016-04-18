@@ -2,6 +2,8 @@ package model;
 
 import android.graphics.Bitmap;
 
+import java.util.Comparator;
+
 public class ClsWish {
 
     private Integer data_id_wish;
@@ -72,4 +74,5 @@ public class ClsWish {
                 ", bouth='" + data_bouth + '\'' +
                 '}';
     }
+
 }

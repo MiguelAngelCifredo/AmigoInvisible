@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-import dbms.getInfo;
+import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsMyFriend;
 
 public class MyFriend_Activity extends AppCompatActivity implements Serializable {
 
-    private getInfo db = new getInfo();
+    private RunInDB db = new RunInDB();
     private ClsMyFriend miAmigo;
     private ListView listado;
     private ClsEvent eventoActual;

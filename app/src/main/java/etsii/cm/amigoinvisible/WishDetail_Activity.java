@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-import dbms.getInfo;
+import dbms.RunInDB;
 import model.ClsWish;
 
 public class WishDetail_Activity extends AppCompatActivity implements Serializable{
 
-    private getInfo db = new getInfo();
+    private RunInDB db = new RunInDB();
     private ClsWish deseoActual;
     private String bought;
 

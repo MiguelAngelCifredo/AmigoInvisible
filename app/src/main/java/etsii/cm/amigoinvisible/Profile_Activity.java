@@ -16,15 +16,17 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
-import dbms.getInfo;
+import comparator.WishByText;
+import dbms.RunInDB;
 import model.ClsMyFriend;
 import model.ClsPerson;
 import model.ClsWish;
 
 public class Profile_Activity extends AppCompatActivity implements Serializable {
 
-    private getInfo db = new getInfo();
+    private RunInDB db = new RunInDB();
     private ClsMyFriend personActual;
     private ImageView   imgPhoto;
     private TextView    txtName;
@@ -91,28 +93,21 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
     @Override
     protected void onResume() {
         super.onResume();
-/*
-*
-* *     REVISAR:
-* *
-* *     1 - Si la activity se carga por primera vez, no hacer nada
-* *     2 - Si venimos de haber borrado, eliminarlo del ArrayList
-* *     3 - Si venimos de haber insertado, lo temamos por el Comunicador y lo añadirmos al ArrayList
-* *
-* *
-* *
- */
-        // Si se ha borrado el wish se quita de la lista
-        if (personActual!=null)
+
+        // Si se vuelve de haber borrado o editado
+        if (personActual!=null){
             for (int i=0; i< personActual.getData_wish().size(); i++) {
                 if (personActual.getData_wish().get(i).getData_text() == null)
                     personActual.getData_wish().remove(i);
             }
+            mostrarDatos();
+        }
+        // Si se vuelve de haber añadido
         if (add){
-            System.out.println("**************** VIENES DE HABER AÑADIDO");
             add = false;
             ClsWish wishActual = (ClsWish) Comunicador.getObjeto();
             personActual.getData_wish().add(wishActual);
+            Collections.sort(personActual.getData_wish(), new WishByText());
         }
 
     }
@@ -143,7 +138,6 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
     }
 
     public void leerPerson(){
-        System.out.println("************* LEYENDO DATOS" );
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -179,7 +173,6 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
     }
 
     public void mostrarDatos(){
-        System.out.println("************* MOSTRANDO DATOS" );
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         imgPhoto.setImageBitmap(personActual.getData_person().getData_photo());

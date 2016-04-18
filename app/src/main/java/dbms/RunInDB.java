@@ -2,26 +2,13 @@ package dbms;
 
 import android.graphics.Bitmap;
 import android.util.Base64;
-import android.util.Log;
 
-import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import android.util.Base64;
 
 import model.ClsEvent;
 import model.ClsMyFriend;
@@ -29,12 +16,12 @@ import model.ClsPerson;
 import model.ClsParticipant;
 import model.ClsWish;
 
-public class getInfo {
+public class RunInDB {
 
     public ArrayList<ClsEvent> getListEvents() {
         ArrayList<ClsEvent> lst = new ArrayList<>();
         try{
-            JSONArray json =  connSrv.readJSON("getListEvents.php");
+            JSONArray json =  ConnSrv.readJSON("getListEvents.php");
             for (int i=0; i<json.length(); i++) {
                 lst.add(new ClsEvent(
                           json.getJSONObject(i).getInt("id_event")
@@ -52,7 +39,7 @@ public class getInfo {
     public ArrayList<ClsParticipant> getListParticipants(Integer id_event) {
         ArrayList<ClsParticipant> lst = new ArrayList<>();
         try{
-            JSONArray json =  connSrv.readJSON("getListParticipants.php?id_event=" + id_event);
+            JSONArray json =  ConnSrv.readJSON("getListParticipants.php?id_event=" + id_event);
             for (int i=0; i<json.length(); i++) {
                 lst.add(new ClsParticipant(
                           json.getJSONObject(i).getInt("id_participant")
@@ -68,7 +55,7 @@ public class getInfo {
     public ClsPerson getPerson(Integer id_person) {
         ClsPerson person = null;
         try{
-            JSONArray json =  connSrv.readJSON("getPerson.php?id_person=" + id_person);
+            JSONArray json =  ConnSrv.readJSON("getPerson.php?id_person=" + id_person);
             person = new ClsPerson(
                           id_person
                         , json.getJSONObject(0).getString("email")
@@ -81,7 +68,7 @@ public class getInfo {
 
     public ClsMyFriend getMyFriend(Integer id_event, String email) {
         Integer id_myFriend  = null;
-        JSONArray json = connSrv.readJSON("getMyFriend.php?id_event=" + id_event + "&email=" + email);
+        JSONArray json = ConnSrv.readJSON("getMyFriend.php?id_event=" + id_event + "&email=" + email);
         try{ id_myFriend = json.getJSONObject(0).getInt("friend"); } catch (Exception e) {;}
         ClsMyFriend myFriend = new ClsMyFriend( getPerson(id_myFriend) ,getListWishes(id_myFriend) );
         return myFriend;
@@ -90,7 +77,7 @@ public class getInfo {
     public ArrayList<ClsWish> getListWishes(Integer id_person) {
         ArrayList<ClsWish> lst = new ArrayList<>();
         try{
-            JSONArray json =  connSrv.readJSON("getListWishes.php?id_person=" + id_person);
+            JSONArray json =  ConnSrv.readJSON("getListWishes.php?id_person=" + id_person);
             for (int i=0; i<json.length(); i++) {
                 lst.add(new ClsWish(
                           json.getJSONObject(i).getInt("id_wish")
@@ -107,7 +94,7 @@ public class getInfo {
     public ClsWish getWish(Integer id_wish) {
         ClsWish wish = null;
         try{
-            JSONArray json =  connSrv.readJSON("getWish.php?id_wish=" + id_wish);
+            JSONArray json =  ConnSrv.readJSON("getWish.php?id_wish=" + id_wish);
             wish = new ClsWish(
                           id_wish
                         , json.getJSONObject(0).getString("text")
@@ -122,13 +109,13 @@ public class getInfo {
     public Bitmap getPhoto(String source, Integer id) {
         if (!Arrays.asList(new String[]{"event","person","wish"}).contains(source)) {return null;}
         String queryURL = "getPhoto.php?source=" + source + "&id=" + id;
-        Bitmap foto = connSrv.readBlob(queryURL);
+        Bitmap foto = ConnSrv.readBlob(queryURL);
         return foto;
     }
 
     public void setWishBought(Integer id_wish, String bought){
         String queryURL = "setWishBought.php?id_wish=" + id_wish + "&bought=" + bought;
-        connSrv.writeData(queryURL);
+        ConnSrv.writeData(queryURL);
     }
 
     public void setWish(ClsWish wish){
@@ -146,12 +133,12 @@ public class getInfo {
                 + "&description=" + URLencode(wish.getData_description())
                 + "&photo="       + getStringFromBitmap(wish.getData_photo());
         */
-        connSrv.writePOST(pagePHP, parameters);
+        ConnSrv.writePOST(pagePHP, parameters);
     }
 
     public void delWish(Integer id_wish) {
         String queryURL = "delWish.php?id_wish=" + id_wish;
-        connSrv.writeData(queryURL);
+        ConnSrv.writeData(queryURL);
     }
 
     public void insWish(ClsWish wish, Integer id_person){
@@ -168,7 +155,7 @@ public class getInfo {
                 + "&description=" + URLencode(wish.getData_description())
                 + "&photo="       + getStringFromBitmap(wish.getData_photo());
         */
-        connSrv.writePOST(pagePHP, parameters);
+        ConnSrv.writePOST(pagePHP, parameters);
     }
 
     public void setPerson(ClsPerson person){
@@ -186,7 +173,7 @@ public class getInfo {
                 + "&email="    + URLencode(person.getData_email())
                 + "&photo="    + getStringFromBitmap(person.getData_photo());
         */
-       connSrv.writePOST(pagePHP, parameters);
+       ConnSrv.writePOST(pagePHP, parameters);
     }
 
     private String URLencode (String texto){

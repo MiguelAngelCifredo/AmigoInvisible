@@ -8,13 +8,13 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import dbms.getInfo;
+import dbms.RunInDB;
 import model.ClsEvent;
 
 public class Main_Activity extends AppCompatActivity {
 
     public ArrayList<String> dataToList = new ArrayList<>();
-    public getInfo db = new getInfo();
+    public RunInDB db = new RunInDB();
     String foto = new String();
 
     @Override

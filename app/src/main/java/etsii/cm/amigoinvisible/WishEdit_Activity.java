@@ -2,7 +2,6 @@ package etsii.cm.amigoinvisible;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,11 +14,11 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-import dbms.getInfo;
+import dbms.RunInDB;
 import model.ClsWish;
 
 public class WishEdit_Activity extends AppCompatActivity implements Serializable{
-    private getInfo   db = new getInfo();
+    private RunInDB db = new RunInDB();
     private ClsWish   wishActual;
     private ImageView imgPhoto;
     private TextView  txtText;
@@ -65,7 +64,6 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
                 });
 
         wishActual = (ClsWish) Comunicador.getObjeto();
-
         mostrarDatos();
     }
 
