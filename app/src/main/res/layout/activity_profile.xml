@@ -27,7 +27,7 @@
             android:layout_height="150dp"
             android:id="@+id/imgVwProfilePhoto"
             android:paddingRight="10dp"
-            android:src="@drawable/profile_img"
+            android:src="@drawable/userIconEdit"
             android:padding="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
