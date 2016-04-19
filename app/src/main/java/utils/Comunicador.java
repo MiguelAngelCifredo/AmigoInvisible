@@ -1,4 +1,4 @@
-package etsii.cm.amigoinvisible;
+package utils;
 
 public class Comunicador {
     private static Object objeto = null;

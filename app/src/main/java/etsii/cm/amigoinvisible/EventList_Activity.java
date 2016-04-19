@@ -15,9 +15,11 @@ import android.widget.ListView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import adaptador.ListadoEventos_Adapter;
 import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsParticipant;
+import utils.Comunicador;
 import utils.Empareja;
 
 public class EventList_Activity extends AppCompatActivity implements Serializable {
@@ -120,7 +122,7 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
 
     public void mostrarListado(){
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-        Adaptador_Lista_Eventos adapter = new Adaptador_Lista_Eventos(this, lstEvents);
+        ListadoEventos_Adapter adapter = new ListadoEventos_Adapter(this, lstEvents);
         listado.setAdapter(adapter);
     }
 

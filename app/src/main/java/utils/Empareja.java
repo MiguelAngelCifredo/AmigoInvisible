@@ -1,8 +1,5 @@
 package utils;
 
-/**
- * Created by alberto on 19/04/2016.
- */
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -74,4 +71,4 @@ public class Empareja {
         return res;
     }
 
-} // end Empareja
+}

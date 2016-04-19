@@ -2,6 +2,7 @@ package etsii.cm.amigoinvisible;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import java.io.Serializable;
 
 import dbms.RunInDB;
 import model.ClsWish;
+import utils.Comunicador;
+import utils.I_am;
 
 public class WishEdit_Activity extends AppCompatActivity implements Serializable{
     private RunInDB db = new RunInDB();
@@ -64,6 +67,11 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
                 });
 
         wishActual = (ClsWish) Comunicador.getObjeto();
+
+        if (wishActual.getData_id_wish()==0) {
+            btnDelete.setVisibility(View.INVISIBLE);
+        }
+
         mostrarDatos();
     }
 
@@ -93,21 +101,23 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     }
 
     public void saveWish(){
-        wishActual.setData_text(txtText.getText().toString());
-        wishActual.setData_description(txtDescription.getText().toString());
-        wishActual.setData_photo(((BitmapDrawable) imgPhoto.getDrawable()).getBitmap());
-        Comunicador.setObjeto(wishActual);
-        Thread tr = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (wishActual.getData_text().length()>0)
-                    if (wishActual.getData_id_wish()==0)
-                        db.insWish(wishActual, I_am.getId());
-                    else
-                        db.setWish(wishActual);
-            }
-        });
-        tr.start();
+        if (wishActual.getData_text().length() > 0) {
+            wishActual.setData_text(txtText.getText().toString());
+            wishActual.setData_description(txtDescription.getText().toString());
+            wishActual.setData_photo(((BitmapDrawable) imgPhoto.getDrawable()).getBitmap());
+            Comunicador.setObjeto(wishActual);
+            Thread tr = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if (wishActual.getData_text().length()>0)
+                        if (wishActual.getData_id_wish()==0)
+                            db.insWish(wishActual, I_am.getId());
+                        else
+                            db.setWish(wishActual);
+                }
+            });
+            tr.start();
+        }
     }
 
     public void deleteWish(){
@@ -122,7 +132,12 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     }
 
     public void mostrarDatos(){
-        imgPhoto.setImageBitmap(wishActual.getData_photo());
+
+        if (wishActual.getData_photo()==null)
+            imgPhoto.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.caja_editable));
+        else
+            imgPhoto.setImageBitmap(wishActual.getData_photo());
+
         txtText.setText(wishActual.getData_text());
         txtDescription.setText(wishActual.getData_description());
     }

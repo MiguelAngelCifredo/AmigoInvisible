@@ -18,11 +18,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import adaptador.ListadoDeseos_Adapter;
 import comparator.WishByText;
 import dbms.RunInDB;
 import model.ClsMyFriend;
 import model.ClsPerson;
 import model.ClsWish;
+import utils.Comunicador;
+import utils.I_am;
 
 public class Profile_Activity extends AppCompatActivity implements Serializable {
 
@@ -106,8 +109,10 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         if (add){
             add = false;
             ClsWish wishActual = (ClsWish) Comunicador.getObjeto();
-            personActual.getData_wish().add(wishActual);
-            Collections.sort(personActual.getData_wish(), new WishByText());
+            if (wishActual.getData_text().length() > 0) {
+                personActual.getData_wish().add(wishActual);
+                Collections.sort(personActual.getData_wish(), new WishByText());
+            }
         }
 
     }
@@ -178,7 +183,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         imgPhoto.setImageBitmap(personActual.getData_person().getData_photo());
         txtName.setText(personActual.getData_person().getData_name());
 
-        Adaptador_Lista_Deseos adapter = new Adaptador_Lista_Deseos(this, personActual);
+        ListadoDeseos_Adapter adapter = new ListadoDeseos_Adapter(this, personActual);
         listado.setAdapter(adapter);
     }
 

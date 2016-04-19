@@ -11,14 +11,16 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
+import adaptador.ListadoComprados_Adapter;
 import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsMyFriend;
+import utils.Comunicador;
 
 public class MyFriend_Activity extends AppCompatActivity implements Serializable {
 
     private RunInDB db = new RunInDB();
-    private ClsMyFriend miAmigo;
+    private ClsMyFriend myFriend;
     private ListView listado;
     private ClsEvent eventoActual;
 
@@ -37,7 +39,7 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
                 Intent nextView = new Intent(getApplicationContext(), WishDetail_Activity.class);
-                Comunicador.setObjeto(miAmigo.getData_wish().get(i));
+                Comunicador.setObjeto(myFriend.getData_wish().get(i));
                 startActivity(nextView);
             }
         });
@@ -46,7 +48,7 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                miAmigo = db.getMyFriend(eventoActual.getData_id_event(), "macifredo@gmail.com");
+                myFriend = db.getMyFriend(eventoActual.getData_id_event(), "macifredo@gmail.com");
                 runOnUiThread(
                         new Runnable() {
                             @Override
@@ -63,17 +65,13 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
 
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
-        TextView txtVwMylistIs = (TextView) findViewById(R.id.txtVwMylistIs);
-        txtVwMylistIs.setText("Mi lista de deseos es:");
-
         TextView txtFriendName = (TextView) findViewById(R.id.txtVwFriendName);
-        txtFriendName.setText(miAmigo.getData_person().getData_name());
-
         ImageView imgWishPhoto = (ImageView)findViewById(R.id.imgVwFriendPhoto);
-        imgWishPhoto.setImageBitmap(miAmigo.getData_person().getData_photo());
 
-        txtFriendName.setText(miAmigo.getData_person().getData_name());
-        Adaptador_Lista_Deseos adapter = new Adaptador_Lista_Deseos(this, miAmigo);
+        txtFriendName.setText(myFriend.getData_person().getData_name());
+        imgWishPhoto.setImageBitmap(myFriend.getData_person().getData_photo());
+
+        ListadoComprados_Adapter adapter = new ListadoComprados_Adapter(this, myFriend);
         listado.setAdapter(adapter);
 
     }

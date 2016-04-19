@@ -1,4 +1,4 @@
-package etsii.cm.amigoinvisible;
+package adaptador;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,14 +10,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import etsii.cm.amigoinvisible.R;
 import model.ClsParticipant;
 
-public class Adaptador_lista_participantes extends BaseAdapter {
+public class ListadoParticipantes_Adapter extends BaseAdapter {
 
     Context context;
     ArrayList<ClsParticipant> lstParticipants;
 
-    public Adaptador_lista_participantes(Context context, ArrayList<ClsParticipant> lstParticipants) {
+    public ListadoParticipantes_Adapter(Context context, ArrayList<ClsParticipant> lstParticipants) {
         this.context = context;
         this.lstParticipants = lstParticipants;
     }

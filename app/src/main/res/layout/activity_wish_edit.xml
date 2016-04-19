@@ -12,7 +12,7 @@
         android:id="@+id/imgVwWishEditPhoto"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:src="@drawable/cajaEditable"/>
+        android:src="@drawable/caja_editable"/>
 
     <EditText
         android:layout_width="match_parent"

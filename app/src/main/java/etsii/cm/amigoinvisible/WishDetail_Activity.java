@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 import dbms.RunInDB;
 import model.ClsWish;
+import utils.Comunicador;
 
 public class WishDetail_Activity extends AppCompatActivity implements Serializable{
 

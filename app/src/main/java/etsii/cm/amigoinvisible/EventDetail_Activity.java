@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import adaptador.ListadoParticipantes_Adapter;
 import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsParticipant;
@@ -76,7 +77,7 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
         TextView txtEventMaxPrice = (TextView) findViewById(R.id.txtVwEventMaxPrice);
         txtEventMaxPrice.setText(eventoActual.getData_max_Price().toString() + " €");
 
-        Adaptador_lista_participantes adapter = new Adaptador_lista_participantes(this, lstParticipants);
+        ListadoParticipantes_Adapter adapter = new ListadoParticipantes_Adapter(this, lstParticipants);
         listado.setAdapter(adapter);
     }
 
