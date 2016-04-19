@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 import model.ClsEvent;
 
-public class Adaptador_lista_eventos extends BaseAdapter {
+public class Adaptador_Lista_Eventos extends BaseAdapter {
     Context context;
     ArrayList<ClsEvent> lstEvents;
 
-    public Adaptador_lista_eventos(Context context, ArrayList<ClsEvent> lstEvents) {
+    public Adaptador_Lista_Eventos(Context context, ArrayList<ClsEvent> lstEvents) {
         this.context = context;
         this.lstEvents = lstEvents;
     }

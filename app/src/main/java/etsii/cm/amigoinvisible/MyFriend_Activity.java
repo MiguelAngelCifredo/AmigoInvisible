@@ -73,7 +73,7 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
         imgWishPhoto.setImageBitmap(miAmigo.getData_person().getData_photo());
 
         txtFriendName.setText(miAmigo.getData_person().getData_name());
-        Adaptador_lista_deseos adapter = new Adaptador_lista_deseos(this, miAmigo);
+        Adaptador_Lista_Deseos adapter = new Adaptador_Lista_Deseos(this, miAmigo);
         listado.setAdapter(adapter);
 
     }

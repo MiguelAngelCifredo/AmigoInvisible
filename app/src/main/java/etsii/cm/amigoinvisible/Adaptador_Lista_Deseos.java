@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import model.ClsMyFriend;
 
-public class Adaptador_lista_deseos extends BaseAdapter {
+public class Adaptador_Lista_Deseos extends BaseAdapter {
 
     Context context;
     ClsMyFriend miAmigo;
 
-    public Adaptador_lista_deseos(Context context, ClsMyFriend miAmigo) {
+    public Adaptador_Lista_Deseos(Context context, ClsMyFriend miAmigo) {
         this.context = context;
         this.miAmigo = miAmigo;
     }

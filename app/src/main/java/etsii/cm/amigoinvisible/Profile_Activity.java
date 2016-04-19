@@ -178,7 +178,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         imgPhoto.setImageBitmap(personActual.getData_person().getData_photo());
         txtName.setText(personActual.getData_person().getData_name());
 
-        Adaptador_lista_deseos adapter = new Adaptador_lista_deseos(this, personActual);
+        Adaptador_Lista_Deseos adapter = new Adaptador_Lista_Deseos(this, personActual);
         listado.setAdapter(adapter);
     }
 
