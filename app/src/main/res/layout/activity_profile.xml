@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Mi nombre es:"
-                android:id="@+id/textView"
+                android:id="@+id/txtVwMiNombreEs"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"/>
 
