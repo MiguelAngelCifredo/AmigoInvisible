@@ -40,21 +40,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="2">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Mi nombre es:"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="83dp"
+                android:layout_height="match_parent"
                 android:id="@+id/txtVwProfileName"
                 android:text="@string/NombreUsuario"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
         </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:id="@+id/btnProfileSave"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="bottom" />
 
     </LinearLayout>
 
@@ -76,18 +79,38 @@
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:id="@+id/lstVwWishes"
             />
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Añadir deseo"
-        android:id="@+id/btnAddWish"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="right" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Guardar perfil"
+                android:id="@+id/btnProfileSave"
+                android:layout_marginLeft="70dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Añadir deseo"
+                android:id="@+id/btnAddWish"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
