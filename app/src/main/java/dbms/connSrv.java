@@ -18,11 +18,11 @@ import model.ClsWish;
 
 public class ConnSrv {
 
-    //public static final String servidor = "http://192.168.1.200/amigo/";
-    public static final String servidor = "http://asd.hol.es/amigo/";
+    public static final String servidor = "http://192.168.1.200/amigo/";
+    //public static final String servidor = "http://asd.hol.es/amigo/";
 
     private static String readPage(String pagePHP){
-        System.out.println("\n***** PETICION ---> " + servidor + pagePHP);
+        System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
         String response = null;
         try {
             URL url = new URL(servidor + pagePHP);

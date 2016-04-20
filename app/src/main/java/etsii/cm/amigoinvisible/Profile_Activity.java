@@ -25,7 +25,7 @@ import model.ClsMyFriend;
 import model.ClsPerson;
 import model.ClsWish;
 import utils.Comunicador;
-import utils.I_am;
+import utils.Iam;
 
 public class Profile_Activity extends AppCompatActivity implements Serializable {
 
@@ -45,7 +45,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         super.onCreate(savedInstanceState);
 
         //***************************************
-        I_am.setData(6, "manolito@gmail.com");
+        Iam.setData(6, "manolito@gmail.com");
         //***************************************
 
         setContentView(R.layout.activity_profile);
@@ -104,7 +104,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
                 if (personActual.getData_wish().get(i).getData_text() == null)
                     personActual.getData_wish().remove(i);
             }
-            mostrarDatos();
+            showData();
         }
         // Si se vuelve de haber añadido
         if (add){
@@ -112,7 +112,16 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
             ClsWish wishActual = (ClsWish) Comunicador.getObjeto();
             if (wishActual.getData_text().length() > 0) {
                 personActual.getData_wish().add(wishActual);
+                System.out.println("**** ANTES___________");
+                for (int i=0; i<personActual.getData_wish().size(); i++){
+                    System.out.println("**** " + personActual.getData_wish().get(i).getData_text() + "*" + personActual.getData_wish().get(i).getData_text());
+                }
                 Collections.sort(personActual.getData_wish(), new WishByText());
+                System.out.println("**** DESPUES___________");
+                for (int i=0; i<personActual.getData_wish().size(); i++){
+                    System.out.println("**** " + personActual.getData_wish().get(i).getData_text() + "*" + personActual.getData_wish().get(i).getData_text());
+                }
+
             }
         }
 
@@ -148,14 +157,14 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                ClsPerson p = db.getPerson(I_am.getId());
-                ArrayList<ClsWish> l = db.getListWishes(I_am.getId());
+                ClsPerson p = db.getPerson(Iam.getId());
+                ArrayList<ClsWish> l = db.getListWishes(Iam.getId());
                 personActual = new ClsMyFriend(p,l);
                 runOnUiThread(
                         new Runnable() {
                             @Override
                             public void run() {
-                                mostrarDatos();
+                                showData();
                             }
                         }
                 );
@@ -179,7 +188,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         tr.start();
     }
 
-    public void mostrarDatos(){
+    public void showData(){
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         imgPhoto.setImageBitmap(personActual.getData_person().getData_photo());

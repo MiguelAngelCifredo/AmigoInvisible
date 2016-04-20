@@ -37,12 +37,13 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="Comprado  "
-           android:id="@+id/btnSwComprado"
+           android:id="@+id/btnSwWishBought"
            android:layout_alignParentBottom="true"
            android:layout_alignParentRight="true"
            android:layout_alignParentEnd="true"
            android:layout_gravity="center_horizontal"
            android:layout_margin="10dp"
-           android:layout_weight="0.35"/>
+           android:layout_weight="0.35"
+        android:checked="false" />
 
 </LinearLayout>

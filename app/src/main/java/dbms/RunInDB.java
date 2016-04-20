@@ -15,13 +15,14 @@ import model.ClsMyFriend;
 import model.ClsPerson;
 import model.ClsParticipant;
 import model.ClsWish;
+import utils.Iam;
 
 public class RunInDB {
 
     public ArrayList<ClsEvent> getListEvents() {
         ArrayList<ClsEvent> lst = new ArrayList<>();
         try{
-            JSONArray json =  ConnSrv.readJSON("getListEvents.php");
+            JSONArray json =  ConnSrv.readJSON("getListEvents.php?id_person=" + Iam.getId());
             for (int i=0; i<json.length(); i++) {
                 lst.add(new ClsEvent(
                           json.getJSONObject(i).getInt("id_event")
@@ -66,9 +67,9 @@ public class RunInDB {
         return person;
     }
 
-    public ClsMyFriend getMyFriend(Integer id_event, String email) {
+    public ClsMyFriend getMyFriend(Integer id_event) {
         Integer id_myFriend  = null;
-        JSONArray json = ConnSrv.readJSON("getMyFriend.php?id_event=" + id_event + "&email=" + email);
+        JSONArray json = ConnSrv.readJSON("getMyFriend.php?id_event=" + id_event + "&id_person=" + Iam.getId());
         try{ id_myFriend = json.getJSONObject(0).getInt("friend"); } catch (Exception e) {;}
         ClsMyFriend myFriend = new ClsMyFriend( getPerson(id_myFriend) ,getListWishes(id_myFriend) );
         return myFriend;
@@ -193,5 +194,16 @@ public class RunInDB {
         return Base64.encodeToString(image, Base64.DEFAULT);
     }
 
+    public Integer getAccount(String eMail){
+        Integer id_person = 0;
+        JSONArray json =  ConnSrv.readJSON("getPersonIdByEmail.php?email=" + eMail);
+        try {
+            // Pendiente de su el eMail no se encuentra, entonces habrá que crear a ese nuevo user en la BD !!!
+            id_person = Integer.parseInt(json.getJSONObject(0).getString("id_person"));
+        }catch(Exception e){
+            System.out.println("***** FALLO OBTENIENDO EL ID : " + e.getMessage());
 
+            ;}
+        return id_person;
+    }
 }

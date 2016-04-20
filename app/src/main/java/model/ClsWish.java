@@ -2,27 +2,25 @@ package model;
 
 import android.graphics.Bitmap;
 
-import java.util.Comparator;
-
 public class ClsWish {
 
     private Integer data_id_wish;
     private String  data_text;
     private String  data_description;
     private Bitmap  data_photo;
-    private String  data_bouth;
+    private String  data_bought;
 
     public ClsWish( Integer data_id_wish
                   , String  data_text
                   , String  data_description
                   , Bitmap  data_photo
-                  , String  data_bouth
+                  , String data_bought
     ) {
         this.data_id_wish     = data_id_wish;
         this.data_text        = data_text;
         this.data_description = data_description;
         this.data_photo       = data_photo;
-        this.data_bouth       = data_bouth;
+        this.data_bought      = data_bought;
     }
 
     public Integer getData_id_wish() {
@@ -57,12 +55,12 @@ public class ClsWish {
         this.data_photo = data_photo;
     }
 
-    public String getData_bouth() {
-        return data_bouth;
+    public String getData_bought() {
+        return data_bought;
     }
 
-    public void setData_bouth(String data_bouth) {
-        this.data_bouth = data_bouth;
+    public void setData_bought(String data_bought) {
+        this.data_bought = data_bought;
     }
 
     @Override
@@ -71,7 +69,7 @@ public class ClsWish {
                 "id_wish=" + data_id_wish +
                 ", text='" + data_text + '\'' +
                 ", description='" + data_description + '\'' +
-                ", bouth='" + data_bouth + '\'' +
+                ", bougth='" + data_bought + '\'' +
                 '}';
     }
 

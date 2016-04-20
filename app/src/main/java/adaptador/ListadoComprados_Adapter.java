@@ -47,8 +47,10 @@ public class ListadoComprados_Adapter extends BaseAdapter {
 
         WishPhoto.setImageBitmap(alguien.getData_wish().get(position).getData_photo());
         WishName.setText(alguien.getData_wish().get(position).getData_text());
-        if (alguien.getData_wish().get(position).getData_bouth().equals("Y"))
+        if (alguien.getData_wish().get(position).getData_bought().equals("Y"))
             WishBought.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.check2));
+        else
+            WishBought.setImageBitmap(null);
 
         return itemView;
     }

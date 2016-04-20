@@ -18,7 +18,7 @@ import java.io.Serializable;
 import dbms.RunInDB;
 import model.ClsWish;
 import utils.Comunicador;
-import utils.I_am;
+import utils.Iam;
 
 public class WishEdit_Activity extends AppCompatActivity implements Serializable{
     private RunInDB db = new RunInDB();
@@ -111,7 +111,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
                 public void run() {
                     if (wishActual.getData_text().length()>0)
                         if (wishActual.getData_id_wish()==0)
-                            db.insWish(wishActual, I_am.getId());
+                            db.insWish(wishActual, Iam.getId());
                         else
                             db.setWish(wishActual);
                 }

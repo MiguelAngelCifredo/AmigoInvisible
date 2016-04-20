@@ -17,42 +17,43 @@ import utils.Comunicador;
 public class WishDetail_Activity extends AppCompatActivity implements Serializable{
 
     private RunInDB db = new RunInDB();
-    private ClsWish deseoActual;
+    private ClsWish wishActual;
     private String bought;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        wishActual = (ClsWish) Comunicador.getObjeto();
+
         setContentView(R.layout.activity_wish_detail);
 
-        deseoActual = (ClsWish) Comunicador.getObjeto();
+        ImageView imgVwWishPhoto       = (ImageView) findViewById(R.id.imgVwWishPhoto);
+        TextView  txtVwWishDescription = (TextView)  findViewById(R.id.txtVwWishDescription);
+        Switch    btnSwWishBought      = (Switch)    findViewById(R.id.btnSwWishBought);
 
-        //TextView txtWishText = (TextView)findViewById(R.id.txtWishText);
-        //txtWishText.setText(deseoActual.getData_text());
+        imgVwWishPhoto.setImageBitmap(wishActual.getData_photo());
 
-        ImageView imgWishPhoto = (ImageView) findViewById(R.id.imgVwWishPhoto);
-        imgWishPhoto.setImageBitmap(deseoActual.getData_photo());
+        txtVwWishDescription.setText(wishActual.getData_description());
 
-        TextView txtWishDescription = (TextView) findViewById(R.id.txtVwWishDescription);
-        txtWishDescription.setText(deseoActual.getData_description());
+        btnSwWishBought.setChecked((wishActual.getData_bought().equals("Y")) ? true : false);
 
-        Switch btnSwComprado = (Switch) findViewById(R.id.btnSwComprado);
-        btnSwComprado.setChecked((deseoActual.getData_bouth().equals("Y")) ? true : false);
-        btnSwComprado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        btnSwWishBought.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 bought = (isChecked) ? "Y" : "N";
                 grabarStatus();
+                finish();
             }
 
         });
     }
 
     public void grabarStatus(){
-        deseoActual.setData_bouth(bought);
+        wishActual.setData_bought(bought);
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                db.setWishBought(deseoActual.getData_id_wish(), bought);
+                db.setWishBought(wishActual.getData_id_wish(), bought);
             }
         });
         tr.start();
