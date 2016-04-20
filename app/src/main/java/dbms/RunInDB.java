@@ -133,6 +133,7 @@ public class RunInDB {
                 + "&description=" + URLencode(wish.getData_description())
                 + "&photo="       + getStringFromBitmap(wish.getData_photo());
         */
+        //System.out.println("*******FOTO: " + getStringFromBitmap(wish.getData_photo()));
         ConnSrv.writePOST(pagePHP, parameters);
     }
 
@@ -160,20 +161,20 @@ public class RunInDB {
 
     public void setPerson(ClsPerson person){
         String pagePHP = "setPerson.php";
-
+/*
         String parameters = ""
                 + "id_person=" + person.getData_id_person()
                 + "&name="     + URLencode(person.getData_name())
                 + "&email="    + URLencode(person.getData_email());
 
-        /*
+  */
         String parameters = ""
                 + "id_person=" + person.getData_id_person()
                 + "&name="     + URLencode(person.getData_name())
                 + "&email="    + URLencode(person.getData_email())
                 + "&photo="    + getStringFromBitmap(person.getData_photo());
-        */
-       ConnSrv.writePOST(pagePHP, parameters);
+        System.out.println("****** FOTO:" + getStringFromBitmap(person.getData_photo()));
+       //ConnSrv.writePOST(pagePHP, parameters);
     }
 
     private String URLencode (String texto){
@@ -186,9 +187,8 @@ public class RunInDB {
 
     private String getStringFromBitmap (Bitmap photo) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] image =  stream.toByteArray();
-        //return new String(image);
         return Base64.encodeToString(image, Base64.DEFAULT);
     }
 

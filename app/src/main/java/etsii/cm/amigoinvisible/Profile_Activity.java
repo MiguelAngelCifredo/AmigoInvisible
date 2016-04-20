@@ -90,6 +90,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         });
 
         //personActual = (ClsPerson) Comunicador.getObjeto();
+
         leerPerson();
     }
 
@@ -122,6 +123,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
                 imgPhoto.setImageURI(selectedImageUri);
+                personActual.getData_person().setData_photo(((BitmapDrawable) imgPhoto.getDrawable()).getBitmap());
                 selectedImagePath = getPath(selectedImageUri);
                 System.out.println("****** La foto seleccionada es: " + selectedImagePath);
             }

@@ -10,6 +10,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -17,8 +18,8 @@ import model.ClsWish;
 
 public class ConnSrv {
 
-    public static final String servidor = "http://192.168.1.200/amigo/";
-    //public static final String servidor = "http://asd.hol.es/amigo/";
+    //public static final String servidor = "http://192.168.1.200/amigo/";
+    public static final String servidor = "http://asd.hol.es/amigo/";
 
     private static String readPage(String pagePHP){
         System.out.println("\n***** PETICION ---> " + servidor + pagePHP);
@@ -41,16 +42,30 @@ public class ConnSrv {
 
     public static void writePOST(String pagePHP, String parameters){
             try {
+
+                // conexión
                 URL url = new URL(servidor + pagePHP);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
-                conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+                conn.setFixedLengthStreamingMode(parameters.getBytes().length);
+                //conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setDoOutput(true);
+
+                // envío metodo 1
+                /*
                 OutputStream os = conn.getOutputStream();
                 os.write(parameters.getBytes());
                 os.flush();
                 os.close();
+                */
 
+                //envío método 2
+                PrintWriter out = new PrintWriter(conn.getOutputStream());
+                out.print(parameters);
+                out.close();
+
+                // coger la respuesta del server
                 int responseCode = conn.getResponseCode();
                 System.out.println("********** POST StatusCode: " + responseCode);
                 if (responseCode == HttpURLConnection.HTTP_OK) { //success
