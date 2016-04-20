@@ -167,14 +167,15 @@ public class RunInDB {
                 + "&name="     + URLencode(person.getData_name())
                 + "&email="    + URLencode(person.getData_email());
 
-  */
+*/
         String parameters = ""
                 + "id_person=" + person.getData_id_person()
                 + "&name="     + URLencode(person.getData_name())
                 + "&email="    + URLencode(person.getData_email())
                 + "&photo="    + getStringFromBitmap(person.getData_photo());
-        System.out.println("****** FOTO:" + getStringFromBitmap(person.getData_photo()));
-       //ConnSrv.writePOST(pagePHP, parameters);
+        //System.out.println("****** FOTO:" + getStringFromBitmap(person.getData_photo()));
+
+        ConnSrv.writePOST(pagePHP, parameters);
     }
 
     private String URLencode (String texto){

@@ -45,7 +45,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         super.onCreate(savedInstanceState);
 
         //***************************************
-        I_am.setData(2, "manolito@gmail.com");
+        I_am.setData(6, "manolito@gmail.com");
         //***************************************
 
         setContentView(R.layout.activity_profile);
