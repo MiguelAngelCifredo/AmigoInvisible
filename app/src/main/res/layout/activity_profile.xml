@@ -4,12 +4,12 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ffffff">
+
     <RelativeLayout
         android:id="@+id/loadingPanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center" >
-
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,8 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Mi lista de deseos:"
-            android:id="@+id/txtVwListWishes"
+            android:text="Mi lista de deseos es:"
+            android:id="@+id/txtVwLisWishestIs"
             android:layout_gravity="center_horizontal|left"
             android:paddingLeft="10dp"
             android:layout_marginBottom="10dp"/>
@@ -88,28 +88,14 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Guardar perfil"
-                android:id="@+id/btnProfileSave"
-                android:layout_marginLeft="70dp"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Añadir deseo"
-                android:id="@+id/btnAddWish"
-                />
-
-        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Añadir deseo"
+            android:id="@+id/btnAddWish"
+            android:layout_gravity="right" />
 
     </LinearLayout>
 

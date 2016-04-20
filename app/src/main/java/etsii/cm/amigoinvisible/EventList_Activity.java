@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +25,22 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
     private ListView listado;
     private ArrayList<ClsEvent> lstEvents;
     private ClsPerson personActual;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_profile) {
+            Intent nextView = new Intent(getApplicationContext(), Profile_Activity.class);
+            startActivity(nextView);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
