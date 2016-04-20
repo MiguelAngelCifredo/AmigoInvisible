@@ -112,16 +112,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
             ClsWish wishActual = (ClsWish) Comunicador.getObjeto();
             if (wishActual.getData_text().length() > 0) {
                 personActual.getData_wish().add(wishActual);
-                System.out.println("**** ANTES___________");
-                for (int i=0; i<personActual.getData_wish().size(); i++){
-                    System.out.println("**** " + personActual.getData_wish().get(i).getData_text() + "*" + personActual.getData_wish().get(i).getData_text());
-                }
                 Collections.sort(personActual.getData_wish(), new WishByText());
-                System.out.println("**** DESPUES___________");
-                for (int i=0; i<personActual.getData_wish().size(); i++){
-                    System.out.println("**** " + personActual.getData_wish().get(i).getData_text() + "*" + personActual.getData_wish().get(i).getData_text());
-                }
-
             }
         }
 
