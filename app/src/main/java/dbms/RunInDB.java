@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import model.ClsEvent;
 import model.ClsMyFriend;
@@ -31,9 +32,10 @@ public class RunInDB {
                         , json.getJSONObject(i).getString("place")
                         , json.getJSONObject(i).getInt("max_price")
                         , getPhoto("event", json.getJSONObject(i).getInt("id_event"))
+                        , json.getJSONObject(i).getInt("id_admin")
                 ));
             }
-        } catch(Exception e){}
+        } catch(Exception e){;}
         return lst;
     }
 
@@ -45,7 +47,6 @@ public class RunInDB {
                 lst.add(new ClsParticipant(
                           json.getJSONObject(i).getInt("id_participant")
                         , getPerson(json.getJSONObject(i).getInt("id_person"))
-                        , json.getJSONObject(i).getString("admin")
                         , getPerson(json.getJSONObject(i).getInt("friend"))
                 ));
             }
@@ -122,20 +123,13 @@ public class RunInDB {
     public void setWish(ClsWish wish){
         String pagePHP = "setWish.php";
 
-        String parameters = ""
-                + "id_wish="     + wish.getData_id_wish()
-                + "&text="        + URLencode(wish.getData_text())
-                + "&description=" + URLencode(wish.getData_description());
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id_wish", wish.getData_id_wish().toString());
+        params.put("text", wish.getData_text());
+        params.put("description", wish.getData_description());
+        //params.put("photo", null);
 
-        /*
-        String parameters = ""
-                + "id_wish="     + wish.getData_id_wish()
-                + "&text="        + URLencode(wish.getData_text())
-                + "&description=" + URLencode(wish.getData_description())
-                + "&photo="       + getStringFromBitmap(wish.getData_photo());
-        */
-        //System.out.println("*******FOTO: " + getStringFromBitmap(wish.getData_photo()));
-        ConnSrv.writePOST(pagePHP, parameters);
+        ConnSrv.writePOST(pagePHP, params);
     }
 
     public void delWish(Integer id_wish) {
@@ -146,37 +140,32 @@ public class RunInDB {
     public void insWish(ClsWish wish, Integer id_person){
         String pagePHP = "insWish.php";
 
-        String parameters = ""
-                + "&id_person="   + id_person
-                + "&text="        + URLencode(wish.getData_text())
-                + "&description=" + URLencode(wish.getData_description());
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id_person", id_person.toString());
+        params.put("text", wish.getData_text());
+        params.put("description", wish.getData_description());
+        //params.put("photo", null);
 
-        /*
-        String parameters = ""
-                + "text="        + URLencode(wish.getData_text())
-                + "&description=" + URLencode(wish.getData_description())
-                + "&photo="       + getStringFromBitmap(wish.getData_photo());
-        */
-        ConnSrv.writePOST(pagePHP, parameters);
+        ConnSrv.writePOST(pagePHP, params);
     }
 
     public void setPerson(ClsPerson person){
         String pagePHP = "setPerson.php";
 
-        String parameters = ""
-                + "id_person=" + person.getData_id_person()
-                + "&name="     + URLencode(person.getData_name())
-                + "&email="    + URLencode(person.getData_email());
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id_person", person.getData_id_person().toString());
+        params.put("name", person.getData_name());
+        params.put("email", person.getData_email());
+        //params.put("photo", null);
+        //params.put("photo", getBytesFromBitmap(person.getData_photo()).toString());
+        params.put("photo", "0x" + getStringFromBitmap_NEW(person.getData_photo()).toString());
 
-/*
-        String parameters = ""
-                + "id_person=" + person.getData_id_person()
-                + "&name="     + URLencode(person.getData_name())
-                + "&email="    + URLencode(person.getData_email())
-                + "&photo="    + getStringFromBitmap(person.getData_photo());
-        //System.out.println("****** FOTO:" + getStringFromBitmap(person.getData_photo()));
-*/
-        ConnSrv.writePOST(pagePHP, parameters);
+        System.out.println ("***** FOTO 1 : " + getStringFromBitmap(person.getData_photo()));
+        System.out.println ("***** FOTO 2 : " + getBytesFromBitmap(person.getData_photo()).toString());
+        System.out.println("***** FOTO 3 : " + getStringFromBitmap_NEW(person.getData_photo()).toString());
+
+
+        ConnSrv.writePOST(pagePHP, params);
     }
 
     private String URLencode (String texto){
@@ -192,6 +181,28 @@ public class RunInDB {
         photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] image =  stream.toByteArray();
         return Base64.encodeToString(image, Base64.DEFAULT);
+    }
+
+    private String getStringFromBitmap_NEW (Bitmap photo) {
+        return bytesToHex(getBytesFromBitmap(photo));
+    }
+
+    private byte[] getBytesFromBitmap (Bitmap photo) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] image =  stream.toByteArray();
+        return image;
+    }
+
+    public String bytesToHex(byte[] bytes) {
+        final char[] hexArray = "0123456789ABCDEF".toCharArray();
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
     }
 
     public Integer getAccount(String eMail){

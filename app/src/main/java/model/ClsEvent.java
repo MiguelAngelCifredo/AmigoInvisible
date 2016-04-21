@@ -15,6 +15,7 @@ public class ClsEvent {
     private String  data_place;
     private Integer data_max_Price;
     private Bitmap  data_photo;
+    private Integer data_id_admin;
 
     public ClsEvent(Integer data_id_event
             , String data_name
@@ -22,6 +23,7 @@ public class ClsEvent {
             , String data_place
             , Integer data_max_Price
             , Bitmap data_photo
+            , Integer data_id_admin
     ){
         this.data_id_event  = data_id_event;
         this.data_name      = data_name;
@@ -29,6 +31,7 @@ public class ClsEvent {
         this.data_place     = data_place;
         this.data_max_Price = data_max_Price;
         this.data_photo     = data_photo;
+        this.data_id_admin  = data_id_admin;
     }
 
     public Integer getData_id_event() {
@@ -79,6 +82,14 @@ public class ClsEvent {
         this.data_photo = data_photo;
     }
 
+    public Integer getDataId_admin() {
+        return data_id_admin;
+    }
+
+    public void setDataId_admin(Integer data_id_admin) {
+        this.data_id_admin = data_id_admin;
+    }
+
     private Calendar getDate(){
         Calendar cal = null;
         try {
@@ -90,6 +101,7 @@ public class ClsEvent {
         }catch(ParseException e){;}
         return cal;
     }
+
     public String getData_date_text()
     {
         String[] diaSem = new String[]{"Sábado", "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
@@ -120,6 +132,7 @@ public class ClsEvent {
                 ", date='" + data_date + '\'' +
                 ", place='" + data_place + '\'' +
                 ", max_Price=" + data_max_Price +
+                ", id_admin='" + data_id_admin + '\'' +
                 '}';
     }
 }

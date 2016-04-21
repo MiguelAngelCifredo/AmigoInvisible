@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.Serializable;
@@ -17,14 +18,18 @@ import adaptador.ListadoEventos_Adapter;
 import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsPerson;
+import model.ClsWish;
 import utils.Comunicador;
 import utils.Iam;
 
 public class EventList_Activity extends AppCompatActivity implements Serializable {
     private RunInDB db = new RunInDB();
     private ListView listado;
+    private Button btnCrearEvento;
     private ArrayList<ClsEvent> lstEvents;
     private ClsPerson personActual;
+
+    private static boolean add = false;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,11 +50,27 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
+
+        btnCrearEvento = (Button) findViewById(R.id.btnCrearEvento);
+        btnCrearEvento.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                add = true;
+                Comunicador.setObjeto(new ClsEvent(0,"","","",0,null,Iam.getId()));
+                Intent nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
+                startActivity(nextView);
+            }
+        });
+
         listado = (ListView) findViewById(R.id.lstVwEvent);
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
-                Intent nextView = new Intent(getApplicationContext(), MyFriend_Activity.class);
                 Comunicador.setObjeto(lstEvents.get(i));
+                Intent nextView;
+                if (lstEvents.get(i).getDataId_admin() == Iam.getId()) {
+                    nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
+                } else {
+                    nextView = new Intent(getApplicationContext(), EventDetail_Activity.class);
+                }
                 startActivity(nextView);
             }
         });

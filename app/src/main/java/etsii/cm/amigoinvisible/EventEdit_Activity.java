@@ -18,9 +18,8 @@ import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsParticipant;
 import utils.Comunicador;
-import utils.Iam;
 
-public class EventDetail_Activity extends AppCompatActivity implements Serializable {
+public class EventEdit_Activity extends AppCompatActivity implements Serializable {
 
     private RunInDB db = new RunInDB();
     private ClsEvent eventActual;
@@ -28,25 +27,29 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.event_detail, menu);
+        getMenuInflater().inflate(R.menu.event_edit, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.save) {
+        // TODO guardar la edición del evento.
+       }
         if (id == R.id.friend) {
             Comunicador.setObjeto(eventActual);
             Intent nextView = new Intent(getApplicationContext(), MyFriend_Activity.class);
             startActivity(nextView);
         }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_detail);
+        setContentView(R.layout.activity_event_edit);
 
         eventActual = (ClsEvent) Comunicador.getObjeto();
         getData();
@@ -79,16 +82,17 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
         TextView  txtVwEventTime     = (TextView) findViewById(R.id.txtVwEventTime);
         TextView  txtVwEventPlace    = (TextView) findViewById(R.id.txtVwEventPlace);
         TextView  txtVwEventMaxPrice = (TextView) findViewById(R.id.txtVwEventMaxPrice);
+        try{
+            imgVwEventPhoto.setImageBitmap(eventActual.getData_photo());
+            txtVwEventDate.setText(" " + eventActual.getData_date_text());
+            txtVwEventTime.setText(eventActual.getData_date_time());
+            txtVwEventPlace.setText(eventActual.getData_place());
+            txtVwEventMaxPrice.setText(eventActual.getData_max_Price().toString() + " €");
 
-        imgVwEventPhoto.setImageBitmap(eventActual.getData_photo());
-        txtVwEventDate.setText(" " + eventActual.getData_date_text());
-        txtVwEventTime.setText(eventActual.getData_date_time());
-        txtVwEventPlace.setText(eventActual.getData_place());
-        txtVwEventMaxPrice.setText(eventActual.getData_max_Price().toString() + " €");
-
-        ListadoParticipantes_Adapter adapter = new ListadoParticipantes_Adapter(this, lstParticipants);
-        ListView listado = (ListView) findViewById(R.id.lstVwParticipants);
-        listado.setAdapter(adapter);
+            ListadoParticipantes_Adapter adapter = new ListadoParticipantes_Adapter(this, lstParticipants);
+            ListView listado = (ListView) findViewById(R.id.lstVwParticipants);
+            listado.setAdapter(adapter);
+        } catch (Exception e){;}
     }
 
 }
