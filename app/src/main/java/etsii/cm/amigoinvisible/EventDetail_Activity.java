@@ -1,6 +1,7 @@
 package etsii.cm.amigoinvisible;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -46,9 +47,9 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_detail);
-
         eventActual = (ClsEvent) Comunicador.getObjeto();
+        setTitle(eventActual.getData_name());
+        setContentView(R.layout.activity_event_detail);
         getData();
     }
 
@@ -71,7 +72,6 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
     }
 
     public void showData(){
-
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         ImageView imgVwEventPhoto    = (ImageView)findViewById(R.id.imgVwEventPhoto);
@@ -80,7 +80,10 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
         TextView  txtVwEventPlace    = (TextView) findViewById(R.id.txtVwEventPlace);
         TextView  txtVwEventMaxPrice = (TextView) findViewById(R.id.txtVwEventMaxPrice);
 
-        imgVwEventPhoto.setImageBitmap(eventActual.getData_photo());
+        if (eventActual.getData_photo() != null) {
+            imgVwEventPhoto.setImageBitmap(eventActual.getData_photo());
+        }
+
         txtVwEventDate.setText(" " + eventActual.getData_date_text());
         txtVwEventTime.setText(eventActual.getData_date_time());
         txtVwEventPlace.setText(eventActual.getData_place());

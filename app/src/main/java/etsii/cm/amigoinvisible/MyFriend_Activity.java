@@ -31,6 +31,8 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTitle("Me ha tocado...");
         setContentView(R.layout.activity_my_friend);
         listado = (ListView) findViewById(R.id.listItemView);
 
@@ -80,12 +82,12 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
 
     public void showData(){
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-
-        TextView  txtVwFriendName  = (TextView) findViewById(R.id.txtVwFriendName);
+        setTitle("Me ha tocado: " + myFriend.getData_person().getData_name());
         ImageView imgVwFriendPhoto = (ImageView)findViewById(R.id.imgVwFriendPhoto);
 
-        txtVwFriendName.setText(myFriend.getData_person().getData_name());
-        imgVwFriendPhoto.setImageBitmap(myFriend.getData_person().getData_photo());
+        if (myFriend.getData_person().getData_photo() != null) {
+            imgVwFriendPhoto.setImageBitmap(myFriend.getData_person().getData_photo());
+        }
 
         ListadoComprados_Adapter adapter = new ListadoComprados_Adapter(this, myFriend);
         listado.setAdapter(adapter);

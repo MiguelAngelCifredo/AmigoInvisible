@@ -18,8 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtVwWishEditText"
-        android:text="Añade el nombre de tu deseo..."
+        android:hint="Escribe el nombre del deseo..."
+        android:text=""
         android:textStyle="bold"
+        android:singleLine="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
@@ -27,9 +29,10 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="match_parent"
         android:id="@+id/txtVwWishEditDescription"
-        android:text="Añade la descripción de tu deseo..."
+        android:hint="Escribe la descripción del deseo..."
+        android:text=""
         android:textStyle="italic"
         android:singleLine="false"
         android:textAlignment="center"
@@ -38,32 +41,5 @@
         android:layout_marginRight="10dp"
         android:autoText="false"
         />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BORRAR"
-                android:id="@+id/btnWishEditDelete"
-                android:layout_marginLeft="110dp"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Guardar"
-                android:id="@+id/btnWishEditSave"
-                android:layout_marginRight="10dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>

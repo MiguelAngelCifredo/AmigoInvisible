@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,36 +28,52 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     private ImageView imgPhoto;
     private TextView  txtText;
     private TextView  txtDescription;
-    private Button    btnSave;
-    private Button    btnDelete;
     private String    selectedImagePath;
 
     private static final int SELECT_PICTURE = 1;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.wish_edit, menu);
+        if (wishActual.getData_id_wish() == 0) {
+            MenuItem delete = menu.findItem(R.id.delete);
+            delete.setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.delete) {
+            deleteWish();
+            finish();
+        }
+
+        if (id == R.id.save) {
+            System.out.println("******" + "Pulsado para guardar");
+            saveWish();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        wishActual = (ClsWish) Comunicador.getObjeto();
+
+        if (wishActual.getData_text().equals("")){
+            setTitle("Deseo nuevo");
+        } else {
+            setTitle(wishActual.getData_text());
+        }
 
         setContentView(R.layout.activity_wish_edit);
 
         imgPhoto       = (ImageView) findViewById(R.id.imgVwWishEditPhoto);
         txtText        = (TextView)  findViewById(R.id.txtVwWishEditText);
         txtDescription = (TextView)  findViewById(R.id.txtVwWishEditDescription);
-        btnSave        = (Button)    findViewById(R.id.btnWishEditSave);
-        btnDelete      = (Button)    findViewById(R.id.btnWishEditDelete);
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                saveWish();
-                finish();
-            }
-        });
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                deleteWish();
-                finish();
-            }
-        });
 
         imgPhoto.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View arg0) {
@@ -65,12 +83,6 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
                         startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
                     }
                 });
-
-        wishActual = (ClsWish) Comunicador.getObjeto();
-
-        if (wishActual.getData_id_wish()==0) {
-            btnDelete.setVisibility(View.INVISIBLE);
-        }
 
         mostrarDatos();
     }
@@ -101,7 +113,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     }
 
     public void saveWish(){
-        if (wishActual.getData_text().length() > 0) {
+        if (txtText.getText().length() > 0) {
             wishActual.setData_text(txtText.getText().toString());
             wishActual.setData_description(txtDescription.getText().toString());
             wishActual.setData_photo(((BitmapDrawable) imgPhoto.getDrawable()).getBitmap());
@@ -109,11 +121,10 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
             Thread tr = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (wishActual.getData_text().length()>0)
-                        if (wishActual.getData_id_wish()==0)
-                            db.insWish(wishActual, Iam.getId());
-                        else
-                            db.setWish(wishActual);
+                    if (wishActual.getData_id_wish() == 0)
+                    db.insWish(wishActual, Iam.getId());
+                else
+                    db.setWish(wishActual);
                 }
             });
             tr.start();
@@ -133,12 +144,14 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
 
     public void mostrarDatos(){
 
-        if (wishActual.getData_photo()==null)
-            imgPhoto.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.caja_editable));
-        else
+        if (wishActual.getData_photo() != null) {
             imgPhoto.setImageBitmap(wishActual.getData_photo());
-
-        txtText.setText(wishActual.getData_text());
-        txtDescription.setText(wishActual.getData_description());
+        }
+        if (wishActual.getData_text().length() > 0) {
+            txtText.setText(wishActual.getData_text());
+        }
+        if (wishActual.getData_description().length() > 0) {
+            txtDescription.setText(wishActual.getData_description());
+        }
     }
 }

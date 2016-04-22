@@ -63,6 +63,8 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
 
         setContentView(R.layout.activity_profile);
 
+        setTitle("Mi perfil");
+
         imgVwProfilePhoto = (ImageView) findViewById(R.id.imgVwProfilePhoto);
         txtVwProfileName  = (TextView)  findViewById(R.id.txtVwProfileName);
         btnAddW  = (Button)    findViewById(R.id.btnAddWish);
@@ -152,8 +154,6 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                //ClsPerson p = db.getPerson(Iam.getId());
-                //ArrayList<ClsWish> lw = db.getListWishes(Iam.getId());
                 personActual = new ClsMyFriend(db.getPerson(Iam.getId()),db.getListWishes(Iam.getId()));
                 runOnUiThread(
                         new Runnable() {

@@ -41,16 +41,19 @@ public class ListadoComprados_Adapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.plantilla_lista_comprados, parent, false);
 
-        ImageView WishPhoto  = (ImageView) itemView.findViewById(R.id.imgVwWishPhoto);
-        TextView  WishName   = (TextView)  itemView.findViewById(R.id.txtVwWishtName);
-        ImageView WishBought = (ImageView) itemView.findViewById(R.id.imgVwWishBought);
+        ImageView imgVwWishPhoto  = (ImageView) itemView.findViewById(R.id.imgVwWishPhoto);
+        TextView  txtVwWishtName  = (TextView)  itemView.findViewById(R.id.txtVwWishtName);
+        ImageView imgVwWishBought = (ImageView) itemView.findViewById(R.id.imgVwWishBought);
 
-        WishPhoto.setImageBitmap(alguien.getData_wish().get(position).getData_photo());
-        WishName.setText(alguien.getData_wish().get(position).getData_text());
-        if (alguien.getData_wish().get(position).getData_bought().equals("Y"))
-            WishBought.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.check2));
-        else
-            WishBought.setImageBitmap(null);
+        if (alguien.getData_wish().get(position).getData_photo() != null) {
+            imgVwWishPhoto.setImageBitmap(alguien.getData_wish().get(position).getData_photo());
+        }
+
+        txtVwWishtName.setText(alguien.getData_wish().get(position).getData_text());
+
+        if (alguien.getData_wish().get(position).getData_bought().equals("Y")) {
+            imgVwWishBought.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.check2));
+        }
 
         return itemView;
     }

@@ -16,37 +16,15 @@
             android:indeterminate="true" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="150dp"
         android:layout_height="150dp"
-        android:background="#00ffffff">
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/imgVwFriendPhoto"
-            android:padding="5dp"
-            android:contentDescription="@string/ImagenEvento"
-            android:background="#ffffff"/>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffff">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/txtVwFriendName"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="60dp"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
+        android:id="@+id/imgVwFriendPhoto"
+        android:padding="5dp"
+        android:contentDescription="@string/ImagenEvento"
+        android:background="#ffffff"
+        android:src="@drawable/profile_img"
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:orientation="horizontal"

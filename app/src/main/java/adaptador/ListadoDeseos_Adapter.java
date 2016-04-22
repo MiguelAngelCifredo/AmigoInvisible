@@ -44,11 +44,11 @@ public class ListadoDeseos_Adapter extends BaseAdapter {
         ImageView WishPhoto  = (ImageView) itemView.findViewById(R.id.imgVwWishPhoto);
         TextView  WishName   = (TextView)  itemView.findViewById(R.id.txtVwWishtName);
 
-        if (alguien.getData_wish().get(position).getData_photo()==null)
-            WishPhoto.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.caja_editable));
-        else
+        if (alguien.getData_wish().get(position).getData_photo() == null) {
+            WishPhoto.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.caja_regalo_sin_foto));
+        } else {
             WishPhoto.setImageBitmap(alguien.getData_wish().get(position).getData_photo());
-
+        }
         WishName.setText(alguien.getData_wish().get(position).getData_text());
 
         return itemView;

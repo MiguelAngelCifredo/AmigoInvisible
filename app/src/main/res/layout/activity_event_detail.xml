@@ -28,7 +28,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/imgVwEventPhoto"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:src="@drawable/event_img" />
 
         <LinearLayout
             android:orientation="vertical"

@@ -49,9 +49,9 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_edit);
-
         eventActual = (ClsEvent) Comunicador.getObjeto();
+        setTitle(eventActual.getData_name());
+        setContentView(R.layout.activity_event_edit);
         getData();
     }
 
@@ -83,7 +83,9 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         TextView  txtVwEventPlace    = (TextView) findViewById(R.id.txtVwEventPlace);
         TextView  txtVwEventMaxPrice = (TextView) findViewById(R.id.txtVwEventMaxPrice);
         try{
-            imgVwEventPhoto.setImageBitmap(eventActual.getData_photo());
+            if (eventActual.getData_photo() != null) {
+                imgVwEventPhoto.setImageBitmap(eventActual.getData_photo());
+            }
             txtVwEventDate.setText(" " + eventActual.getData_date_text());
             txtVwEventTime.setText(eventActual.getData_date_time());
             txtVwEventPlace.setText(eventActual.getData_place());

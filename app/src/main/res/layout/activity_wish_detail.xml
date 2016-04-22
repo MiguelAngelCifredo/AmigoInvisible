@@ -11,7 +11,7 @@
         android:layout_height="300dp"
         android:id="@+id/imgVwWishPhoto"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/profile_img"
+        android:src="@drawable/caja_regalo_sin_foto"
         android:padding="5dp"
         android:contentDescription="@string/WishImage"
         android:layout_marginTop="5dp"/>

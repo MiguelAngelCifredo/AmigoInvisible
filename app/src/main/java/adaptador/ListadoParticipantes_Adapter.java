@@ -1,6 +1,7 @@
 package adaptador;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,12 @@ public class ListadoParticipantes_Adapter extends BaseAdapter {
         ImageView ParticipantPhoto = (ImageView) itemView.findViewById(R.id.imgVwParticipantPhoto);
         TextView  ParticipantName  = (TextView)  itemView.findViewById(R.id.txtVwParticipantName);
 
-        ParticipantPhoto.setImageBitmap(lstParticipants.get(position).getData_person().getData_photo());
+        if (lstParticipants.get(position).getData_person().getData_photo() == null) {
+            ParticipantPhoto.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.profile_img));
+        } else {
+            ParticipantPhoto.setImageBitmap(lstParticipants.get(position).getData_person().getData_photo());
+        }
+
         ParticipantName.setText(lstParticipants.get(position).getData_person().getData_name());
 
         return itemView;

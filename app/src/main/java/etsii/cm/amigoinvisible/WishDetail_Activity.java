@@ -25,13 +25,17 @@ public class WishDetail_Activity extends AppCompatActivity implements Serializab
 
         wishActual = (ClsWish) Comunicador.getObjeto();
 
+        setTitle(wishActual.getData_text());
         setContentView(R.layout.activity_wish_detail);
 
         ImageView imgVwWishPhoto       = (ImageView) findViewById(R.id.imgVwWishPhoto);
         TextView  txtVwWishDescription = (TextView)  findViewById(R.id.txtVwWishDescription);
         Switch    btnSwWishBought      = (Switch)    findViewById(R.id.btnSwWishBought);
 
-        imgVwWishPhoto.setImageBitmap(wishActual.getData_photo());
+
+        if (wishActual.getData_photo() != null){
+            imgVwWishPhoto.setImageBitmap(wishActual.getData_photo());
+        }
 
         txtVwWishDescription.setText(wishActual.getData_description());
 
