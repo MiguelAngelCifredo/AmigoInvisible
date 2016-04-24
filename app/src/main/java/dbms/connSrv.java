@@ -26,6 +26,7 @@ public class ConnSrv {
     private static String sendPage(String pagePHP){
         System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
         String response = null;
+
         try {
             URL url = new URL(servidor + pagePHP);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
