@@ -22,10 +22,11 @@
         android:text=""
         android:textStyle="bold"
         android:singleLine="true"
-        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:editable="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -35,11 +36,12 @@
         android:text=""
         android:textStyle="italic"
         android:singleLine="false"
-        android:textAlignment="center"
-        android:textIsSelectable="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:textAlignment="textStart"
+        android:textIsSelectable="false"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:autoText="false"
-        />
+        android:editable="true"
+        android:layout_marginBottom="20dp" />
 
 </LinearLayout>
