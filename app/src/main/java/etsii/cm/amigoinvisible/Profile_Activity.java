@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +36,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
     private ClsMyFriend personActual;
     private ImageView   imgVwProfilePhoto;
     private TextView    txtVwProfileName;
-    private Button      btnAddW;
+    private FloatingActionButton      btnAddW;
     private ListView    listado;
     private String      selectedImagePath;
 
@@ -67,7 +68,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
 
         imgVwProfilePhoto = (ImageView) findViewById(R.id.imgVwProfilePhoto);
         txtVwProfileName  = (TextView)  findViewById(R.id.txtVwProfileName);
-        btnAddW  = (Button)    findViewById(R.id.btnAddWish);
+        btnAddW  = (FloatingActionButton)    findViewById(R.id.btnAddWish);
 
         listado  = (ListView)  findViewById(R.id.lstVwWishes);
 
