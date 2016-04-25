@@ -15,11 +15,36 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:id="@+id/progressBar" />
 
     </RelativeLayout>
 
-    <Button
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lstVwEvent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CREAR EVENTO"
+            android:id="@+id/btnCrearEvento"
+            android:layout_gravity="right"
+            android:src="@mipmap/ic_plus"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="20dp" />
+    </RelativeLayout>
+
+    <!--<Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CREAR EVENTO"
@@ -27,15 +52,6 @@
         android:layout_gravity="right"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lstVwEvent"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/btnCrearEvento"
-        android:layout_alignEnd="@+id/btnCrearEvento"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true" />-->
 
 </RelativeLayout>

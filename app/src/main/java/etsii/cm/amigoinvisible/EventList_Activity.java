@@ -3,6 +3,7 @@ package etsii.cm.amigoinvisible;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +26,7 @@ import utils.Iam;
 public class EventList_Activity extends AppCompatActivity implements Serializable {
     private RunInDB db = new RunInDB();
     private ListView listado;
-    private Button btnCrearEvento;
+    private FloatingActionButton btnCrearEvento;
     private ArrayList<ClsEvent> lstEvents;
     private ClsPerson personActual;
 
@@ -51,7 +52,7 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
-        btnCrearEvento = (Button) findViewById(R.id.btnCrearEvento);
+        btnCrearEvento = (FloatingActionButton) findViewById(R.id.btnCrearEvento);
         btnCrearEvento.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 add = true;
