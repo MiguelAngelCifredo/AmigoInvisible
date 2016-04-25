@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -11,8 +11,10 @@
         android:layout_height="150dp"
         android:id="@+id/imgVwWishEditPhoto"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:src="@drawable/caja_editable"/>
+        android:src="@drawable/caja_editable"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -23,10 +25,12 @@
         android:textStyle="bold"
         android:singleLine="true"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
         android:textSize="20dp"
         android:layout_marginLeft="20dp"
-        android:editable="true" />
+        android:editable="true"
+        android:layout_below="@+id/imgVwWishEditPhoto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,6 +46,8 @@
         android:layout_marginRight="20dp"
         android:autoText="false"
         android:editable="true"
-        android:layout_marginBottom="20dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtVwWishEditText"
+        android:layout_marginBottom="10dp" />
 
-</LinearLayout>
+</RelativeLayout>
