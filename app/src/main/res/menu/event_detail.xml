@@ -4,6 +4,18 @@
     tools:context=".EventDetail_Activity">
 
     <item android:title="EventDetail"
+        android:id="@+id/editEvent"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:orderInCategory="1"
+        app:showAsAction="always|collapseActionView"/>
+
+    <item android:title="EventDetail"
+        android:id="@+id/listaParticipantes"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:orderInCategory="1"
+        app:showAsAction="always|collapseActionView"/>
+
+    <item android:title="EventDetail"
         android:id="@+id/friend"
         android:icon="@android:drawable/ic_menu_info_details"
         android:orderInCategory="1"
