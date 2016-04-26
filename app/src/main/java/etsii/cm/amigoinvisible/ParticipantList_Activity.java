@@ -13,7 +13,7 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_detail);
+        setContentView(R.layout.activity_list_participant);
     }
 
 }

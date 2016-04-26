@@ -40,13 +40,13 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
             Comunicador.setObjeto(eventActual);
             Intent nextView = new Intent(getApplicationContext(), MyFriend_Activity.class);
             startActivity(nextView);
-        } else if(id == R.id.listaParticipantes){
+        }else if(id == R.id.editEvent){
             Comunicador.setObjeto(eventActual);
-            Intent nextView = new Intent(getApplicationContext(), ParticipantList_Activity.class);
+            Intent nextView = new Intent(getApplicationContext(), EventDetail_Activity.class);
             startActivity(nextView);
         }else{
             Comunicador.setObjeto(eventActual);
-            Intent nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
+            Intent nextView = new Intent(getApplicationContext(), ParticipantList_Activity.class);
             startActivity(nextView);
         }
         return super.onOptionsItemSelected(item);

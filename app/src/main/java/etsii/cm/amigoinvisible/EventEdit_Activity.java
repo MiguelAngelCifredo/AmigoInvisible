@@ -51,7 +51,7 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         super.onCreate(savedInstanceState);
         eventActual = (ClsEvent) Comunicador.getObjeto();
         setTitle(eventActual.getData_name());
-        setContentView(R.layout.activity_event_edit);
+        setContentView(R.layout.activity_event_detail);
         getData();
     }
 
@@ -92,8 +92,8 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
             txtVwEventMaxPrice.setText(eventActual.getData_max_Price().toString() + " €");
 
             ListadoParticipantes_Adapter adapter = new ListadoParticipantes_Adapter(this, lstParticipants);
-            ListView listado = (ListView) findViewById(R.id.lstVwParticipants);
-            listado.setAdapter(adapter);
+            //ListView listado = (ListView) findViewById(R.id.lstVwParticipants);
+            //listado.setAdapter(adapter);
         } catch (Exception e){;}
     }
 

@@ -4,17 +4,17 @@
     tools:context=".EventEdit_Activity">
     <item android:title="EventEdit"
         android:id="@+id/delete"
-        android:icon="@mipmap/ic_delete"
+        android:icon="@android:drawable/ic_menu_delete"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
     <item android:title="EventEdit"
         android:id="@+id/save"
-        android:icon="@mipmap/ic_save"
+        android:icon="@android:drawable/ic_menu_save"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
     <item android:title="EventEdit"
         android:id="@+id/friend"
-        android:icon="@mipmap/ic_info"
+        android:icon="@android:drawable/ic_menu_info_details"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 </menu>
