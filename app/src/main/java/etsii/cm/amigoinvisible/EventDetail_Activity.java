@@ -42,7 +42,7 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
             startActivity(nextView);
         } else if(id == R.id.listaParticipantes){
             Comunicador.setObjeto(eventActual);
-            Intent nextView = new Intent(getApplicationContext(), EventDetail_Activity.class);
+            Intent nextView = new Intent(getApplicationContext(), ParticipantList_Activity.class);
             startActivity(nextView);
         }else{
             Comunicador.setObjeto(eventActual);
