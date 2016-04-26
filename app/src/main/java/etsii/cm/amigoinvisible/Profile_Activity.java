@@ -36,9 +36,9 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
     private ClsMyFriend personActual;
     private ImageView   imgVwProfilePhoto;
     private TextView    txtVwProfileName;
-    private FloatingActionButton      btnAddW;
-    private ListView    listado;
-    private String      selectedImagePath;
+    private FloatingActionButton btnAddWish;
+    private ListView listado;
+    private String selectedImagePath;
 
     private static final int SELECT_PICTURE = 1;
     private static boolean add = false;
@@ -68,7 +68,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
 
         imgVwProfilePhoto = (ImageView) findViewById(R.id.imgVwProfilePhoto);
         txtVwProfileName  = (TextView)  findViewById(R.id.txtVwProfileName);
-        btnAddW  = (FloatingActionButton)    findViewById(R.id.btnAddWish);
+        btnAddWish  = (FloatingActionButton) findViewById(R.id.btnAddWish);
 
         listado  = (ListView)  findViewById(R.id.lstVwWishes);
 
@@ -80,11 +80,11 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
             }
         });
 
-        btnAddW.setOnClickListener(new View.OnClickListener() {
+        btnAddWish.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent nextView = new Intent(getApplicationContext(), WishEdit_Activity.class);
-                Comunicador.setObjeto(new ClsWish(0,"","",null,"N"));
                 add = true;
+                Comunicador.setObjeto(new ClsWish(0,"","",null,"N"));
+                Intent nextView = new Intent(getApplicationContext(), WishEdit_Activity.class);
                 startActivity(nextView);
             }
         });

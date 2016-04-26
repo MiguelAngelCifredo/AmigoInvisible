@@ -17,12 +17,47 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imgVwProfilePhoto"
+            android:paddingRight="10dp"
+            android:src="@drawable/user_icon_edit"
+            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:contentDescription="@string/DescripcionImagen"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/txtVwProfileName"
+            android:inputType="text"
+            android:layout_gravity="center_horizontal"
+            android:layout_toEndOf="@+id/imgVwProfilePhoto"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="true"
+            android:hint="Escribe tu nombre ..." />
+
+    </LinearLayout>
+
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout">
 
         <!--<Button
             android:layout_width="wrap_content"
@@ -31,78 +66,36 @@
             android:id="@+id/btnAddWish"
             android:layout_gravity="right" />-->
 
-        <RelativeLayout
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="top">
+            android:id="@+id/lstVwWishes"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/txtVwLisWishestIs" />
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:id="@+id/imgVwProfilePhoto"
-                android:paddingRight="10dp"
-                android:src="@drawable/user_icon_edit"
-                android:padding="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:contentDescription="@string/DescripcionImagen"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Mi lista de deseos es:"
+            android:id="@+id/txtVwLisWishestIs"
+            android:layout_gravity="center_horizontal|left"
+            android:paddingLeft="10dp"
+            android:layout_alignParentStart="true" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:id="@+id/txtVwProfileName"
-                android:inputType="text"
-                android:layout_gravity="center_horizontal"
-                android:layout_toEndOf="@+id/imgVwProfilePhoto"
-                android:layout_alignWithParentIfMissing="false"
-                android:layout_alignParentRight="false"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentTop="true"
-                android:hint="Escribe tu nombre ..." />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Mi lista de deseos es:"
-                android:id="@+id/txtVwLisWishestIs"
-                android:layout_gravity="center_horizontal|left"
-                android:paddingLeft="10dp"
-                android:layout_below="@+id/imgVwProfilePhoto"
-                android:layout_alignParentStart="true" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/txtVwLisWishestIs">
-
-                <android.support.design.widget.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Añadir deseo"
-                    android:id="@+id/btnAddWish"
-                    android:layout_gravity="right"
-                    android:src="@mipmap/ic_plus"
-                    android:layout_alignWithParentIfMissing="false"
-                    android:layout_marginRight="20dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="20dp"
-                    android:layout_alignParentRight="true"
-                    android:focusable="false"
-                    android:visibility="visible"
-                    android:nestedScrollingEnabled="false" />
-
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/lstVwWishes"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignParentBottom="true" />
-            </RelativeLayout>
-
-        </RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Añadir deseo"
+            android:id="@+id/btnAddWish"
+            android:layout_gravity="right"
+            android:src="@mipmap/ic_plus"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="20dp"
+            android:clickable="true" />
 
     </RelativeLayout>
 
