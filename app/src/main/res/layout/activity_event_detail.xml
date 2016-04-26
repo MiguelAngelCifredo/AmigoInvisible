@@ -1,90 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:weightSum="1"
               android:background="#ffffff">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/loadingPanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center" >
+        android:gravity="center"
+        android:background="#ffffff">
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true" />
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        >
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        android:layout_alignParentTop="true">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:id="@+id/imgVwEventPhoto"
-            android:layout_margin="5dp"
-            android:src="@drawable/event_img" />
+            android:src="@drawable/event_img"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal" />
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Fecha"
+                android:text="Fecha:"
+                android:id="@+id/txtVwTituloFecha"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/txtVwEventDate"
-                android:layout_margin="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Hora"
-                android:id="@+id/txtVwEventTime"
-                android:layout_margin="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Lugar"
-                android:id="@+id/txtVwEventPlace"
-                android:layout_margin="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Precio"
-                android:id="@+id/txtVwEventMaxPrice"
-                android:layout_margin="10dp"
-                android:singleLine="false"/>
-
+                android:textStyle="italic"
+                android:hint="Fecha"
+                android:textAlignment="textEnd"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:layout_marginRight="15dp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Hora:"
+                android:id="@+id/txtVwTituloHora"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/txtVwEventTime"
+                android:hint="Hora"
+                android:textAlignment="textEnd"
+                android:textStyle="italic"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:layout_marginRight="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Precio máximo (€):"
+                android:id="@+id/txtVwTituloPrecio"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/txtVwEventMaxPrice"
+                android:singleLine="true"
+                android:textStyle="italic"
+                android:textAlignment="textEnd"
+                android:hint="Precio"
+                android:padding="5dp"
+                android:layout_marginRight="15dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lugar:"
+            android:id="@+id/txtVwTituloLugar"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_margin="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lugar"
+            android:id="@+id/txtVwEventPlace"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.91"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:padding="5dp" />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Participantes:"
-        android:id="@+id/txtVwListParticipants"
-        android:layout_margin="10dp"/>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lstVwParticipants"
-        android:layout_gravity="center_horizontal"/>
-
-</LinearLayout>
+</RelativeLayout>

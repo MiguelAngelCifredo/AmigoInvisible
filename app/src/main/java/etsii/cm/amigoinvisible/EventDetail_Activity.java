@@ -50,10 +50,11 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
         eventActual = (ClsEvent) Comunicador.getObjeto();
         setTitle(eventActual.getData_name());
         setContentView(R.layout.activity_event_detail);
-        getData();
+        //getData();
+        showData();
     }
 
-    public void getData(){
+    /*public void getData(){
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -69,10 +70,10 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
             }
         });
         tr.start();
-    }
+    }*/
 
     public void showData(){
-        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+        //findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         ImageView imgVwEventPhoto    = (ImageView)findViewById(R.id.imgVwEventPhoto);
         TextView  txtVwEventDate     = (TextView) findViewById(R.id.txtVwEventDate);
@@ -89,9 +90,9 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
         txtVwEventPlace.setText(eventActual.getData_place());
         txtVwEventMaxPrice.setText(eventActual.getData_max_Price().toString() + " €");
 
-        ListadoParticipantes_Adapter adapter = new ListadoParticipantes_Adapter(this, lstParticipants);
+        /*ListadoParticipantes_Adapter adapter = new ListadoParticipantes_Adapter(this, lstParticipants);
         ListView listado = (ListView) findViewById(R.id.lstVwParticipants);
-        listado.setAdapter(adapter);
+        listado.setAdapter(adapter);*/
     }
 
 }

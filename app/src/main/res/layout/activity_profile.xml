@@ -73,27 +73,35 @@
                 android:layout_below="@+id/imgVwProfilePhoto"
                 android:layout_alignParentStart="true" />
 
-            <ListView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/lstVwWishes"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/txtVwLisWishestIs" />
+                android:layout_below="@+id/txtVwLisWishestIs">
 
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Añadir deseo"
-                android:id="@+id/btnAddWish"
-                android:layout_gravity="right"
-                android:src="@mipmap/ic_plus"
-                android:layout_alignWithParentIfMissing="false"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
-                android:layout_alignParentRight="true"
-                android:focusable="false" />
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Añadir deseo"
+                    android:id="@+id/btnAddWish"
+                    android:layout_gravity="right"
+                    android:src="@mipmap/ic_plus"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_alignParentRight="true"
+                    android:focusable="false"
+                    android:visibility="visible"
+                    android:nestedScrollingEnabled="false" />
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/lstVwWishes"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </RelativeLayout>
