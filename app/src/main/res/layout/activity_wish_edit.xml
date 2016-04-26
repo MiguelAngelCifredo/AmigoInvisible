@@ -46,8 +46,11 @@
         android:layout_marginRight="20dp"
         android:autoText="false"
         android:editable="true"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/txtVwWishEditText"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:elegantTextHeight="false" />
 
 </RelativeLayout>

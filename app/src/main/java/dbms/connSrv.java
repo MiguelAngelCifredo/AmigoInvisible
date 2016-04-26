@@ -24,7 +24,7 @@ public class ConnSrv {
     public static final String servidor = "http://asd.hol.es/amigo/";
 
     private static String sendPage(String pagePHP){
-        System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
+        //System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
         String response = null;
 
         try {

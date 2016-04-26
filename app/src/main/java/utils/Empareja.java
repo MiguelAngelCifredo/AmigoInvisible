@@ -21,9 +21,17 @@ public class Empareja {
         b.addAll(mezcla(a, numIntentos));
 
         // Añade el parámetro friend en el parcipante correspondiente
+
+       /*
+
         for(int i = 0; i<a.size(); i++){
             lsPart.get(i).setData_friend(b.get(i));
         }
+
+
+        */
+
+
         //return res;
     }
     private static ArrayList<ClsPerson> mezcla (ArrayList<ClsPerson> ls, Integer numIntentos){

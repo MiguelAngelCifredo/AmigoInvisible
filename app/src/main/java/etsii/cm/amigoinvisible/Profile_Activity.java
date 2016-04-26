@@ -12,13 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 
 import adaptador.ListadoDeseos_Adapter;
@@ -52,7 +50,7 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.save) {
+        if (id == R.id.opcProfileSave) {
             saveData();
             finish();
         }

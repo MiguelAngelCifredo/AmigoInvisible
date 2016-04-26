@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/ tools"
     tools:context=".EventDetail_Activity">
 
-    <item android:title="EventDetail"
-        android:id="@+id/editEvent"
+    <item android:title="EventEdit"
+        android:id="@+id/opcEventEdit"
         android:icon="@android:drawable/ic_menu_edit"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 
-    <item android:title="EventDetail"
-        android:id="@+id/listaParticipantes"
+    <item android:title="ParticipantList"
+        android:id="@+id/opcParticipantList"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 
-    <item android:title="EventDetail"
-        android:id="@+id/friend"
+    <item android:title="MyFriend"
+        android:id="@+id/opcMyFriend"
         android:icon="@android:drawable/ic_menu_info_details"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>

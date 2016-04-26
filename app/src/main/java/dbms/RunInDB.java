@@ -46,8 +46,12 @@ public class RunInDB {
             for (int i=0; i<json.length(); i++) {
                 lst.add(new ClsParticipant(
                           json.getJSONObject(i).getInt("id_participant")
-                        , getPerson(json.getJSONObject(i).getInt("id_person"))
-                        , getPerson(json.getJSONObject(i).getInt("friend"))
+                        , new ClsPerson(  json.getJSONObject(i).getInt("id_person")
+                                        , json.getJSONObject(i).getString("email")
+                                        , json.getJSONObject(i).getString("name")
+                                        , getPhoto("person", json.getJSONObject(i).getInt("id_person"))
+                                        )
+                        , json.getJSONObject(i).getInt("friend")
                 ));
             }
         } catch(Exception e){;}

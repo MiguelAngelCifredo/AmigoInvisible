@@ -2,7 +2,6 @@ package etsii.cm.amigoinvisible;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,7 +22,7 @@ import utils.Iam;
 
 public class WishEdit_Activity extends AppCompatActivity implements Serializable{
     private RunInDB db = new RunInDB();
-    private ClsWish   wishActual;
+    private ClsWish   actualWish;
     private ImageView imgPhoto;
     private TextView  txtText;
     private TextView  txtDescription;
@@ -35,9 +33,8 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.wish_edit, menu);
-        if (wishActual.getData_id_wish() == 0) {
-            MenuItem delete = menu.findItem(R.id.delete);
-            delete.setVisible(false);
+        if (actualWish.getData_id_wish() == 0) {
+            menu.findItem(R.id.opcWishDelete).setVisible(false);
         }
         return true;
     }
@@ -45,13 +42,11 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.delete) {
+        if (id == R.id.opcWishDelete) {
             deleteWish();
             finish();
         }
-
-        if (id == R.id.save) {
-            System.out.println("******" + "Pulsado para guardar");
+        if (id == R.id.opcWishSave) {
             saveWish();
             finish();
         }
@@ -61,12 +56,12 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        wishActual = (ClsWish) Comunicador.getObjeto();
+        actualWish = (ClsWish) Comunicador.getObjeto();
 
-        if (wishActual.getData_text().equals("")){
+        if (actualWish.getData_text().equals("")){
             setTitle("Deseo nuevo");
         } else {
-            setTitle(wishActual.getData_text());
+            setTitle(actualWish.getData_text());
         }
 
         setContentView(R.layout.activity_wish_edit);
@@ -114,17 +109,17 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
 
     public void saveWish(){
         if (txtText.getText().length() > 0) {
-            wishActual.setData_text(txtText.getText().toString());
-            wishActual.setData_description(txtDescription.getText().toString());
-            wishActual.setData_photo(((BitmapDrawable) imgPhoto.getDrawable()).getBitmap());
-            Comunicador.setObjeto(wishActual);
+            actualWish.setData_text(txtText.getText().toString());
+            actualWish.setData_description(txtDescription.getText().toString());
+            actualWish.setData_photo(((BitmapDrawable) imgPhoto.getDrawable()).getBitmap());
+            Comunicador.setObjeto(actualWish);
             Thread tr = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (wishActual.getData_id_wish() == 0)
-                    db.insWish(wishActual, Iam.getId());
+                    if (actualWish.getData_id_wish() == 0)
+                    db.insWish(actualWish, Iam.getId());
                 else
-                    db.setWish(wishActual);
+                    db.setWish(actualWish);
                 }
             });
             tr.start();
@@ -132,11 +127,11 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     }
 
     public void deleteWish(){
-        wishActual.setData_text(null);
+        actualWish.setData_text(null);
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                db.delWish(wishActual.getData_id_wish());
+                db.delWish(actualWish.getData_id_wish());
             }
         });
         tr.start();
@@ -144,14 +139,14 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
 
     public void mostrarDatos(){
 
-        if (wishActual.getData_photo() != null) {
-            imgPhoto.setImageBitmap(wishActual.getData_photo());
+        if (actualWish.getData_photo() != null) {
+            imgPhoto.setImageBitmap(actualWish.getData_photo());
         }
-        if (wishActual.getData_text().length() > 0) {
-            txtText.setText(wishActual.getData_text());
+        if (actualWish.getData_text().length() > 0) {
+            txtText.setText(actualWish.getData_text());
         }
-        if (wishActual.getData_description().length() > 0) {
-            txtDescription.setText(wishActual.getData_description());
+        if (actualWish.getData_description().length() > 0) {
+            txtDescription.setText(actualWish.getData_description());
         }
     }
 }

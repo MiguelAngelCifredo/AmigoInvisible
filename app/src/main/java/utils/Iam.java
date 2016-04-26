@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
+import model.ClsEvent;
+
 public class Iam {
     private static Integer id_person = null;
     private static String eMail = null;
@@ -47,6 +49,10 @@ public class Iam {
             }
         }
         return eMail;
+    }
+
+    public static boolean admin(ClsEvent eventActual){
+        return eventActual.getDataId_admin() == Iam.getId();
     }
 
 }

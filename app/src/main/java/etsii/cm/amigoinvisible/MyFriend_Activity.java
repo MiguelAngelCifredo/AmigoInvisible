@@ -14,7 +14,6 @@ import java.util.Collections;
 
 import adaptador.ListadoComprados_Adapter;
 import comparator.WishByBoughtAndText;
-import comparator.WishByText;
 import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsMyFriend;
@@ -26,8 +25,8 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
     private RunInDB db = new RunInDB();
     private ListView    listado;
     private ClsMyFriend myFriend;
-    private ClsEvent    eventActual;
-    private ClsWish     wishActual;
+    private ClsEvent    actualEvent;
+    private ClsWish     actualWish;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,21 +41,21 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
                 Intent nextView = new Intent(getApplicationContext(), WishDetail_Activity.class);
-                wishActual = myFriend.getData_wish().get(i);
-                Comunicador.setObjeto(wishActual);
+                actualWish = myFriend.getData_wish().get(i);
+                Comunicador.setObjeto(actualWish);
                 startActivity(nextView);
             }
         });
 
-        eventActual = (ClsEvent) Comunicador.getObjeto();
-        wishActual = null;
+        actualEvent = (ClsEvent) Comunicador.getObjeto();
+        actualWish = null;
         getData();
 
     }
 
     protected void onResume() {
         super.onResume();
-        if(wishActual!=null) {
+        if(actualWish !=null) {
             Collections.sort(myFriend.getData_wish(), new WishByBoughtAndText());
             showData();
         }
@@ -66,7 +65,7 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                myFriend = db.getMyFriend(eventActual.getData_id_event());
+                myFriend = db.getMyFriend(actualEvent.getData_id_event());
                 runOnUiThread(
                         new Runnable() {
                             @Override

@@ -17,15 +17,15 @@ import utils.Comunicador;
 public class WishDetail_Activity extends AppCompatActivity implements Serializable{
 
     private RunInDB db = new RunInDB();
-    private ClsWish wishActual;
+    private ClsWish actualWish;
     private String bought;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        wishActual = (ClsWish) Comunicador.getObjeto();
+        actualWish = (ClsWish) Comunicador.getObjeto();
 
-        setTitle(wishActual.getData_text());
+        setTitle(actualWish.getData_text());
         setContentView(R.layout.activity_wish_detail);
 
         ImageView imgVwWishPhoto       = (ImageView) findViewById(R.id.imgVwWishPhoto);
@@ -33,13 +33,13 @@ public class WishDetail_Activity extends AppCompatActivity implements Serializab
         Switch    btnSwWishBought      = (Switch)    findViewById(R.id.btnSwWishBought);
 
 
-        if (wishActual.getData_photo() != null){
-            imgVwWishPhoto.setImageBitmap(wishActual.getData_photo());
+        if (actualWish.getData_photo() != null){
+            imgVwWishPhoto.setImageBitmap(actualWish.getData_photo());
         }
 
-        txtVwWishDescription.setText(wishActual.getData_description());
+        txtVwWishDescription.setText(actualWish.getData_description());
 
-        btnSwWishBought.setChecked((wishActual.getData_bought().equals("Y")) ? true : false);
+        btnSwWishBought.setChecked((actualWish.getData_bought().equals("Y")) ? true : false);
 
         btnSwWishBought.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -53,11 +53,11 @@ public class WishDetail_Activity extends AppCompatActivity implements Serializab
     }
 
     public void grabarStatus(){
-        wishActual.setData_bought(bought);
+        actualWish.setData_bought(bought);
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                db.setWishBought(wishActual.getData_id_wish(), bought);
+                db.setWishBought(actualWish.getData_id_wish(), bought);
             }
         });
         tr.start();

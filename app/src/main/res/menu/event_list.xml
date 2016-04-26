@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/ tools"
     tools:context=".EventList_Activity">
     <item android:title="Profile"
-        android:id="@+id/menu_profile"
+        android:id="@+id/opcProfile"
         android:icon="@android:drawable/ic_menu_crop"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>

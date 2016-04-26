@@ -59,13 +59,6 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout">
 
-        <!--<Button
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Añadir deseo"
-            android:id="@+id/btnAddWish"
-            android:layout_gravity="right" />-->
-
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
