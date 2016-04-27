@@ -11,4 +11,9 @@
     <string name="BotonInfo">btn_info</string>
     <string name="AñadirParticipante">Añadir Participante</string>
     <string name="WishImage">Imagen que representa el deseo</string>
+    <string name="borrar">Borrar</string>
+    <string name="quiere_borrar">¿Quieres borrar este deseo?</string>
+    <string name="borra">Borrar deseo</string>
+    <string name="borrado">Deseo borrado</string>
+
 </resources>

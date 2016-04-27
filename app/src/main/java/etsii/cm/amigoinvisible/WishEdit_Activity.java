@@ -1,17 +1,21 @@
 package etsii.cm.amigoinvisible;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -37,17 +41,22 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
             menu.findItem(R.id.opcWishDelete).setVisible(false);
         }
         return true;
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.opcWishDelete) {
-            deleteWish();
-            finish();
+            abre_dialogo();
+            //deleteWish();
+            //finish();
+
         }
         if (id == R.id.opcWishSave) {
             saveWish();
+            Toast.makeText(WishEdit_Activity.this, "Deseo guardado", Toast.LENGTH_SHORT).show();
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -149,4 +158,23 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
             txtDescription.setText(actualWish.getData_description());
         }
     }
+
+    public void abre_dialogo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.borrar);
+        builder.setMessage(R.string.quiere_borrar);
+        builder.setPositiveButton(R.string.borra, new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int which){
+                deleteWish();
+                Toast.makeText(getApplicationContext(), R.string.borrado, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel,null);
+
+        Dialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 }
