@@ -2,16 +2,18 @@ package etsii.cm.amigoinvisible;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -23,10 +25,13 @@ import utils.Comunicador;
 public class EventEdit_Activity extends AppCompatActivity implements Serializable {
 
     private ClsEvent actualEvent;
-    private ImageButton btnDateEdit;
-    private int year_x,month_x,day_x;
+    private ImageButton btnEditDate;
+    private ImageButton btnEditHour;
+    private int year_x,month_x,day_x,hour_x,minutes_x;
     private TextView txtFecha;
     static final int DIALOG_ID = 0;
+    static final int DIALOG_ID_HOUR = 999;
+
 
 
     @Override
@@ -64,6 +69,7 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         day_x = calendar.get(Calendar.DAY_OF_MONTH);
 
         showDialogOnButtonClick();
+        showDialogOnButtonClick();
         showData();
     }
 
@@ -87,18 +93,29 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
     }
 
     public void showDialogOnButtonClick(){
-        btnDateEdit = (ImageButton) findViewById(R.id.btnEditDate);
+        btnEditDate = (ImageButton) findViewById(R.id.btnEditDate);
+        btnEditHour = (ImageButton)findViewById(R.id.btnEditHour);
 
-        btnDateEdit.setOnClickListener(new View.OnClickListener(){
+        btnEditDate.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 showDialog(DIALOG_ID);
             }
         });
+
+        btnEditHour.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v){
+                showDialog(DIALOG_ID_HOUR);
+            }
+        });
     }
+
+
 
     protected Dialog onCreateDialog(int id){
         if(id ==DIALOG_ID){
             return new DatePickerDialog(this,dpickerLister,year_x ,month_x,day_x);
+        }else if(id == DIALOG_ID_HOUR){
+            return new TimePickerDialog(this,tpickerLister,hour_x,minutes_x, DateFormat.is24HourFormat(getApplicationContext()));
         }
         return null;
     }
@@ -112,4 +129,17 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         }
     };
 
-}
+
+    //TimePicker
+
+    private TimePickerDialog.OnTimeSetListener tpickerLister = new TimePickerDialog.OnTimeSetListener(){
+        public void onTimeSet(TimePicker view, int hour, int minutes){
+            hour_x = hour;
+            minutes_x = minutes;
+            Toast.makeText(EventEdit_Activity.this, hour+" : "+minutes, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    }
+
