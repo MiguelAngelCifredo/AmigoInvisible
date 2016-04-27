@@ -15,5 +15,8 @@
     <string name="quiere_borrar">¿Quieres borrar este deseo?</string>
     <string name="borra">Borrar deseo</string>
     <string name="borrado">Deseo borrado</string>
+    <string name="quiere_eliminar_participant">¿Quieres eliminar este participante?</string>
+    <string name="eliminar_participant">Eliminar</string>
+    <string name="eliminado_participant">Participante eliminado</string>
 
 </resources>
