@@ -1,6 +1,7 @@
 package etsii.cm.amigoinvisible;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,9 +11,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     private TextView  txtText;
     private TextView  txtDescription;
     private String    selectedImagePath;
+    private MenuItem opcWishSave;
 
     private static final int SELECT_PICTURE = 1;
 
@@ -56,8 +60,9 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
         }
         if (id == R.id.opcWishSave) {
             saveWish();
-            Toast.makeText(WishEdit_Activity.this, "Deseo guardado", Toast.LENGTH_SHORT).show();
+            hideSoftKeyboard();
             finish();
+            Toast.makeText(WishEdit_Activity.this, "Deseo guardado", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -167,6 +172,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
             public void onClick(DialogInterface dialog, int which){
                 deleteWish();
                 Toast.makeText(getApplicationContext(), R.string.borrado, Toast.LENGTH_SHORT).show();
+                hideSoftKeyboard();
                 finish();
             }
         });
@@ -174,6 +180,12 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
 
         Dialog dialog = builder.create();
         dialog.show();
+    }
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
 
