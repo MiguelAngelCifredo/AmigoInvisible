@@ -10,7 +10,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:weightSum="1"
@@ -29,29 +29,42 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:weightSum="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Fecha:"
-                android:id="@+id/txtVwTituloFecha"
-                android:padding="5dp"
-                android:textStyle="bold"
-                android:textSize="20dp" />
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/txtVwEventDate"
-                android:textStyle="italic"
-                android:hint="Fecha"
-                android:textAlignment="textEnd"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:layout_marginRight="15dp" />
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/btnEditDate"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="20dp"
+                    android:background="#00ffffff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtFecha"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Fecha:"
+                    android:id="@+id/txtVwTituloFecha"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp" />
+
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -60,27 +73,43 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Hora:"
-                android:id="@+id/txtVwTituloHora"
-                android:padding="5dp"
-                android:textStyle="bold"
-                android:textSize="20dp" />
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/txtVwEventTime"
-                android:hint="Hora"
-                android:textAlignment="textEnd"
-                android:textStyle="italic"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:layout_marginRight="15dp" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Hora:"
+                    android:id="@+id/txtVwTituloHora"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/txtVwEventTime"
+
+                    android:textStyle="italic"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:layout_alignBottom="@+id/txtVwTituloHora"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/btnEditHour"
+                    android:src="@android:drawable/ic_menu_recent_history"
+                    android:background="#00ffffff"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="20dp" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -89,27 +118,34 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Precio máximo (€):"
-                android:id="@+id/txtVwTituloPrecio"
-                android:padding="5dp"
-                android:textStyle="bold"
-                android:textSize="20dp" />
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/txtVwEventMaxPrice"
-                android:singleLine="true"
-                android:textStyle="italic"
-                android:textAlignment="textEnd"
-                android:hint="Precio"
-                android:padding="5dp"
-                android:layout_marginRight="15dp" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Precio máximo (€):"
+                    android:id="@+id/txtVwTituloPrecio"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/txtVwEventMaxPrice"
+                    android:singleLine="true"
+                    android:textStyle="italic"
+                    android:textAlignment="textEnd"
+                    android:hint="Precio"
+                    android:padding="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_alignBottom="@+id/txtVwTituloPrecio"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
         </LinearLayout>
 
         <TextView
@@ -123,7 +159,7 @@
             android:textSize="20dp"
             android:layout_margin="5dp" />
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
