@@ -6,14 +6,4 @@
         android:icon="@android:drawable/ic_menu_recent_history"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
-    <item android:title="ParticipantSave"
-        android:id="@+id/opcParticipantSave"
-        android:icon="@android:drawable/ic_menu_save"
-        android:orderInCategory="1"
-        app:showAsAction="always|collapseActionView"/>
-    <item android:title="ParticipantDelete"
-        android:id="@+id/opcParticipantDelete"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:orderInCategory="1"
-        app:showAsAction="always|collapseActionView"/>
 </menu>

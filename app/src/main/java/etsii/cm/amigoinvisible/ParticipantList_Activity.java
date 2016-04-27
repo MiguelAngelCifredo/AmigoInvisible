@@ -33,8 +33,6 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
         findViewById(R.id.btnAddParticipant).setVisibility(View.INVISIBLE);
         if (!Iam.admin(actualEvent)) {
             menu.findItem(R.id.opcParticipantMatch).setVisible(false);
-            menu.findItem(R.id.opcParticipantSave).setVisible(false);
-            menu.findItem(R.id.opcParticipantDelete).setVisible(false);
         }
         return true;
     }
@@ -43,14 +41,6 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.opcParticipantMatch) {
-            //Intent nextView = new Intent(getApplicationContext(), Profile_Activity.class);
-            //startActivity(nextView);
-        }
-        if (id == R.id.opcParticipantSave) {
-            //Intent nextView = new Intent(getApplicationContext(), Profile_Activity.class);
-            //startActivity(nextView);
-        }
-        if (id == R.id.opcParticipantDelete) {
             //Intent nextView = new Intent(getApplicationContext(), Profile_Activity.class);
             //startActivity(nextView);
         }
