@@ -22,12 +22,10 @@ public class Empareja {
 
         // Añade el parámetro friend en el parcipante correspondiente
 
-
-/*
         for(int i = 0; i<a.size(); i++){
-            lsPart.get(i).setData_friend(b.get(i));
+            lsPart.get(i).setData_friend(b.get(i).getData_id_person());
         }
-*/
+
         //return res;
     }
     private static ArrayList<ClsPerson> mezcla (ArrayList<ClsPerson> ls, Integer numIntentos){
