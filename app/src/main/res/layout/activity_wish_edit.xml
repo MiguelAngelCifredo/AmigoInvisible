@@ -37,6 +37,7 @@
         android:layout_height="match_parent"
         android:id="@+id/txtVwWishEditDescription"
         android:hint="Escribe la descripción del deseo..."
+        android:inputType="textMultiLine"
         android:text=""
         android:textStyle="italic"
         android:singleLine="false"
@@ -51,6 +52,7 @@
         android:layout_alignParentEnd="false"
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
-        android:elegantTextHeight="false" />
+        android:elegantTextHeight="false"
+        android:gravity="top" />
 
 </RelativeLayout>

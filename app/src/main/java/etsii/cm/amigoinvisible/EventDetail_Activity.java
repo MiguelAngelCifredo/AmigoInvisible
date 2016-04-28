@@ -31,7 +31,6 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.opcEventEdit){
-            Comunicador.setObjeto(actualEvent);
             Intent nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
             startActivity(nextView);
         }
@@ -51,9 +50,15 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        actualEvent = (ClsEvent) Comunicador.getObjeto();
-        setTitle(actualEvent.getData_name());
         setContentView(R.layout.activity_event_detail);
+        actualEvent = (ClsEvent) Comunicador.getObjeto();
+        showData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualEvent = (ClsEvent) Comunicador.getObjeto();
         showData();
     }
 
@@ -68,10 +73,11 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
             imgVwEventPhoto.setImageBitmap(actualEvent.getData_photo());
         }
 
+        setTitle(actualEvent.getData_name());
         txtVwEventDate.setText(" " + actualEvent.getData_date_text());
         txtVwEventTime.setText(actualEvent.getData_date_time());
         txtVwEventPlace.setText(actualEvent.getData_place());
-        txtVwEventMaxPrice.setText(actualEvent.getData_max_Price().toString() + " €");
+        txtVwEventMaxPrice.setText(actualEvent.getData_max_price().toString() + " €");
     }
 
 }

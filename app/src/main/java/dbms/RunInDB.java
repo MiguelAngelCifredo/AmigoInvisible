@@ -136,6 +136,36 @@ public class RunInDB {
         ConnSrv.writePOST(pagePHP, params);
     }
 
+
+    public void setEvent(ClsEvent event){
+        String pagePHP = "setEvent.php";
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id_event", event.getData_id_event().toString());
+        params.put("name", event.getData_name());
+        params.put("date", event.getData_date());
+        params.put("place", event.getData_place());
+        params.put("max_price", event.getData_max_price().toString());
+
+        //params.put("photo", null);
+
+        ConnSrv.writePOST(pagePHP, params);
+    }
+
+    public void insEvent(ClsEvent event){
+        String pagePHP = "insEvent.php";
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("name", event.getData_name());
+        params.put("date", event.getData_date());
+        params.put("place", event.getData_place());
+        params.put("max_price", event.getData_max_price().toString());
+
+        //params.put("photo", null);
+
+        ConnSrv.writePOST(pagePHP, params);
+    }
+
     public void delWish(Integer id_wish) {
         String queryURL = "delWish.php?id_wish=" + id_wish;
         ConnSrv.writeData(queryURL);

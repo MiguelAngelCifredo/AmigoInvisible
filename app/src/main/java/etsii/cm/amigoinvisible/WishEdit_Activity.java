@@ -182,5 +182,4 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
         }
     }
 
-
 }

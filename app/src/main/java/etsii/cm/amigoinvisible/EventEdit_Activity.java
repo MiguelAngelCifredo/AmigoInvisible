@@ -14,22 +14,29 @@ import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.Calendar;
 
+import dbms.RunInDB;
 import model.ClsEvent;
 import utils.Comunicador;
 
 public class EventEdit_Activity extends AppCompatActivity implements Serializable {
-
+    private RunInDB db = new RunInDB();
     private ClsEvent  actualEvent;
     private ImageView imgEventPhoto;
     private String    selectedImagePath;
+    private TextView  txtEventName;
+    private TextView  txtEventMaxPrice;
+    private TextView  txtEventPlace;
+
     private static final int DIALOG_ID      = 0;
     private static final int DIALOG_ID_HOUR = 999;
     private static final int SELECT_PICTURE = 1;
@@ -50,7 +57,11 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
             // TODO Borrar el evento actual.
         }
         if (id == R.id.opcEventSave) {
-            // TODO guardar la edición del evento.
+            hideSoftKeyboard();
+            saveEvent();
+            Toast.makeText(EventEdit_Activity.this, "Evento guardado", Toast.LENGTH_SHORT).show();
+            Comunicador.setObjeto(actualEvent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -61,6 +72,11 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         actualEvent = (ClsEvent) Comunicador.getObjeto();
         setTitle(actualEvent.getData_name());
         setContentView(R.layout.activity_event_edit);
+
+        txtEventName     = (TextView) findViewById(R.id.txtEventName);
+        txtEventMaxPrice = (TextView) findViewById(R.id.txtEventMaxPrice);
+        txtEventPlace    = (TextView) findViewById(R.id.txtEventPlace);
+
         imgEventPhoto = (ImageView)findViewById(R.id.imgEventPhoto);
         imgEventPhoto.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
@@ -102,24 +118,43 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
     }
 
     public void showData(){
-        TextView  txtEventDate     = (TextView) findViewById(R.id.txtEventDate);
-        TextView  txtEventTime     = (TextView) findViewById(R.id.txtEventTime);
-        TextView  txtEventPlace    = (TextView) findViewById(R.id.txtEventPlace);
-        TextView  txtEventMaxPrice = (TextView) findViewById(R.id.txtEventMaxPrice);
+        TextView txtEventDate = (TextView) findViewById(R.id.txtEventDate);
+        TextView txtEventTime = (TextView) findViewById(R.id.txtEventTime);
         try{
             if (actualEvent.getData_photo() != null) {
                 imgEventPhoto.setImageBitmap(actualEvent.getData_photo());
             }
+            txtEventName.setText(actualEvent.getData_name());
             txtEventDate.setText(actualEvent.getData_date_text());
             txtEventTime.setText(actualEvent.getData_date_time());
             txtEventPlace.setText(actualEvent.getData_place());
-            txtEventMaxPrice.setText(actualEvent.getData_max_Price().toString() + " €");
-        } catch (Exception e){
-            System.out.println("******  FALLO " + e.getMessage());}
-
+            txtEventMaxPrice.setText(actualEvent.getData_max_price().toString());
+        } catch (Exception e){;}
     }
 
-    public void showDialogOnButtonClick(){
+    public void saveEvent(){
+        actualEvent.setData_photo(((BitmapDrawable) imgEventPhoto.getDrawable()).getBitmap());
+        String name = txtEventName.getText().toString();
+        actualEvent.setData_name((name.length() == 0 ? "Nuevo evento" : name));
+        int price = 0;
+        try { price = Integer.parseInt(txtEventMaxPrice.getText().toString()); } catch (Exception e) {;}
+        actualEvent.setData_max_price(price);
+        actualEvent.setData_place(txtEventPlace.getText().toString());
+        Comunicador.setObjeto(actualEvent);
+
+        Thread tr = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (actualEvent.getData_id_event() == 0)
+                    db.insEvent(actualEvent);
+                else
+                    db.setEvent(actualEvent);
+            }
+        });
+        tr.start();
+    }
+
+   public void showDialogOnButtonClick(){
         findViewById(R.id.btnEventDate).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showDialog(DIALOG_ID);
@@ -156,4 +191,10 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         }
     };
 
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
 }

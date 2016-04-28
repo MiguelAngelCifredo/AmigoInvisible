@@ -13,7 +13,7 @@ public class ClsEvent {
     private String  data_name;
     private String  data_date;
     private String  data_place;
-    private Integer data_max_Price;
+    private Integer data_max_price;
     private Bitmap  data_photo;
     private Integer data_id_admin;
 
@@ -21,7 +21,7 @@ public class ClsEvent {
             , String data_name
             , String data_date
             , String data_place
-            , Integer data_max_Price
+            , Integer data_max_price
             , Bitmap data_photo
             , Integer data_id_admin
     ){
@@ -29,7 +29,7 @@ public class ClsEvent {
         this.data_name      = data_name;
         this.data_date      = data_date;
         this.data_place     = data_place;
-        this.data_max_Price = data_max_Price;
+        this.data_max_price = data_max_price;
         this.data_photo     = data_photo;
         this.data_id_admin  = data_id_admin;
     }
@@ -66,12 +66,12 @@ public class ClsEvent {
         this.data_place = data_place;
     }
 
-    public Integer getData_max_Price() {
-        return data_max_Price;
+    public Integer getData_max_price() {
+        return data_max_price;
     }
 
-    public void setData_max_Price(Integer data_max_Price) {
-        this.data_max_Price = data_max_Price;
+    public void setData_max_price(Integer data_max_price) {
+        this.data_max_price = data_max_price;
     }
 
     public Bitmap getData_photo() {
@@ -93,7 +93,6 @@ public class ClsEvent {
     public Calendar getDate(){
         Calendar cal = null;
         try {
-
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date fecha = formatter.parse(getData_date());
             cal = Calendar.getInstance();
@@ -137,8 +136,8 @@ public class ClsEvent {
                 ", name='" + data_name + '\'' +
                 ", date='" + data_date + '\'' +
                 ", place='" + data_place + '\'' +
-                ", max_Price=" + data_max_Price +
-                ", id_admin='" + data_id_admin + '\'' +
+                ", max_Price=" + data_max_price +
+                ", id_admin=" + data_id_admin +
                 '}';
     }
 }

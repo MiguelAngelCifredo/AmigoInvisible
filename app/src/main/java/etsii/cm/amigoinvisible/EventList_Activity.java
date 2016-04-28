@@ -24,7 +24,6 @@ import utils.Iam;
 public class EventList_Activity extends AppCompatActivity implements Serializable {
     private RunInDB db = new RunInDB();
     private ListView lstVwEvent;
-    private FloatingActionButton btnAddEvent;
     private ArrayList<ClsEvent> lstEvents;
 
     private static boolean add = false;
@@ -50,11 +49,10 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
-        btnAddEvent = (FloatingActionButton) findViewById(R.id.btnAddEvent);
-        btnAddEvent.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnAddEvent).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 add = true;
-                Comunicador.setObjeto(new ClsEvent(0,"","","",0,null,Iam.getId()));
+                Comunicador.setObjeto(new ClsEvent(0, "", "", "", 0, null, Iam.getId()));
                 Intent nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
                 startActivity(nextView);
             }
@@ -65,18 +63,16 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
                 Comunicador.setObjeto(lstEvents.get(i));
                 Intent nextView = new Intent(getApplicationContext(), EventDetail_Activity.class);
-/*
-                Intent nextView;
-                if (lstEvents.get(i).getData_Id_admin() == Iam.getId()) {
-                    nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
-                } else {
-                    nextView = new Intent(getApplicationContext(), EventDetail_Activity.class);
-                }
-*/
                 startActivity(nextView);
             }
         });
 
+        getData(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getData(this);
     }
 
