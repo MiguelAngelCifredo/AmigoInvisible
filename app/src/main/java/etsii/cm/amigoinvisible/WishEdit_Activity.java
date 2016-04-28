@@ -34,7 +34,6 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     private TextView  txtText;
     private TextView  txtDescription;
     private String    selectedImagePath;
-    private MenuItem opcWishSave;
 
     private static final int SELECT_PICTURE = 1;
 
@@ -45,24 +44,19 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
             menu.findItem(R.id.opcWishDelete).setVisible(false);
         }
         return true;
-
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.opcWishDelete) {
-            abre_dialogo();
-            //deleteWish();
-            //finish();
-
+            dialogConfirmDeleteWish();
         }
         if (id == R.id.opcWishSave) {
-            saveWish();
             hideSoftKeyboard();
-            finish();
+            saveWish();
             Toast.makeText(WishEdit_Activity.this, "Deseo guardado", Toast.LENGTH_SHORT).show();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -164,7 +158,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
         }
     }
 
-    public void abre_dialogo(){
+    public void dialogConfirmDeleteWish(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.borrar);
         builder.setMessage(R.string.quiere_borrar);

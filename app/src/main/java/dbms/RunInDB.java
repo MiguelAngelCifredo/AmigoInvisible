@@ -141,6 +141,11 @@ public class RunInDB {
         ConnSrv.writeData(queryURL);
     }
 
+    public void delParticipant(Integer id_participant) {
+        String queryURL = "delParticipant.php?id_participant=" + id_participant;
+        ConnSrv.writeData(queryURL);
+    }
+
     public void insWish(ClsWish wish, Integer id_person){
         String pagePHP = "insWish.php";
 

@@ -82,15 +82,15 @@ public class ClsEvent {
         this.data_photo = data_photo;
     }
 
-    public Integer getDataId_admin() {
+    public Integer getData_id_admin() {
         return data_id_admin;
     }
 
-    public void setDataId_admin(Integer data_id_admin) {
+    public void setData_id_admin(Integer data_id_admin) {
         this.data_id_admin = data_id_admin;
     }
 
-    private Calendar getDate(){
+    public Calendar getDate(){
         Calendar cal = null;
         try {
 
@@ -102,8 +102,7 @@ public class ClsEvent {
         return cal;
     }
 
-    public String getData_date_text()
-    {
+    public String getData_date_text() {
         String[] diaSem = new String[]{"Sábado", "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
         String[] mesAño = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
@@ -115,13 +114,20 @@ public class ClsEvent {
         return fecha;
     }
 
-    public String getData_date_time()
-    {
+    public String getData_date_time() {
         Calendar cal = getDate();
         int hour     = cal.get(Calendar.HOUR_OF_DAY);
         int minute   = cal.get(Calendar.MINUTE);
         String fecha = "" + hour + ":"  + minute;
         return fecha;
+    }
+
+    public void setDate(int d, int m, int y) {
+        setData_date("" + y + "-" + (("0" + m).length() == 2 ? "0" + m : m) + "-" + (("0" + d).length() == 2 ? "0" + d : d) + " " + getData_date().substring(11));
+    }
+
+    public void setTime(int h, int m) {
+        setData_date("" + getData_date().substring(0,11) + (("0" + h).length() == 2 ? "0" + h : h) + ":" + (("0"+m).length()==2 ? "0"+m : m) + ":00");
     }
 
     @Override

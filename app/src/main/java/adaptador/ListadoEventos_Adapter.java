@@ -1,8 +1,6 @@
 package adaptador;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +41,7 @@ public class ListadoEventos_Adapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.plantilla_lista_eventos, parent, false);
 
-        ImageView imgVwEventPhoto = (ImageView) itemView.findViewById(R.id.imgVwEventPhoto);
+        ImageView imgVwEventPhoto = (ImageView) itemView.findViewById(R.id.imgEventPhoto);
         TextView  txtVwEventName  = (TextView)  itemView.findViewById(R.id.txtVwEventName);
         TextView  txtVwEventDate  = (TextView)  itemView.findViewById(R.id.txtVwEventDate);
 

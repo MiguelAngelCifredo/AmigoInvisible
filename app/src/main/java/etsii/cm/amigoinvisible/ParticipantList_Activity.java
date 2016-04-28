@@ -23,11 +23,10 @@ import model.ClsParticipant;
 import utils.Comunicador;
 import utils.Iam;
 
-
 public class ParticipantList_Activity extends AppCompatActivity implements Serializable {
 
     private RunInDB db = new RunInDB();
-    private ListView listado;
+    private ListView lstVwParticipants;
     private ArrayList<ClsParticipant> lstParticipants;
     private ClsEvent actualEvent;
 
@@ -56,14 +55,12 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
         setContentView(R.layout.activity_participant_list);
         actualEvent = (ClsEvent) Comunicador.getObjeto();
 
-        listado = (ListView) findViewById(R.id.lstVwParticipants);
-        listado.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        lstVwParticipants = (ListView) findViewById(R.id.lstVwParticipants);
+        lstVwParticipants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView adapterView, View view, int i, long l) {
                 if (Iam.admin(actualEvent)) {
                     Comunicador.setObjeto(lstParticipants.get(i));
-                    //Intent nextView = new Intent(getApplicationContext(), ParticipantDetail_Activity.class);
-                    //startActivity(nextView);
-                    abre_dialogo();
+                    dialogConfirmDeleteParticipant();
                 }
                 return true;
             }
@@ -72,7 +69,8 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
         getData();
 
     }
-     public void getData(){
+
+    public void getData(){
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -97,26 +95,43 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
         }
         setTitle("Participantes (" + lstParticipants.size() + ")");
         ListadoParticipantes_Adapter adapter = new ListadoParticipantes_Adapter(this, lstParticipants);
-        listado.setAdapter(adapter);
+        lstVwParticipants.setAdapter(adapter);
     }
 
-
-    public void abre_dialogo(){
+    public void dialogConfirmDeleteParticipant(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.borrar);
         builder.setMessage(R.string.quiere_eliminar_participant);
-        builder.setPositiveButton(R.string.eliminar_participant, new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                //deleteParticipant();
+        builder.setPositiveButton(R.string.eliminar_participant, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                deleteParticipant();
                 Toast.makeText(getApplicationContext(), R.string.eliminado_participant, Toast.LENGTH_SHORT).show();
-                finish();
             }
         });
-        builder.setNegativeButton(android.R.string.cancel,null);
+        builder.setNegativeButton(android.R.string.cancel, null);
 
         Dialog dialog = builder.create();
         dialog.show();
     }
 
+    public void deleteParticipant(){
+        Thread tr = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ClsParticipant actualParticipant = (ClsParticipant) Comunicador.getObjeto();
+                db.delParticipant(actualParticipant.getData_id_participant());
+                lstParticipants.remove(actualParticipant);
+                runOnUiThread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                showData();
+                            }
+                        }
+                );
+            }
+        });
+        tr.start();
+    }
 
 }

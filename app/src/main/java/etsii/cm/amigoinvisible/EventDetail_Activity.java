@@ -58,7 +58,7 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
     }
 
     public void showData(){
-        ImageView imgVwEventPhoto    = (ImageView)findViewById(R.id.imgVwEventPhoto);
+        ImageView imgVwEventPhoto    = (ImageView)findViewById(R.id.imgEventPhoto);
         TextView  txtVwEventDate     = (TextView) findViewById(R.id.txtVwEventDate);
         TextView  txtVwEventTime     = (TextView) findViewById(R.id.txtVwEventTime);
         TextView  txtVwEventPlace    = (TextView) findViewById(R.id.txtVwEventPlace);

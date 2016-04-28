@@ -3,18 +3,21 @@ package etsii.cm.amigoinvisible;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -24,15 +27,12 @@ import utils.Comunicador;
 
 public class EventEdit_Activity extends AppCompatActivity implements Serializable {
 
-    private ClsEvent actualEvent;
-    private ImageButton btnEditDate;
-    private ImageButton btnEditHour;
-    private int year_x,month_x,day_x,hour_x,minutes_x;
-    private TextView txtFecha;
-    static final int DIALOG_ID = 0;
-    static final int DIALOG_ID_HOUR = 999;
-
-
+    private ClsEvent  actualEvent;
+    private ImageView imgEventPhoto;
+    private String    selectedImagePath;
+    private static final int DIALOG_ID      = 0;
+    private static final int DIALOG_ID_HOUR = 999;
+    private static final int SELECT_PICTURE = 1;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,85 +61,99 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         actualEvent = (ClsEvent) Comunicador.getObjeto();
         setTitle(actualEvent.getData_name());
         setContentView(R.layout.activity_event_edit);
+        imgEventPhoto = (ImageView)findViewById(R.id.imgEventPhoto);
+        imgEventPhoto.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+            }
+        });
 
-
-        final Calendar calendar = Calendar.getInstance();
-        year_x = calendar.get(Calendar.YEAR);
-        month_x = calendar.get(Calendar.MONTH);
-        day_x = calendar.get(Calendar.DAY_OF_MONTH);
-
-        showDialogOnButtonClick();
         showDialogOnButtonClick();
         showData();
     }
 
-    public void showData(){
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                imgEventPhoto.setImageURI(selectedImageUri);
+                actualEvent.setData_photo(((BitmapDrawable) imgEventPhoto.getDrawable()).getBitmap());
+                selectedImagePath = getPath(selectedImageUri);
+                System.out.println("****** La foto seleccionada es: " + selectedImagePath);
+            }
+        }
+    }
 
-        ImageView imgVwEventPhoto    = (ImageView)findViewById(R.id.imgVwEventPhoto);
-        TextView  txtVwEventDate     = (TextView) findViewById(R.id.txtVwEventDate);
-        TextView  txtVwEventTime     = (TextView) findViewById(R.id.txtVwEventTime);
-        TextView  txtVwEventPlace    = (TextView) findViewById(R.id.txtVwEventPlace);
-        TextView  txtVwEventMaxPrice = (TextView) findViewById(R.id.txtVwEventMaxPrice);
+    public String getPath(Uri contentUri) {
+        String res = null;
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
+        if(cursor.moveToFirst()){
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        return res;
+    }
+
+    public void showData(){
+        TextView  txtEventDate     = (TextView) findViewById(R.id.txtEventDate);
+        TextView  txtEventTime     = (TextView) findViewById(R.id.txtEventTime);
+        TextView  txtEventPlace    = (TextView) findViewById(R.id.txtEventPlace);
+        TextView  txtEventMaxPrice = (TextView) findViewById(R.id.txtEventMaxPrice);
         try{
             if (actualEvent.getData_photo() != null) {
-                imgVwEventPhoto.setImageBitmap(actualEvent.getData_photo());
+                imgEventPhoto.setImageBitmap(actualEvent.getData_photo());
             }
-            txtVwEventDate.setText(" " + actualEvent.getData_date_text());
-            txtVwEventTime.setText(actualEvent.getData_date_time());
-            txtVwEventPlace.setText(actualEvent.getData_place());
-            txtVwEventMaxPrice.setText(actualEvent.getData_max_Price().toString() + " €");
-        } catch (Exception e){;}
+            txtEventDate.setText(actualEvent.getData_date_text());
+            txtEventTime.setText(actualEvent.getData_date_time());
+            txtEventPlace.setText(actualEvent.getData_place());
+            txtEventMaxPrice.setText(actualEvent.getData_max_Price().toString() + " €");
+        } catch (Exception e){
+            System.out.println("******  FALLO " + e.getMessage());}
 
     }
 
     public void showDialogOnButtonClick(){
-        btnEditDate = (ImageButton) findViewById(R.id.btnEditDate);
-        btnEditHour = (ImageButton)findViewById(R.id.btnEditHour);
-
-        btnEditDate.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        findViewById(R.id.btnEventDate).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 showDialog(DIALOG_ID);
             }
         });
-
-        btnEditHour.setOnClickListener(new View.OnClickListener() {
-            public void onClick (View v){
+        findViewById(R.id.btnEventTime).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 showDialog(DIALOG_ID_HOUR);
             }
         });
     }
 
-
-
     protected Dialog onCreateDialog(int id){
-        if(id ==DIALOG_ID){
-            return new DatePickerDialog(this,dpickerLister,year_x ,month_x,day_x);
-        }else if(id == DIALOG_ID_HOUR){
-            return new TimePickerDialog(this,tpickerLister,hour_x,minutes_x, DateFormat.is24HourFormat(getApplicationContext()));
+        if(id == DIALOG_ID){
+            return new DatePickerDialog(this, dpickerLister, actualEvent.getDate().get(Calendar.YEAR), actualEvent.getDate().get(Calendar.MONTH), actualEvent.getDate().get(Calendar.DAY_OF_MONTH));
+        }
+        if(id == DIALOG_ID_HOUR){
+            return new TimePickerDialog(this, tpickerLister, actualEvent.getDate().get(Calendar.HOUR_OF_DAY), actualEvent.getDate().get(Calendar.MINUTE), DateFormat.is24HourFormat(getApplicationContext()));
         }
         return null;
     }
 
     private DatePickerDialog.OnDateSetListener dpickerLister = new DatePickerDialog.OnDateSetListener(){
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-            year_x = year;
-            month_x = monthOfYear + 1;
-            day_x = dayOfMonth;
-            Toast.makeText(EventEdit_Activity.this,day_x+"/"+month_x+"/"+year_x, Toast.LENGTH_SHORT).show();
+        actualEvent.setDate(dayOfMonth, monthOfYear + 1, year);
+        showData();
         }
     };
-
-
-    //TimePicker
 
     private TimePickerDialog.OnTimeSetListener tpickerLister = new TimePickerDialog.OnTimeSetListener(){
         public void onTimeSet(TimePicker view, int hour, int minutes){
-            hour_x = hour;
-            minutes_x = minutes;
-            Toast.makeText(EventEdit_Activity.this, hour+" : "+minutes, Toast.LENGTH_SHORT).show();
+        actualEvent.setTime(hour, minutes);
+        showData();
         }
     };
 
-
-    }
-
+}

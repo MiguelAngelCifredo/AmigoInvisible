@@ -67,7 +67,7 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
                 Intent nextView = new Intent(getApplicationContext(), EventDetail_Activity.class);
 /*
                 Intent nextView;
-                if (lstEvents.get(i).getDataId_admin() == Iam.getId()) {
+                if (lstEvents.get(i).getData_Id_admin() == Iam.getId()) {
                     nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
                 } else {
                     nextView = new Intent(getApplicationContext(), EventDetail_Activity.class);
@@ -80,7 +80,7 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         getData(this);
     }
 
-    private void getData (final Activity activity){
+    private void getData(final Activity activity){
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {

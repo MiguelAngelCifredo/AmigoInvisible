@@ -52,7 +52,7 @@ public class Iam {
     }
 
     public static boolean admin(ClsEvent eventActual){
-        return eventActual.getDataId_admin() == Iam.getId();
+        return eventActual.getData_id_admin() == Iam.getId();
     }
 
 }
