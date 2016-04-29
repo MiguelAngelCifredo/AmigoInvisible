@@ -136,7 +136,6 @@ public class RunInDB {
         ConnSrv.writePOST(pagePHP, params);
     }
 
-
     public void setEvent(ClsEvent event){
         String pagePHP = "setEvent.php";
 
@@ -148,6 +147,27 @@ public class RunInDB {
         params.put("max_price", event.getData_max_price().toString());
 
         //params.put("photo", null);
+
+        ConnSrv.writePOST(pagePHP, params);
+    }
+
+    public void insPerson(ClsPerson person){
+        String pagePHP = "insPerson.php";
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("email", person.getData_email());
+        params.put("name", person.getData_name());
+        //params.put("photo", null);
+
+        ConnSrv.writePOST(pagePHP, params);
+    }
+
+    public void insParticipant(ClsEvent event, Integer id_person){
+        String pagePHP = "insParticipant.php";
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id_event", event.getData_id_event().toString());
+        params.put("id_person", id_person.toString());
 
         ConnSrv.writePOST(pagePHP, params);
     }
@@ -248,12 +268,10 @@ public class RunInDB {
         Integer id_person = 0;
         JSONArray json =  ConnSrv.readJSON("getPersonIdByEmail.php?email=" + eMail);
         try {
-            // Pendiente de su el eMail no se encuentra, entonces habrá que crear a ese nuevo user en la BD !!!
             id_person = Integer.parseInt(json.getJSONObject(0).getString("id_person"));
         }catch(Exception e){
-            System.out.println("***** FALLO OBTENIENDO EL ID : " + e.getMessage());
-
-            ;}
+            System.out.println("***** NO SE PUEDE OBTENER EL ID de "+ eMail+ " -> " + e.getMessage());
+        }
         return id_person;
     }
 }

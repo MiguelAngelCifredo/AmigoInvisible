@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -20,6 +21,7 @@ import adaptador.ListadoParticipantes_Adapter;
 import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsParticipant;
+import model.ClsWish;
 import utils.Comunicador;
 import utils.Iam;
 
@@ -65,12 +67,22 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
                 return true;
             }
         });
-        setTitle("Buscando participantes...");
-        getData();
 
+        findViewById(R.id.btnAddParticipant).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent nextView = new Intent(getApplicationContext(), ParticipantSelect_Activity.class);
+                startActivity(nextView);
+            }
+        });
     }
 
-    public void getData(){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
+
+    private void getData(){
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -85,11 +97,12 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
             );
             }
         });
+        setTitle("Buscando participantes...");
         tr.start();
     }
 
-    public void showData(){
-        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+    private void showData(){
+        try {findViewById(R.id.loadingPanel).setVisibility(View.GONE);} catch(Exception e){;}
         if (Iam.admin(actualEvent)) {
             findViewById(R.id.btnAddParticipant).setVisibility(View.VISIBLE);
         }
@@ -98,7 +111,7 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
         lstVwParticipants.setAdapter(adapter);
     }
 
-    public void dialogConfirmDeleteParticipant(){
+    private void dialogConfirmDeleteParticipant(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.borrar);
         builder.setMessage(R.string.quiere_eliminar_participant);
@@ -114,13 +127,14 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
         dialog.show();
     }
 
-    public void deleteParticipant(){
+    private void deleteParticipant(){
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
                 ClsParticipant actualParticipant = (ClsParticipant) Comunicador.getObjeto();
                 db.delParticipant(actualParticipant.getData_id_participant());
                 lstParticipants.remove(actualParticipant);
+                Comunicador.setObjeto(actualEvent);
                 runOnUiThread(
                         new Runnable() {
                             @Override

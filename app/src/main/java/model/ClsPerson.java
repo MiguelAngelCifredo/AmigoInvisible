@@ -53,6 +53,25 @@ public class ClsPerson {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClsPerson)) return false;
+
+        ClsPerson that = (ClsPerson) o;
+
+        if (getData_name() != null ? !getData_name().equals(that.getData_name()) : that.getData_name() != null)
+            return false;
+        return getData_email().equals(that.getData_email());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getData_name() != null ? getData_name().hashCode() : 0;
+        result = 31 * result + getData_email().hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "ClsPerson{" +
                 "id_person=" + data_id_person +

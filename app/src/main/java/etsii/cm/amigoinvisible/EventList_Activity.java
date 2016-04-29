@@ -19,6 +19,7 @@ import dbms.RunInDB;
 import model.ClsEvent;
 import model.ClsPerson;
 import utils.Comunicador;
+import utils.Contactos;
 import utils.Iam;
 
 public class EventList_Activity extends AppCompatActivity implements Serializable {
@@ -68,6 +69,8 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         });
 
         getData(this);
+
+        getContacts(this);
     }
 
     @Override
@@ -98,11 +101,21 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         tr.start();
     }
 
-    public void showData(){
+    private void showData(){
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
         findViewById(R.id.btnAddEvent).setVisibility(View.VISIBLE);
         ListadoEventos_Adapter adapter = new ListadoEventos_Adapter(this, lstEvents);
         lstVwEvent.setAdapter(adapter);
+    }
+
+    private void getContacts(final Activity activity){
+        Thread tr = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Contactos.findContacts(activity);
+            }
+        });
+        tr.start();
     }
 
 }

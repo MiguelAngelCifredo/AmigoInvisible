@@ -1,17 +1,12 @@
 package etsii.cm.amigoinvisible;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,18 +35,12 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.wish_edit, menu);
-        if (actualWish.getData_id_wish() == 0) {
-            menu.findItem(R.id.opcWishDelete).setVisible(false);
-        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.opcWishDelete) {
-            dialogConfirmDeleteWish();
-        }
         if (id == R.id.opcWishSave) {
             hideSoftKeyboard();
             saveWish();
@@ -115,7 +104,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
         return res;
     }
 
-    public void saveWish(){
+    private void saveWish(){
         if (txtText.getText().length() > 0) {
             actualWish.setData_text(txtText.getText().toString());
             actualWish.setData_description(txtDescription.getText().toString());
@@ -134,18 +123,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
         }
     }
 
-    public void deleteWish(){
-        actualWish.setData_text(null);
-        Thread tr = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                db.delWish(actualWish.getData_id_wish());
-            }
-        });
-        tr.start();
-    }
-
-    public void mostrarDatos(){
+    private void mostrarDatos(){
 
         if (actualWish.getData_photo() != null) {
             imgPhoto.setImageBitmap(actualWish.getData_photo());
@@ -158,24 +136,7 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
         }
     }
 
-    public void dialogConfirmDeleteWish(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.borrar);
-        builder.setMessage(R.string.quiere_borrar);
-        builder.setPositiveButton(R.string.borra, new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                deleteWish();
-                Toast.makeText(getApplicationContext(), R.string.borrado, Toast.LENGTH_SHORT).show();
-                hideSoftKeyboard();
-                finish();
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel,null);
-
-        Dialog dialog = builder.create();
-        dialog.show();
-    }
-    public void hideSoftKeyboard() {
+    private void hideSoftKeyboard() {
         if(getCurrentFocus()!=null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);

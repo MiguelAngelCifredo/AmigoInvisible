@@ -69,9 +69,11 @@ public class EventDetail_Activity extends AppCompatActivity implements Serializa
         TextView  txtVwEventPlace    = (TextView) findViewById(R.id.txtVwEventPlace);
         TextView  txtVwEventMaxPrice = (TextView) findViewById(R.id.txtVwEventMaxPrice);
 
-        if (actualEvent.getData_photo() != null) {
-            imgVwEventPhoto.setImageBitmap(actualEvent.getData_photo());
-        }
+        try {
+            if (actualEvent.getData_photo() != null) {
+                imgVwEventPhoto.setImageBitmap(actualEvent.getData_photo());
+            }
+        } catch (Exception e) {;}
 
         setTitle(actualEvent.getData_name());
         txtVwEventDate.setText(" " + actualEvent.getData_date_text());
