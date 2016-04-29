@@ -4,12 +4,12 @@
     tools:context=".EventEdit_Activity">
     <item android:title="EventDelete"
         android:id="@+id/opcEventDelete"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:icon="@drawable/ic_action_discard"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
     <item android:title="EventSave"
         android:id="@+id/opcEventSave"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_action_save"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 </menu>

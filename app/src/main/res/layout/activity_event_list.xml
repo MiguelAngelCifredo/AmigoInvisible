@@ -37,7 +37,7 @@
             android:text="CREAR EVENTO"
             android:id="@+id/btnAddEvent"
             android:layout_gravity="right"
-            android:src="@mipmap/ic_plus"
+            android:src="@drawable/ic_action_new"
             android:layout_marginEnd="20dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"

@@ -4,7 +4,7 @@
     tools:context=".EventList_Activity">
     <item android:title="Profile"
         android:id="@+id/opcProfile"
-        android:icon="@android:drawable/ic_menu_crop"
+        android:icon="@drawable/ic_action_person"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 </menu>

@@ -5,19 +5,19 @@
 
     <item android:title="EventEdit"
         android:id="@+id/opcEventEdit"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/ic_action_edit"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 
     <item android:title="ParticipantList"
         android:id="@+id/opcParticipantList"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@drawable/ic_action_view_as_list"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 
     <item android:title="MyFriend"
         android:id="@+id/opcMyFriend"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_action_about"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 </menu>

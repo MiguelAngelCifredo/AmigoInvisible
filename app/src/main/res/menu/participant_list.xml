@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="ParticipantMatch"
         android:id="@+id/opcParticipantMatch"
-        android:icon="@android:drawable/ic_menu_recent_history"
+        android:icon="@drawable/ic_action_refresh"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 </menu>

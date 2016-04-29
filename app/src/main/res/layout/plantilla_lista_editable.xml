@@ -35,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgBtnDeleteWish"
-            android:src="@drawable/ic_menu_info_details"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -45,7 +44,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgBtnEditWish"
-            android:src="@drawable/ic_menu_info_details"
             android:layout_alignTop="@+id/imgBtnDeleteWish"
             android:layout_toLeftOf="@+id/imgBtnDeleteWish"
             android:layout_toStartOf="@+id/imgBtnDeleteWish"/>
