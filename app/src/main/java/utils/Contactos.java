@@ -20,7 +20,7 @@ public class Contactos {
 
     public static ArrayList<ClsPerson> listContacts;
 
-    public static void findContacts(Activity activity) {
+    public static void findContactsSINNADA(Activity activity) {
         ArrayList<ClsPerson> res = new ArrayList<>();
 
         ContentResolver cr = activity.getContentResolver();
@@ -78,7 +78,7 @@ public class Contactos {
         listContacts = res;
     }// end findContacts()
 
-    public ArrayList<ClsPerson> findContacts2(Activity activity){
+    public static ArrayList<ClsPerson> findContacts(Activity activity){
 
         ArrayList<ClsPerson> res = new ArrayList<>();
         Bitmap photo = null;
