@@ -3,7 +3,6 @@ package etsii.cm.amigoinvisible;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import adaptador.ListadoEventos_Adapter;
 import dbms.RunInDB;
 import model.ClsEvent;
-import model.ClsPerson;
 import utils.Comunicador;
 import utils.Contactos;
 import utils.Iam;
@@ -84,9 +82,9 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
             @Override
             public void run() {
                 String eMail = Iam.gMailAccount(activity);
-                Iam.setId( db.getAccount(eMail) );
-                //Iam.setId(1);
+                Iam.setId( db.getPersonIdByEmail(eMail) );
                 Iam.setEmail( eMail );
+                //Iam.setId(1);
                 //Iam.setEmail( "macifredo@gmail.com" );
                 lstEvents = db.getListEvents();
                 runOnUiThread(
@@ -113,7 +111,7 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                Contactos.findContacts(activity);
+                Contactos.getContacts(activity);
             }
         });
         tr.start();

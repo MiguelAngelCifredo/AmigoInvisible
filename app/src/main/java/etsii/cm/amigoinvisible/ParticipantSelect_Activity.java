@@ -1,6 +1,5 @@
 package etsii.cm.amigoinvisible;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -38,8 +37,8 @@ public class ParticipantSelect_Activity extends AppCompatActivity implements Ser
                 saveContactAsParticipant();
             }
         });
-        lstContactos = Contactos.listContacts;
 
+        lstContactos = Contactos.listContacts;
         showData();
     }
 
@@ -53,12 +52,21 @@ public class ParticipantSelect_Activity extends AppCompatActivity implements Ser
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                Integer id_person = db.getAccount(actualPerson.getData_email());
+                String email = actualPerson.getData_email();
+
+                // Si el contacto selecciondo no existe como persona, se añade.
+                Integer id_person = db.getPersonIdByEmail(email);
                 if (id_person == 0){
                     db.insPerson(actualPerson);
-                    id_person = db.getAccount(actualPerson.getData_email());
+                    id_person = db.getPersonIdByEmail(email);
                 }
-                db.insParticipant(actualEvent, id_person);
+
+                // Si el contacto selecciondo no existe como participante, se añade.
+                Integer id_participant = db.getParticipantIdByEmail(email);
+                if (id_participant == 0){
+                    db.insParticipant(actualEvent, id_person);
+                }
+
                 finish();
             }
         });
