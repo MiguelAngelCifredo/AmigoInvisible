@@ -275,15 +275,13 @@ public class RunInDB {
         return id_person;
     }
 
-    public Integer getParticipantIdByEmail(String eMail){
-        Integer id_person = 0;
-        JSONArray json =  ConnSrv.readJSON("getParticipantIdByEmail.php?email=" + eMail);
+    public Integer cntParticipant(Integer id_person){
+        Integer total = 0;
+        JSONArray json =  ConnSrv.readJSON("cntParticipant.php?id_person=" + id_person);
         try {
-            id_person = Integer.parseInt(json.getJSONObject(0).getString("id_person"));
-        }catch(Exception e){
-            System.out.println("***** NO SE PUEDE OBTENER EL ID del PARTICIPANT con eMail: "+ eMail+ " -> " + e.getMessage());
-        }
-        return id_person;
+            total = Integer.parseInt(json.getJSONObject(0).getString("total"));
+        }catch(Exception e){;}
+        return total;
     }
 
 }
