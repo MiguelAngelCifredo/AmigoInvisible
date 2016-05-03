@@ -85,8 +85,9 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
             public void run() {
                 String eMail = Iam.gMailAccount(activity);
                 Iam.setId( db.getAccount(eMail) );
-                //Iam.setId(16);
+                //Iam.setId(1);
                 Iam.setEmail( eMail );
+                //Iam.setEmail( "macifredo@gmail.com" );
                 lstEvents = db.getListEvents();
                 runOnUiThread(
                         new Runnable() {

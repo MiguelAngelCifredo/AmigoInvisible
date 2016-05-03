@@ -40,12 +40,6 @@ public class ParticipantSelect_Activity extends AppCompatActivity implements Ser
         });
         lstContactos = Contactos.listContacts;
 
-        if(lstContactos==null)
-            System.out.println ("******* NO HAY CONTACTOS");
-        else
-            for (ClsPerson per: lstContactos)
-                System.out.println ("******* " + per);
-
         showData();
     }
 
