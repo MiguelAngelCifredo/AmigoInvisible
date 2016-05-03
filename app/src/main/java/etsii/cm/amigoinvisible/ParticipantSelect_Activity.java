@@ -62,7 +62,11 @@ public class ParticipantSelect_Activity extends AppCompatActivity implements Ser
                 }
 
                 // Si el contacto seleccionado no existe como participante, se añade.
-                Integer total = db.cntParticipant(id_person);
+
+                Integer total = db.cntParticipant(actualEvent, id_person);
+                System.out.println("****** evento:"+ actualEvent);
+                System.out.println("****** id_person=" + id_person);
+                System.out.println("****** total=" + total);
                 if (total == 0){
                     db.insParticipant(actualEvent, id_person);
                 }

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.accounts.Account;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -11,12 +12,9 @@ import model.ClsEvent;
 
 public class Iam {
     private static Integer id_person = null;
-    private static String eMail = null;
-
-    public static void setData(Integer new_id_person, String new_eMail) {
-        id_person = new_id_person;
-        eMail = new_eMail;
-    }
+    private static String  eMail     = null;
+    private static String  name      = null;
+    private static Bitmap  photo     = null;
 
     public static Integer getId() {
         return id_person;
@@ -26,12 +24,28 @@ public class Iam {
         return eMail;
     }
 
+    public static String getName() {
+        return name;
+    }
+
+    public static Bitmap getPhoto() {
+        return photo;
+    }
+
     public static void setId(Integer new_id_person) {
         id_person = new_id_person;
     }
 
     public static void setEmail(String new_eMail) {
         eMail = new_eMail;
+    }
+
+    public static void setName(String name) {
+        Iam.name = name;
+    }
+
+    public static void setPhoto(Bitmap photo) {
+        Iam.photo = photo;
     }
 
     public static String gMailAccount(Activity activity){

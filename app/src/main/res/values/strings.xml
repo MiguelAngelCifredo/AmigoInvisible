@@ -19,7 +19,11 @@
     <string name="eliminar_wish">Eliminar</string>
     <string name="quiere_eliminar_participant">¿Quieres eliminar este participante?</string>
     <string name="eliminar_participant">Eliminar</string>
+    <string name="quiere_eliminar_event">¿Quieres eliminar este evento?</string>
+    <string name="eliminar_event">Eliminar</string>
+    <string name="eliminado_event">Evento eliminado</string>
     <string name="eliminado_participant">Participante eliminado</string>
     <string name="eliminado_wish">Deseo eliminado</string>
     <string name="contacto_añadido">Contacto añadido</string>
+    <string name="wellcome">Bienvenido/a</string>
 </resources>

@@ -22,11 +22,14 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import dbms.RunInDB;
 import model.ClsEvent;
 import utils.Comunicador;
+import utils.Iam;
 
 public class EventEdit_Activity extends AppCompatActivity implements Serializable {
     private RunInDB db = new RunInDB();
@@ -44,18 +47,12 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.event_edit, menu);
-        if (actualEvent.getData_id_event() == 0) {
-            menu.findItem(R.id.opcEventDelete).setVisible(false);
-        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.opcEventDelete) {
-            // TODO Borrar el evento actual.
-        }
         if (id == R.id.opcEventSave) {
             hideSoftKeyboard();
             saveEvent();
@@ -136,6 +133,10 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         actualEvent.setData_photo(((BitmapDrawable) imgEventPhoto.getDrawable()).getBitmap());
         String name = txtEventName.getText().toString();
         actualEvent.setData_name((name.length() == 0 ? "Nuevo evento" : name));
+        if (actualEvent.getData_date().equals("")) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            actualEvent.setData_date(formatter.format(new Date()));
+        }
         int price = 0;
         try { price = Integer.parseInt(txtEventMaxPrice.getText().toString()); } catch (Exception e) {;}
         actualEvent.setData_max_price(price);
@@ -145,10 +146,13 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
         Thread tr = new Thread(new Runnable() {
             @Override
             public void run() {
-                if (actualEvent.getData_id_event() == 0)
+                if (actualEvent.getData_id_event() == 0) {
                     db.insEvent(actualEvent);
-                else
+                    actualEvent.setData_id_event(db.cntEvent());
+                    db.insParticipant(actualEvent, Iam.getId());
+                }else{
                     db.setEvent(actualEvent);
+                }
             }
         });
         tr.start();

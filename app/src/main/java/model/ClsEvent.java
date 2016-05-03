@@ -105,7 +105,10 @@ public class ClsEvent {
         String[] diaSem = new String[]{"Sábado", "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
         String[] mesAño = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
-        Calendar cal = getDate();
+        Calendar cal = Calendar.getInstance();
+        if ( getDate() != null ){
+            cal = getDate();
+        }
         int dayWeek  = cal.get(Calendar.DAY_OF_WEEK);
         int month    = cal.get(Calendar.MONTH);
         int day      = cal.get(Calendar.DAY_OF_MONTH);

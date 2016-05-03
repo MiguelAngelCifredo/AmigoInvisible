@@ -157,7 +157,7 @@ public class RunInDB {
         HashMap<String, String> params = new HashMap<>();
         params.put("email", person.getData_email());
         params.put("name", person.getData_name());
-        //params.put("photo", null);
+        //params.put("photo", "");
 
         ConnSrv.writePOST(pagePHP, params);
     }
@@ -180,6 +180,7 @@ public class RunInDB {
         params.put("date", event.getData_date());
         params.put("place", event.getData_place());
         params.put("max_price", event.getData_max_price().toString());
+        params.put("id_admin", event.getData_id_admin().toString());
 
         //params.put("photo", null);
 
@@ -193,6 +194,11 @@ public class RunInDB {
 
     public void delParticipant(Integer id_participant) {
         String queryURL = "delParticipant.php?id_participant=" + id_participant;
+        ConnSrv.writeData(queryURL);
+    }
+
+    public void delEvent(ClsEvent event) {
+        String queryURL = "delEvent.php?id_event=" + event.getData_id_event();
         ConnSrv.writeData(queryURL);
     }
 
@@ -215,14 +221,16 @@ public class RunInDB {
         params.put("id_person", person.getData_id_person().toString());
         params.put("name", person.getData_name());
         params.put("email", person.getData_email());
-        //params.put("photo", null);
-        //params.put("photo", getBytesFromBitmap(person.getData_photo()).toString());
-        params.put("photo", "0x" + getStringFromBitmap_NEW(person.getData_photo()).toString());
 
+        params.put("photo", "");
+
+        //params.put("photo", getBytesFromBitmap(person.getData_photo()).toString());
+        //params.put("photo", "0x" + getStringFromBitmap_NEW(person.getData_photo()).toString());
+/*
         System.out.println ("***** FOTO 1 : " + getStringFromBitmap(person.getData_photo()));
         System.out.println ("***** FOTO 2 : " + getBytesFromBitmap(person.getData_photo()).toString());
         System.out.println("***** FOTO 3 : " + getStringFromBitmap_NEW(person.getData_photo()).toString());
-
+*/
 
         ConnSrv.writePOST(pagePHP, params);
     }
@@ -269,19 +277,25 @@ public class RunInDB {
         JSONArray json =  ConnSrv.readJSON("getPersonIdByEmail.php?email=" + eMail);
         try {
             id_person = Integer.parseInt(json.getJSONObject(0).getString("id_person"));
-        }catch(Exception e){
-            System.out.println("***** NO SE PUEDE OBTENER EL ID de la PERSON con eMail: "+ eMail+ " -> " + e.getMessage());
-        }
+        }catch(Exception e){;}
         return id_person;
     }
 
-    public Integer cntParticipant(Integer id_person){
+    public Integer cntParticipant(ClsEvent event, Integer id_person){
         Integer total = 0;
-        JSONArray json =  ConnSrv.readJSON("cntParticipant.php?id_person=" + id_person);
+        JSONArray json =  ConnSrv.readJSON("cntParticipant.php?id_event=" + event.getData_id_event() + "&id_person=" + id_person);
         try {
             total = Integer.parseInt(json.getJSONObject(0).getString("total"));
         }catch(Exception e){;}
         return total;
     }
 
+    public Integer cntEvent(){
+        Integer total = 0;
+        JSONArray json =  ConnSrv.readJSON("cntEvent.php");
+        try {
+            total = Integer.parseInt(json.getJSONObject(0).getString("total"));
+        }catch(Exception e){;}
+        return total;
+    }
 }

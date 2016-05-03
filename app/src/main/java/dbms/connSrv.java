@@ -20,13 +20,13 @@ import java.util.HashMap;
 
 public class ConnSrv {
 
-    public static final String servidor = "http://192.168.1.200/amigo/";
-    //public static final String servidor = "http://asd.hol.es/amigo/";
+    //public static final String servidor = "http://192.168.1.200/amigo/";
+    public static final String servidor = "http://asd.hol.es/amigo/";
 
     //Toast.makeText(EventEdit_Activity.this, texto, Toast.LENGTH_SHORT).show();
 
     private static String sendPage(String pagePHP){
-        //System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
+        System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
         String response = null;
 
         try {
