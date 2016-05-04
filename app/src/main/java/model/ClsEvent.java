@@ -16,6 +16,7 @@ public class ClsEvent {
     private Integer data_max_price;
     private Bitmap  data_photo;
     private Integer data_id_admin;
+    private String  data_file_path;
 
     public ClsEvent(Integer data_id_event
             , String data_name
@@ -88,6 +89,14 @@ public class ClsEvent {
 
     public void setData_id_admin(Integer data_id_admin) {
         this.data_id_admin = data_id_admin;
+    }
+
+    public String getData_file_path() {
+        return data_file_path;
+    }
+
+    public void setData_file_path(String data_file_path) {
+        this.data_file_path = data_file_path;
     }
 
     public Calendar getDate(){

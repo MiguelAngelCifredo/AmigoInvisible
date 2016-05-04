@@ -21,6 +21,7 @@ import dbms.RunInDB;
 import model.ClsWish;
 import utils.Comunicador;
 import utils.Iam;
+import utils.Photo;
 
 public class WishEdit_Activity extends AppCompatActivity implements Serializable{
     private RunInDB db = new RunInDB();
@@ -84,24 +85,9 @@ public class WishEdit_Activity extends AppCompatActivity implements Serializable
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
                 imgPhoto.setImageURI(selectedImageUri);
-                selectedImagePath = getPath(selectedImageUri);
-                System.out.println("****** La foto seleccionada es: " + selectedImagePath);
+                actualWish.setData_file_path(Photo.getPath(selectedImageUri, this));
             }
         }
-    }
-
-    public String getPath(Uri contentUri) {
-        String res = null;
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
-        if(cursor.moveToFirst()){
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            res = cursor.getString(column_index);
-        }
-        if (cursor != null) {
-            cursor.close();
-        }
-        return res;
     }
 
     private void saveWish(){

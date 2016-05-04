@@ -8,6 +8,7 @@ public class ClsPerson {
     private String  data_email;
     private String  data_name;
     private Bitmap  data_photo;
+    private String  data_file_path;
 
     public ClsPerson( Integer data_id_person
                     , String  data_email
@@ -50,6 +51,14 @@ public class ClsPerson {
 
     public void setData_photo(Bitmap data_photo) {
         this.data_photo = data_photo;
+    }
+
+    public String getData_file_path() {
+        return data_file_path;
+    }
+
+    public void setData_file_path(String data_file_path) {
+        this.data_file_path = data_file_path;
     }
 
     @Override

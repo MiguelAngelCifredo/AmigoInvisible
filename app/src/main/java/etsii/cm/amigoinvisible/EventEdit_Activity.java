@@ -4,11 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.Menu;
@@ -30,12 +28,12 @@ import dbms.RunInDB;
 import model.ClsEvent;
 import utils.Comunicador;
 import utils.Iam;
+import utils.Photo;
 
 public class EventEdit_Activity extends AppCompatActivity implements Serializable {
     private RunInDB db = new RunInDB();
     private ClsEvent  actualEvent;
     private ImageView imgEventPhoto;
-    private String    selectedImagePath;
     private TextView  txtEventName;
     private TextView  txtEventMaxPrice;
     private TextView  txtEventPlace;
@@ -94,24 +92,9 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
                 Uri selectedImageUri = data.getData();
                 imgEventPhoto.setImageURI(selectedImageUri);
                 actualEvent.setData_photo(((BitmapDrawable) imgEventPhoto.getDrawable()).getBitmap());
-                selectedImagePath = getPath(selectedImageUri);
-                System.out.println("****** La foto seleccionada es: " + selectedImagePath);
+                actualEvent.setData_file_path(Photo.getPath(selectedImageUri, this));
             }
         }
-    }
-
-    public String getPath(Uri contentUri) {
-        String res = null;
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
-        if(cursor.moveToFirst()){
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            res = cursor.getString(column_index);
-        }
-        if (cursor != null) {
-            cursor.close();
-        }
-        return res;
     }
 
     public void showData(){

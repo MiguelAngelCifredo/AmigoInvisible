@@ -3,11 +3,9 @@ package etsii.cm.amigoinvisible;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +29,7 @@ import model.ClsPerson;
 import model.ClsWish;
 import utils.Comunicador;
 import utils.Iam;
+import utils.Photo;
 
 public class Profile_Activity extends AppCompatActivity implements Serializable {
 
@@ -40,7 +39,6 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
     private ImageView   imgVwProfilePhoto;
     private TextView    txtVwProfileName;
     private ListView    lstVwWishes;
-    private String      selectedImagePath;
     private FloatingActionButton btnAddWish;
 
     private static final int SELECT_PICTURE = 1;
@@ -141,24 +139,9 @@ public class Profile_Activity extends AppCompatActivity implements Serializable 
                 Uri selectedImageUri = data.getData();
                 imgVwProfilePhoto.setImageURI(selectedImageUri);
                 actualPerson.getData_person().setData_photo(((BitmapDrawable) imgVwProfilePhoto.getDrawable()).getBitmap());
-                selectedImagePath = getPath(selectedImageUri);
-                System.out.println("****** La foto seleccionada es: " + selectedImagePath);
+                actualPerson.getData_person().setData_file_path(Photo.getPath(selectedImageUri, this));
             }
         }
-    }
-
-    private String getPath(Uri contentUri) {
-        String res = null;
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
-        if(cursor.moveToFirst()){
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            res = cursor.getString(column_index);
-        }
-        if (cursor != null) {
-            cursor.close();
-        }
-        return res;
     }
 
     private void getData(){

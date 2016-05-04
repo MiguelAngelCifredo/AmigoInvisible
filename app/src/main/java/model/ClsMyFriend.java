@@ -6,6 +6,7 @@ public class ClsMyFriend {
 
     private ClsPerson data_person;
     private ArrayList<ClsWish> data_wish;
+    private String data_file_path;
 
     public ClsMyFriend( ClsPerson data_person
                       , ArrayList<ClsWish> data_wish
@@ -28,6 +29,14 @@ public class ClsMyFriend {
 
     public void setData_wish(ArrayList<ClsWish> data_wish) {
         this.data_wish = data_wish;
+    }
+
+    public String getData_file_path() {
+        return data_file_path;
+    }
+
+    public void setData_file_path(String data_file_path) {
+        this.data_file_path = data_file_path;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package dbms;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import org.json.JSONArray;
@@ -17,6 +18,7 @@ import model.ClsPerson;
 import model.ClsParticipant;
 import model.ClsWish;
 import utils.Iam;
+import utils.Photo;
 
 public class RunInDB {
 
@@ -40,22 +42,22 @@ public class RunInDB {
     }
 
     public ArrayList<ClsParticipant> getListParticipants(Integer id_event) {
-        ArrayList<ClsParticipant> lst = new ArrayList<>();
-        try{
-            JSONArray json =  ConnSrv.readJSON("getListParticipants.php?id_event=" + id_event);
-            for (int i=0; i<json.length(); i++) {
-                lst.add(new ClsParticipant(
-                          json.getJSONObject(i).getInt("id_participant")
-                        , new ClsPerson(  json.getJSONObject(i).getInt("id_person")
-                                        , json.getJSONObject(i).getString("email")
-                                        , json.getJSONObject(i).getString("name")
-                                        , getPhoto("person", json.getJSONObject(i).getInt("id_person"))
-                                        )
-                        , json.getJSONObject(i).getInt("friend")
-                ));
-            }
-        } catch(Exception e){;}
-        return lst;
+    ArrayList<ClsParticipant> lst = new ArrayList<>();
+    try{
+        JSONArray json =  ConnSrv.readJSON("getListParticipants.php?id_event=" + id_event);
+        for (int i=0; i<json.length(); i++) {
+            lst.add(new ClsParticipant(
+                      json.getJSONObject(i).getInt("id_participant")
+                    , new ClsPerson(  json.getJSONObject(i).getInt("id_person")
+                                    , json.getJSONObject(i).getString("email")
+                                    , json.getJSONObject(i).getString("name")
+                                    , getPhoto("person", json.getJSONObject(i).getInt("id_person"))
+                                    )
+                    , json.getJSONObject(i).getInt("friend")
+            ));
+        }
+    } catch(Exception e){;}
+    return lst;
     }
 
     public ClsPerson getPerson(Integer id_person) {
@@ -131,7 +133,7 @@ public class RunInDB {
         params.put("id_wish", wish.getData_id_wish().toString());
         params.put("text", wish.getData_text());
         params.put("description", wish.getData_description());
-        //params.put("photo", null);
+        params.put("photo", Photo.readFile(wish.getData_file_path()));
 
         ConnSrv.writePOST(pagePHP, params);
     }
@@ -145,8 +147,7 @@ public class RunInDB {
         params.put("date", event.getData_date());
         params.put("place", event.getData_place());
         params.put("max_price", event.getData_max_price().toString());
-
-        //params.put("photo", null);
+        params.put("photo", Photo.readFile(event.getData_file_path()));
 
         ConnSrv.writePOST(pagePHP, params);
     }
@@ -209,7 +210,7 @@ public class RunInDB {
         params.put("id_person", id_person.toString());
         params.put("text", wish.getData_text());
         params.put("description", wish.getData_description());
-        //params.put("photo", null);
+        params.put("photo", Photo.readFile(wish.getData_file_path()));
 
         ConnSrv.writePOST(pagePHP, params);
     }
@@ -221,55 +222,9 @@ public class RunInDB {
         params.put("id_person", person.getData_id_person().toString());
         params.put("name", person.getData_name());
         params.put("email", person.getData_email());
-
-        params.put("photo", "");
-
-        //params.put("photo", getBytesFromBitmap(person.getData_photo()).toString());
-        //params.put("photo", "0x" + getStringFromBitmap_NEW(person.getData_photo()).toString());
-/*
-        System.out.println ("***** FOTO 1 : " + getStringFromBitmap(person.getData_photo()));
-        System.out.println ("***** FOTO 2 : " + getBytesFromBitmap(person.getData_photo()).toString());
-        System.out.println("***** FOTO 3 : " + getStringFromBitmap_NEW(person.getData_photo()).toString());
-*/
+        params.put("photo", Photo.readFile(person.getData_file_path()));
 
         ConnSrv.writePOST(pagePHP, params);
-    }
-
-    private String URLencode (String texto){
-        String res = "";
-        try {
-            res = URLEncoder.encode(texto, "UTF-8");
-        }catch(Exception e){;}
-        return res;
-    }
-
-    private String getStringFromBitmap (Bitmap photo) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] image =  stream.toByteArray();
-        return Base64.encodeToString(image, Base64.DEFAULT);
-    }
-
-    private String getStringFromBitmap_NEW (Bitmap photo) {
-        return bytesToHex(getBytesFromBitmap(photo));
-    }
-
-    private byte[] getBytesFromBitmap (Bitmap photo) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] image =  stream.toByteArray();
-        return image;
-    }
-
-    public String bytesToHex(byte[] bytes) {
-        final char[] hexArray = "0123456789ABCDEF".toCharArray();
-        char[] hexChars = new char[bytes.length * 2];
-        for ( int j = 0; j < bytes.length; j++ ) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = hexArray[v >>> 4];
-            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-        }
-        return new String(hexChars);
     }
 
     public Integer getPersonIdByEmail(String eMail){

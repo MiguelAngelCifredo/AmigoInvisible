@@ -9,6 +9,7 @@ public class ClsWish {
     private String  data_description;
     private Bitmap  data_photo;
     private String  data_bought;
+    private String  data_file_path;
 
     public ClsWish( Integer data_id_wish
                   , String  data_text
@@ -61,6 +62,14 @@ public class ClsWish {
 
     public void setData_bought(String data_bought) {
         this.data_bought = data_bought;
+    }
+
+    public String getData_file_path() {
+        return data_file_path;
+    }
+
+    public void setData_file_path(String data_file_path) {
+        this.data_file_path = data_file_path;
     }
 
     @Override
