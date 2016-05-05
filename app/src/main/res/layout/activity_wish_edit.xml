@@ -13,8 +13,12 @@
         android:layout_gravity="center"
         android:src="@drawable/caja_editable"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignStart="@+id/txtVwWishEditText"
+        android:layout_alignEnd="@+id/txtVwWishEditText" />
 
     <EditText
         android:layout_width="match_parent"

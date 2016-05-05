@@ -17,8 +17,8 @@
     </RelativeLayout>
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="263dp"
+        android:layout_height="263dp"
         android:id="@+id/imgVwFriendPhoto"
         android:padding="5dp"
         android:contentDescription="@string/ImagenEvento"

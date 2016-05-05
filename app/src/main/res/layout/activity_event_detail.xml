@@ -28,13 +28,14 @@
         android:layout_alignParentTop="true">
 
         <ImageView
-            android:layout_width="200dp"
+            android:layout_width="353dp"
             android:layout_height="200dp"
             android:id="@+id/imgEventPhoto"
             android:src="@drawable/event_img"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.52" />
 
         <LinearLayout
             android:orientation="horizontal"

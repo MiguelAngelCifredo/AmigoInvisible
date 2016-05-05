@@ -14,6 +14,7 @@ public class Photo {
         String byte2Hex = null;
 
         if (filename != null) {
+            System.out.println("****** Fch:" + filename);
             try {
                 File a_file = new File(filename);
                 byte[] buffer = null;
