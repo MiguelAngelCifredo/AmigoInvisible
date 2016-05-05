@@ -12,11 +12,15 @@
     <string name="AñadirParticipante">Añadir Participante</string>
     <string name="WishImage">Imagen que representa el deseo</string>
     <string name="borrar">Borrar</string>
+    <string name="emparejar">Emparejar participantes</string>
     <string name="quiere_borrar">¿Quieres borrar este deseo?</string>
     <string name="borra">Borrar deseo</string>
     <string name="borrado">Deseo borrado</string>
     <string name="quiere_eliminar_wish">¿Quieres eliminar este deseo?</string>
     <string name="eliminar_wish">Eliminar</string>
+    <string name="quiere_emparejar_participant">¿Quieres emparejar a todos los participantes de este evento?</string>
+    <string name="emparejar_participant">Emparejar</string>
+    <string name="emparejados_participant">Participantes emparejados</string>
     <string name="quiere_eliminar_participant">¿Quieres eliminar este participante?</string>
     <string name="eliminar_participant">Eliminar</string>
     <string name="quiere_eliminar_event">¿Quieres eliminar este evento?</string>

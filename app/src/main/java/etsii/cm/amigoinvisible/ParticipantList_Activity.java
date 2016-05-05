@@ -23,6 +23,7 @@ import model.ClsEvent;
 import model.ClsParticipant;
 import model.ClsWish;
 import utils.Comunicador;
+import utils.Empareja;
 import utils.Iam;
 
 public class ParticipantList_Activity extends AppCompatActivity implements Serializable {
@@ -46,8 +47,7 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.opcParticipantMatch) {
-            //Intent nextView = new Intent(getApplicationContext(), Profile_Activity.class);
-            //startActivity(nextView);
+            dialogConfirmMatchParticipants();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -143,6 +143,33 @@ public class ParticipantList_Activity extends AppCompatActivity implements Seria
                             }
                         }
                 );
+            }
+        });
+        tr.start();
+    }
+
+    private void dialogConfirmMatchParticipants(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.emparejar);
+        builder.setMessage(R.string.quiere_emparejar_participant);
+        builder.setPositiveButton(R.string.emparejar_participant, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                matchParticipants();
+                Toast.makeText(getApplicationContext(), R.string.emparejados_participant, Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, null);
+
+        Dialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void matchParticipants(){
+        Empareja.Participantes(lstParticipants);
+        Thread tr = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                db.matchParticipants(lstParticipants);
             }
         });
         tr.start();

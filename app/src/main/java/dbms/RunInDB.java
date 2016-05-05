@@ -1,13 +1,9 @@
 package dbms;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 
 import org.json.JSONArray;
 
-import java.io.ByteArrayOutputStream;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,6 +13,7 @@ import model.ClsMyFriend;
 import model.ClsPerson;
 import model.ClsParticipant;
 import model.ClsWish;
+
 import utils.Iam;
 import utils.Photo;
 
@@ -251,5 +248,16 @@ public class RunInDB {
             total = Integer.parseInt(json.getJSONObject(0).getString("total"));
         }catch(Exception e){;}
         return total;
+    }
+
+    public void matchParticipants(ArrayList<ClsParticipant>lstParticipants){
+        String pagePHP = "setFriend.php";
+
+        for (ClsParticipant participant : lstParticipants){
+            HashMap<String, String> params = new HashMap<>();
+            params.put("id_participant", participant.getData_id_participant().toString());
+            params.put("friend", participant.getData_friend().toString());
+            ConnSrv.writePOST(pagePHP, params);
+        }
     }
 }
