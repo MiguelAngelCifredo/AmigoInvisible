@@ -20,9 +20,10 @@ import java.util.HashMap;
 
 public class ConnSrv {
 
-    public static final String servidor = "http://192.168.1.200/amigo/";
-    //public static final String servidor = "http://asd.hol.es/amigo/";
-    private static final boolean log = true;
+    //public static final String servidor = "http://192.168.1.200/amigo/";
+    public static final String servidor = "http://asd.hol.es/amigo/";
+
+    private static final boolean log = false;
 
     private static String sendPage(String pagePHP){
         if (log) System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
