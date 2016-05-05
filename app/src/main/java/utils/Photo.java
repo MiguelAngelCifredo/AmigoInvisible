@@ -13,16 +13,20 @@ public class Photo {
     public static String readFile(String filename) {
         String byte2Hex = null;
 
-        try {
-            File a_file = new File(filename);
-            byte [] buffer = null;
-            FileInputStream fis = new FileInputStream(filename);
-            int length = (int)a_file.length();
-            buffer = new byte [length];
-            fis.read(buffer);
-            fis.close();
-            byte2Hex = bytesToHex(buffer);
-        }catch(Exception e) {System.out.println("****** FALLO =  Fch:" + filename + " -> " + e.getMessage());}
+        if (filename != null) {
+            try {
+                File a_file = new File(filename);
+                byte[] buffer = null;
+                FileInputStream fis = new FileInputStream(filename);
+                int length = (int) a_file.length();
+                buffer = new byte[length];
+                fis.read(buffer);
+                fis.close();
+                byte2Hex = bytesToHex(buffer);
+            } catch (Exception e) {
+                System.out.println("****** FALLO =  Fch:" + filename + " -> " + e.getMessage());
+            }
+        }
 
         return "0x" + byte2Hex;
     }

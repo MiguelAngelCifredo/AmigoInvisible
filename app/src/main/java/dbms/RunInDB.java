@@ -182,8 +182,7 @@ public class RunInDB {
         params.put("place", event.getData_place());
         params.put("max_price", event.getData_max_price().toString());
         params.put("id_admin", event.getData_id_admin().toString());
-
-        //params.put("photo", null);
+        params.put("photo", Photo.readFile(event.getData_file_path()));
 
         ConnSrv.writePOST(pagePHP, params);
     }
