@@ -53,20 +53,14 @@ public class ParticipantSelect_Activity extends AppCompatActivity implements Ser
             @Override
             public void run() {
                 String email = actualPerson.getData_email();
-
                 // Si el contacto seleccionado no existe como persona, se añade.
                 Integer id_person = db.getPersonIdByEmail(email);
                 if (id_person == 0){
                     db.insPerson(actualPerson);
                     id_person = db.getPersonIdByEmail(email);
                 }
-
                 // Si el contacto seleccionado no existe como participante, se añade.
-
                 Integer total = db.cntParticipant(actualEvent, id_person);
-                System.out.println("****** evento:"+ actualEvent);
-                System.out.println("****** id_person=" + id_person);
-                System.out.println("****** total=" + total);
                 if (total == 0){
                     db.insParticipant(actualEvent, id_person);
                 }

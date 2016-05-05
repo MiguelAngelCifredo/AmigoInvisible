@@ -155,7 +155,7 @@ public class RunInDB {
         HashMap<String, String> params = new HashMap<>();
         params.put("email", person.getData_email());
         params.put("name", person.getData_name());
-        //params.put("photo", "");
+        params.put("photo", "0xnull");
 
         ConnSrv.writePOST(pagePHP, params);
     }

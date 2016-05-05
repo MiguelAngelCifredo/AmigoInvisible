@@ -20,11 +20,12 @@ import java.util.HashMap;
 
 public class ConnSrv {
 
-    //public static final String servidor = "http://192.168.1.200/amigo/";
-    public static final String servidor = "http://asd.hol.es/amigo/";
+    public static final String servidor = "http://192.168.1.200/amigo/";
+    //public static final String servidor = "http://asd.hol.es/amigo/";
+    private static final boolean log = true;
 
     private static String sendPage(String pagePHP){
-        //System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
+        if (log) System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
         String response = null;
 
         try {
@@ -94,19 +95,20 @@ public class ConnSrv {
         } catch (IOException e) {
             System.out.println("****** ERROR writePOST SENDING -> " + e.getMessage());
         }
-/*
-        // Lectura de alguna respuesta desde el Server
-        try {
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            StringBuilder result = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) { result.append(line); }
-            System.out.println("****** RESPUESTA despues de WritePOST : " + result.toString());
-        } catch (IOException e) {
-            System.out.println("****** ERROR writePOST RECEIVING  -> " + e.getMessage());
+        if (log){
+            // Lectura de alguna respuesta desde el Server
+            try {
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) { result.append(line); }
+                System.out.println("****** RESPUESTA despues de WritePOST : " + result.toString());
+            } catch (IOException e) {
+                System.out.println("****** ERROR writePOST RECEIVING  -> " + e.getMessage());
+            }
         }
-*/
+
         conn.disconnect();
     }
 }
