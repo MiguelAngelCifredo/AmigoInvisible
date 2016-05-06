@@ -46,9 +46,7 @@ public class ListadoParticipantes_Adapter extends BaseAdapter {
         ImageView ParticipantPhoto = (ImageView) itemView.findViewById(R.id.imgVwParticipantPhoto);
         TextView  ParticipantName  = (TextView)  itemView.findViewById(R.id.txtVwParticipantName);
 
-        if (lstParticipants.get(position).getData_person().getData_photo() == null) {
-            ParticipantPhoto.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.profile_img));
-        } else {
+        if (lstParticipants.get(position).getData_person().getData_photo() != null){
             ParticipantPhoto.setImageBitmap(lstParticipants.get(position).getData_person().getData_photo());
         }
 

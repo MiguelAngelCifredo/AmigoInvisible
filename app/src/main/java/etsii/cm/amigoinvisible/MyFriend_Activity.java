@@ -1,13 +1,17 @@
 package etsii.cm.amigoinvisible;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -53,7 +57,7 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
 
     }
 
-    protected void onResume() {
+    protected void _onResume() {
         super.onResume();
         if(actualWish !=null) {
             Collections.sort(myFriend.getData_wish(), new WishByBoughtAndText());
@@ -79,17 +83,29 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
         tr.start();
     }
 
-    public void showData(){
+    public void showData() {
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-        setTitle("Me ha tocado: " + myFriend.getData_person().getData_name());
-        ImageView imgVwFriendPhoto = (ImageView)findViewById(R.id.imgVwFriendPhoto);
+        if (myFriend.getData_person() == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.app_name);
+            builder.setMessage(R.string.no_friend);
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            Dialog dialog = builder.create();
+            dialog.show();
+        } else {
+            setTitle("Me ha tocado: " + myFriend.getData_person().getData_name());
+            ImageView imgVwFriendPhoto = (ImageView) findViewById(R.id.imgVwFriendPhoto);
 
-        if (myFriend.getData_person().getData_photo() != null) {
-            imgVwFriendPhoto.setImageBitmap(myFriend.getData_person().getData_photo());
+            if (myFriend.getData_person().getData_photo() != null) {
+                imgVwFriendPhoto.setImageBitmap(myFriend.getData_person().getData_photo());
+            }
+
+            ListadoComprados_Adapter adapter = new ListadoComprados_Adapter(this, myFriend);
+            listado.setAdapter(adapter);
         }
-
-        ListadoComprados_Adapter adapter = new ListadoComprados_Adapter(this, myFriend);
-        listado.setAdapter(adapter);
-
     }
 }

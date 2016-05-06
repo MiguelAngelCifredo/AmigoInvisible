@@ -75,7 +75,7 @@ public class RunInDB {
         Integer id_myFriend  = null;
         JSONArray json = ConnSrv.readJSON("getMyFriend.php?id_event=" + id_event + "&id_person=" + Iam.getId());
         try{ id_myFriend = json.getJSONObject(0).getInt("friend"); } catch (Exception e) {;}
-        ClsMyFriend myFriend = new ClsMyFriend( getPerson(id_myFriend) ,getListWishes(id_myFriend) );
+        ClsMyFriend myFriend = new ClsMyFriend( getPerson(id_myFriend), getListWishes(id_myFriend) );
         return myFriend;
     }
 
