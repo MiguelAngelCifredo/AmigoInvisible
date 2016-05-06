@@ -93,7 +93,10 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         super.onResume();
         if (add){
             add = false;
-            lstEvents.add( (ClsEvent) Comunicador.getObjeto() );
+            ClsEvent newEvent = (ClsEvent) Comunicador.getObjeto();
+            if (!newEvent.getData_date().equals("")) {
+                lstEvents.add(newEvent);
+            }
             showData();
         } else {
             getData(actualActivity);
