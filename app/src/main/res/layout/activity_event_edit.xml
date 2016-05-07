@@ -18,10 +18,10 @@
         android:foregroundGravity="center">
 
         <ImageView
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:id="@+id/imgEventPhoto"
-            android:src="@drawable/event_img"
+            android:src="@drawable/event_img_edit"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:layout_gravity="center_horizontal" />
