@@ -57,7 +57,7 @@ public class MyFriend_Activity extends AppCompatActivity implements Serializable
 
     }
 
-    protected void _onResume() {
+    protected void onResume() {
         super.onResume();
         if(actualWish !=null) {
             Collections.sort(myFriend.getData_wish(), new WishByBoughtAndText());
