@@ -52,7 +52,7 @@ public class ListadoComprados_Adapter extends BaseAdapter {
         txtVwWishtName.setText(alguien.getData_wish().get(position).getData_text());
 
         if (alguien.getData_wish().get(position).getData_bought().equals("Y")) {
-            imgVwWishBought.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.check2));
+            imgVwWishBought.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.check));
         }
 
         return itemView;
