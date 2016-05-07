@@ -4,7 +4,7 @@
     tools:context=".WishEdit_Activity">
     <item android:title="WishSave"
         android:id="@+id/opcWishSave"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_action_save"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 </menu>

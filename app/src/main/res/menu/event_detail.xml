@@ -11,7 +11,7 @@
 
     <item android:title="ParticipantList"
         android:id="@+id/opcParticipantList"
-        android:icon="@drawable/ic_action_view_as_list"
+        android:icon="@drawable/ic_action_group"
         android:orderInCategory="1"
         app:showAsAction="always|collapseActionView"/>
 
