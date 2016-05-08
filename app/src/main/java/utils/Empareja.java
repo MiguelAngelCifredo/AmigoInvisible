@@ -11,6 +11,11 @@ public class Empareja {
     private static final Integer numIntentos = 10;
 
     public static void Participantes (ArrayList<ClsParticipant> lsPart){
+        /*
+        modifica una lista de participantes en un evento para que ningún ClsPerson se
+        tenga que regalar a si mismo.
+        Mediante un suffle n-veces y luego un shift a la derecha
+         */
         //ArrayList<ClsParticipant> res = new ArrayList<ClsParticipant>(lsPart);
 
         // A regala a B

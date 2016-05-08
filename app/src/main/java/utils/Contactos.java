@@ -18,6 +18,11 @@ public class Contactos {
     public static ArrayList<ClsPerson> listContacts;
 
     public static ArrayList<ClsPerson> getContacts(Activity activity){
+        /*
+        obtiene (previo permiso del usuario) los siguientes datos de cada contacto
+        almacenado en el terminal:
+        nombre, email, foto
+         */
 
         ArrayList<ClsPerson> res = new ArrayList<>();
         Bitmap photo = null;
