@@ -84,6 +84,9 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
             }
         });
 
+        // debido a que ambos hilos: getContacts y getIam se lanzan a la vez y getIam necesita de la finalización
+        // de getContacts para obtener foto, nombre y uri_photo, se ha decidido NO modificar el proyecto
+        // puesto que alargaría innecesariamente el arranque de la app
         getContacts(actualActivity);
         getIam(actualActivity);
     }
