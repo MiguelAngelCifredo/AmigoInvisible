@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'myApp'
             keyPassword 'a42admin'
-            storeFile file('F:/Programar/WorkSpaces/AndroidStudioProjects/AmigoInvisible/app/my_key.keystore')
+            storeFile file('C:/my_key.keystore')
             storePassword 'a42admin'
         }
     }
