@@ -16,7 +16,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import adaptador.ListadoEventos_Adapter;
 import dbms.RunInDB;
@@ -60,7 +62,7 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         findViewById(R.id.btnAddEvent).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 add = true;
-                Comunicador.setObjeto(new ClsEvent(0, "", "", "", 0, null, Iam.getId()));
+                Comunicador.setObjeto(new ClsEvent(0, "Nuevo evento", "", "", 0, null, Iam.getId()));
                 Intent nextView = new Intent(getApplicationContext(), EventEdit_Activity.class);
                 startActivity(nextView);
             }
@@ -87,8 +89,8 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         // debido a que ambos hilos: getContacts y getIam se lanzan a la vez y getIam necesita de la finalización
         // de getContacts para obtener foto, nombre y uri_photo, se ha decidido NO modificar el proyecto
         // puesto que alargaría innecesariamente el arranque de la app
-        getContacts(actualActivity);
         getIam(actualActivity);
+        getContacts(actualActivity);
     }
 
     @Override
@@ -202,6 +204,5 @@ public class EventList_Activity extends AppCompatActivity implements Serializabl
         });
         tr.start();
     }
-
 
 }
