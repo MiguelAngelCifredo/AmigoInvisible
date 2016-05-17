@@ -111,7 +111,7 @@ public class ClsEvent {
     }
 
     public String getData_date_text() {
-        String[] diaSem = new String[]{"Sábado", "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
+        String[] diaSem = new String[]{"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
         String[] mesAño = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
         Calendar cal = Calendar.getInstance();
@@ -121,7 +121,7 @@ public class ClsEvent {
         int dayWeek  = cal.get(Calendar.DAY_OF_WEEK);
         int month    = cal.get(Calendar.MONTH);
         int day      = cal.get(Calendar.DAY_OF_MONTH);
-        String fecha = diaSem[dayWeek] + ", "  + day + " de " + mesAño[month] ;
+        String fecha = diaSem[dayWeek-1] + ", "  + day + " de " + mesAño[month] ;
         return fecha;
     }
 
