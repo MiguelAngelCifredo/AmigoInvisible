@@ -12,7 +12,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -23,7 +26,7 @@ public class ConnSrv {
     //public static final String servidor = "http://192.168.1.200/amigo/";
     public static final String servidor = "http://asd.hol.es/amigo/";
 
-    private static final boolean log = true;
+    private static final boolean log = false;
 
     private static String sendPage(String pagePHP){
         if (log) System.out.println("\n***** PETICION BD ---> " + servidor + pagePHP);
@@ -33,10 +36,14 @@ public class ConnSrv {
             URL url = new URL(servidor + pagePHP);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            response = org.apache.commons.io.IOUtils.toString(new BufferedInputStream(conn.getInputStream()), "UTF-8");
+            Reader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+            Writer writer = new StringWriter();
+            char[] buffer = new char[1024];
+            int n;
+            while((n=reader.read(buffer))!=-1) { writer.write(buffer, 0, n); }
+            response = writer.toString();
         } catch (Exception e) {
-            System.out.println("\n***** FALLO CON LA BASE DE DATOS");
-            System.out.println("\n***** ERROR    ---> " + e.toString());
+            System.out.println("\n***** FALLO CON LA BASE DE DATOS ---> " + e.toString());
         }
         return response;
     }

@@ -157,10 +157,8 @@ public class EventEdit_Activity extends AppCompatActivity implements Serializabl
 
     protected Dialog onCreateDialog(int id){
         if (actualEvent.getData_date().equals("")) {
-            System.out.println("******* Convirtiendo....");
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             actualEvent.setData_date(formatter.format(new Date()));
-            System.out.println("******* " + actualEvent.getDate().get(Calendar.YEAR));
         }
         if(id == DIALOG_ID){
             return new DatePickerDialog(this, dpickerLister, actualEvent.getDate().get(Calendar.YEAR), actualEvent.getDate().get(Calendar.MONTH), actualEvent.getDate().get(Calendar.DAY_OF_MONTH));
