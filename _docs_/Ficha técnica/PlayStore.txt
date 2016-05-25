@@ -1,9 +1,0 @@
-Amigo invisible
-
-Amigo Invisible - Secret Santa
-
-Gestiona mediante eventos tu participación en el juego del amigo invisible.
-Crea un evento, asigna una foto, dí la fecha, hora y lugar de celebración, además de cuál será el precio máximo de cada regalo.
-Define tu perfil, asigna tu foto, tu nombre y dí cuál es tu lista de deseos, mediante una foto, un nombre y una descripción para que tu amigo invisible pueda comprártelo sin dudar.
-Quien crea un evento será el administrador del mismo. Será quien establezca los datos del evento y se encargue de añadir a los participantes y, posteriormente, realizar el sorteo.
-A disfrutar !
